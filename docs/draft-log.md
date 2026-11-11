@@ -21,6 +21,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 13 | `prototypes/13-wall` | Work as one curved three.js wall, turned by scroll and drag, with a lens warp | Inner pages |
 | 14 | `prototypes/14-film-gate` | Three SVG scenes run by scroll: the t pattern and reels pulled through a film gate, arcs that draw and split a photo, a glow that crosses like a lens flare | Small pieces |
 | 15 | `prototypes/15-depth` | Two hero scenes in CSS 3D, no WebGL: the hero line on a drum turned by scroll, and one frame pulled into layers of light that the camera moves through | Pick one |
+| 16 | `prototypes/16-drum-index` | Work index on a CSS 3D drum, no WebGL: each face a project, scroll or the step buttons turn it, and the photograph opens out of a half circle bite as each face lands | Inner pages |
 
 ## How a draft is put together
 
@@ -71,6 +72,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - Draft 14's gate as the reels section on the home page: one gate, the strip of real reels, the open link under it.
 - The split on scroll as the hero itself: the circle closes on the showreel, then parts to let the page in.
 - Swap Draft 14's stand in curl for the real t pattern once the source SVG arrives.
-- The drum from Draft 15 as a work index: each face a project name, the photo behind changes as the face lands.
 - Draft 15's layers with a real reel as the deepest layer instead of a still, playing muted.
+- Draft 16 with reels playing muted inside the frame once a face has rested for a second, instead of the still thumbnail.
+- A second drum on Draft 16 that turns the other way for the kind of work, so two wheels set the index like a combination.
 - A cropped mark turning in 3D was left out on purpose: the guidelines say never rotate the logo. If depth on the mark is wanted, move the light round a still mark instead.
