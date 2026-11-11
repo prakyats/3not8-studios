@@ -4,8 +4,26 @@
     {
       "name": "prototype-01",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "4321", "--directory", "prototypes/01-hero-direction"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4321",
+        "--directory",
+        "prototypes/01-hero-direction"
+      ],
       "port": 4321
+    },
+    {
+      "name": "prototype-02",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4322",
+        "--directory",
+        "prototypes/02-home"
+      ],
+      "port": 4322
     }
   ]
 }
