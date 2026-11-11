@@ -18,6 +18,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 10 | `prototypes/10-services` | Services page with stacking cards | Inner pages |
 | 11 | `prototypes/11-navigation` | Full screen menu and page transitions | Small pieces |
 | 12 | `prototypes/12-footers` | Three footers behind a switch | Pick one |
+| 13 | `prototypes/13-wall` | Work as one curved three.js wall, turned by scroll and drag, with a lens warp | Inner pages |
 
 ## How a draft is put together
 
@@ -55,7 +56,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 
 ## Ideas not built yet
 
-- A 3D piece: a curved wall of stills in three.js with a lens style warp, driven by scroll and drag.
 - More hero options with depth: a cropped mark turning in 3D, layered light with parallax, type that turns on a cylinder.
 - Custom motion graphics in SVG: the t curl pattern running like film through a gate, arcs that draw and split, a glow that behaves like a lens flare. Tie each to scroll.
 - A showreel page: a full screen player with chapters styled as an edit timeline.
@@ -65,4 +65,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - A second take on the work page: a list first layout, and a map of Mangaluru locations.
 - A second take on the project page: a horizontal story, and footage inside the title letters.
 - Phone first versions of the strongest desktop sections.
+- The wall as a home page hero: start inside the wall, then pull the camera back out of the ring as the page scrolls.
+- Filters on the wall: a chip turns the ring so only that kind of work faces you, the rest dims.
 - A final candidate: one page that joins the pieces the team is most likely to pick.

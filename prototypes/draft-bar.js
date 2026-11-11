@@ -13,7 +13,8 @@
     ['09', '09-details', 'Small details', 'Pieces'],
     ['10', '10-services', 'Services page', 'Inner page'],
     ['11', '11-navigation', 'Menu and page transitions', 'Pieces'],
-    ['12', '12-footers', 'Footer options', 'Options']
+    ['12', '12-footers', 'Footer options', 'Options'],
+    ['13', '13-wall', 'Curved wall of work', 'Inner page']
   ];
   const m = location.pathname.match(/prototypes\/(\d\d)-/);
   const cur = DRAFTS.find(d => m && d[0] === m[1]);
