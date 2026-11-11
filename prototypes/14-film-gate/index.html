@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3not8 Studios · Draft 14</title>
+<meta name="description" content="3not8 Studios. Films, photography and campaigns from Mangaluru.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #162C29; --night: #051511; --paper: #F8F2EB; --orange: #F5731D;
+  --ember: #C64D01; --gold: #F9C052; --sand: #D2BDA1; --linen: #EADCC6;
+  --page: var(--forest); --ink: var(--paper);
+  --ease: cubic-bezier(.65,.05,0,1);
+}
+/* One unit scales with the window, and is capped by its height so a screen of content stays a screen */
+html { font-size: min(calc(100vw / 90), calc(100vh / 56.25)); }
+@media (max-width: 991px) { html { font-size: calc(100vw / 60); } }
+@media (max-width: 600px) { html { font-size: calc(100vw / 24.375); } }
+html[data-theme="paper"] { --page: var(--paper); --ink: var(--forest); }
+html[data-theme="night"] { --page: var(--night); --ink: var(--paper); }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+img, svg { display: block; }
+body {
+  background: var(--page); color: var(--ink);
+  font-family: Montserrat, Arial, sans-serif; overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .7s var(--ease), color .7s var(--ease);
+}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+main { visibility: hidden; }
+html[data-page-ready] main { visibility: visible; }
+[data-text-reveal], [data-scroll-reveal] { visibility: hidden; }
+html.reveal-all main, html.reveal-all [data-text-reveal], html.reveal-all [data-scroll-reveal] { visibility: visible !important; }
+html.reveal-all .wipe { display: none; }
+.line { padding-bottom: .1em; margin-bottom: -.1em; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+
+/* Type */
+.label { font-weight: 700; font-size: .8rem; line-height: 1.4; letter-spacing: .2em; text-transform: uppercase; }
+.label-ember { color: var(--ember); }
+.h-hero, .h-section, .h-big { text-transform: lowercase; letter-spacing: -.01em; }
+.h-hero { font-size: 8.25rem; line-height: .95; }
+.h-section { font-size: 6.5rem; line-height: .95; }
+.h-big { font-size: 9rem; line-height: .92; }
+.h-line { font-size: 5rem; line-height: 1; text-transform: lowercase; letter-spacing: -.01em; }
+.w-light { font-weight: 200; }
+.w-heavy { font-weight: 900; }
+.accent { color: var(--orange); }
+.body-l { font-size: 1.2rem; line-height: 1.6; }
+.section-head { display: flex; flex-direction: column; gap: 1.4rem; }
+
+/* Film grain, one shared layer */
+.grain {
+  position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain .9s steps(5) infinite;
+}
+@keyframes grain { 0%,100% { transform: translate(0,0); } 20% { transform: translate(-3%,2%); } 40% { transform: translate(2%,-3%); } 60% { transform: translate(-2%,-1%); } 80% { transform: translate(3%,3%); } }
+
+/* Load wipe */
+.wipe { position: fixed; inset: 0; z-index: 1000; pointer-events: none; }
+.wipe-half { position: absolute; left: 0; width: 100%; background: var(--night); }
+.wipe-top { top: 0; height: 50%; }
+.wipe-bottom { bottom: 0; height: calc(50% + 1px); }
+.wipe svg { position: absolute; left: 50%; width: 14rem; height: 7rem; translate: -50% 0; overflow: visible; }
+.wipe-top svg { bottom: 0; } .wipe-bottom svg { top: 1px; }
+.wipe path { fill: none; stroke: var(--orange); stroke-width: 3; stroke-linecap: round; }
+html[data-transition-ready] .wipe { display: none; }
+
+/* Focus brackets cursor */
+.focus { position: fixed; top: 0; left: 0; z-index: 95; pointer-events: none; opacity: 0; width: 4rem; height: 4rem; }
+.focus i { position: absolute; width: 1.1rem; height: 1.1rem; border: 2px solid var(--orange); }
+.focus i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; }
+.focus i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+.focus i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; }
+.focus i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+.focus-label {
+  position: absolute; left: 0; top: calc(100% + .6rem); white-space: nowrap;
+  background: var(--orange); color: var(--forest); padding: .45em .7em;
+  font-weight: 700; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+}
+
+/* Nav */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 60; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; pointer-events: none; }
+.nav > * { pointer-events: auto; }
+.nav-logo { position: relative; width: 11.25rem; display: block; }
+.nav-logo img { width: 100%; height: auto; transition: opacity .7s var(--ease); }
+.nav-logo .logo-light { position: absolute; inset: 0; opacity: 0; }
+html[data-theme="paper"] .nav-logo .logo-dark { opacity: 0; }
+html[data-theme="paper"] .nav-logo .logo-light { opacity: 1; }
+html[data-menu-open] .nav-logo .logo-dark { opacity: 1; }
+html[data-menu-open] .nav-logo .logo-light { opacity: 0; }
+.pill { height: 3rem; display: flex; align-items: center; border-radius: 10rem; background: var(--paper); color: var(--forest); transition: box-shadow .7s var(--ease); }
+html[data-theme="paper"] .pill { box-shadow: 0 0 0 1px rgba(22,44,41,.18); }
+.nav-pill { position: absolute; left: 50%; top: 1.25rem; translate: -50% 0; padding: 0 1.75rem; gap: 2.25rem; }
+.nav-right { display: flex; gap: .6rem; }
+.nav-contact { padding: 0 1.4rem; gap: .65rem; }
+.nav-menu { padding: 0 1.3rem; gap: .6rem; display: none; }
+.menu-lines { width: 1.1rem; height: .6rem; position: relative; }
+.menu-lines::before, .menu-lines::after { content: ""; position: absolute; left: 0; width: 100%; height: 2px; background: currentColor; transition: transform .5s var(--ease), top .5s var(--ease); }
+.menu-lines::before { top: 0; } .menu-lines::after { top: calc(100% - 2px); }
+html[data-menu-open] .menu-lines::before { top: calc(50% - 1px); transform: rotate(45deg); }
+html[data-menu-open] .menu-lines::after { top: calc(50% - 1px); transform: rotate(-45deg); }
+.nav-link { position: relative; display: flex; flex-direction: column; }
+.dot { width: .45rem; height: .45rem; border-radius: 50%; background: var(--orange); }
+.draw-line { position: absolute; left: 0; top: 100%; width: 100%; height: .6em; color: var(--orange); pointer-events: none; }
+.draw-line svg { width: 100%; height: 100%; overflow: visible; }
+
+/* Staggered menu */
+.menu { position: fixed; inset: 0; z-index: 55; pointer-events: none; visibility: hidden; }
+html[data-menu-open] .menu { pointer-events: auto; }
+.menu-layer { position: absolute; inset: 0; }
+.menu-layer:nth-child(1) { background: var(--ember); }
+.menu-layer:nth-child(2) { background: var(--night); }
+.menu-layer:nth-child(3) { background: var(--forest); }
+.menu-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 6rem 1.5rem 2.5rem; gap: 2.5rem; color: var(--paper); }
+.menu-links { display: flex; flex-direction: column; gap: .4rem; }
+.menu-links a { font-size: 4.2rem; line-height: 1; font-weight: 900; text-transform: lowercase; display: flex; align-items: baseline; gap: .8rem; overflow: hidden; }
+.menu-links a span:first-child { font-size: .8rem; font-weight: 700; letter-spacing: .2em; color: var(--orange); }
+.menu-foot { display: flex; flex-direction: column; gap: .5rem; color: rgba(248,242,235,.6); }
+
+.lightbox { position: fixed; inset: 0; z-index: 80; background: var(--night); visibility: hidden; cursor: zoom-out; }
+.lightbox img, .lightbox video { position: absolute; inset: 4.5rem 3rem 3rem; width: calc(100% - 6rem); height: calc(100% - 7.5rem); object-fit: contain; }
+.lightbox video { cursor: auto; }
+.lightbox [hidden] { display: none; }
+.lightbox-close { position: absolute; right: 1.5rem; top: 1.25rem; height: 3rem; padding: 0 1.4rem; border-radius: 10rem; background: var(--paper); color: var(--forest); z-index: 1; }
+.btn-corner { position: relative; display: inline-flex; align-items: center; gap: .8rem; padding: 1.3rem 2rem; background: var(--orange); color: var(--forest); }
+.btn-corner i { position: absolute; width: .8rem; height: .8rem; border: 2px solid var(--orange); transition: transform .5s var(--ease); }
+.btn-corner i:nth-of-type(1) { left: -.6rem; top: -.6rem; border-right: 0; border-bottom: 0; }
+.btn-corner i:nth-of-type(2) { right: -.6rem; top: -.6rem; border-left: 0; border-bottom: 0; }
+.btn-corner i:nth-of-type(3) { left: -.6rem; bottom: -.6rem; border-right: 0; border-top: 0; }
+.btn-corner i:nth-of-type(4) { right: -.6rem; bottom: -.6rem; border-left: 0; border-top: 0; }
+.btn-corner:hover i:nth-of-type(1) { transform: translate(-.35rem,-.35rem); }
+.btn-corner:hover i:nth-of-type(2) { transform: translate(.35rem,-.35rem); }
+.btn-corner:hover i:nth-of-type(3) { transform: translate(-.35rem,.35rem); }
+.btn-corner:hover i:nth-of-type(4) { transform: translate(.35rem,.35rem); }
+.btn-copy { display: inline-flex; align-items: center; gap: .8rem; padding: 1.3rem 1.6rem; border: 1px solid rgba(248,242,235,.25); color: var(--paper); }
+.btn-copy .copied { color: var(--orange); }
+
+
+/* Footer */
+.footer { position: relative; padding: 7rem 1.5rem 0; overflow: hidden; background: var(--forest); color: var(--paper); }
+.footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr; gap: 2rem; padding: 0 3.5rem 6rem; }
+.footer-cols h4 { margin-bottom: 1.2rem; color: rgba(248,242,235,.5); }
+.footer-cols ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; font-size: 1.05rem; }
+.footer-cols a { position: relative; display: inline-flex; flex-direction: column; }
+.footer-line { font-size: 2.2rem; font-weight: 200; line-height: 1.15; text-transform: lowercase; }
+.footer-line b { font-weight: 900; color: var(--orange); }
+.clock { font-size: 2.2rem; font-weight: 900; letter-spacing: -.01em; }
+.footer-logo { padding: 0 1rem; overflow: hidden; }
+.footer-logo img { width: 100%; height: auto; }
+.footer-base { display: flex; justify-content: space-between; padding: 1.5rem 3.5rem 1.75rem; color: rgba(248,242,235,.5); border-top: 1px solid rgba(248,242,235,.12); margin-top: 2rem; }
+
+/* Shared tablet and phone rules */
+@media (max-width: 991px) {
+  .nav-pill { display: none; } .nav-menu { display: flex; }
+  .h-hero { font-size: 5.6rem; } .h-section { font-size: 5rem; } .h-big { font-size: 6.5rem; } .h-line { font-size: 4.4rem; }
+  .lightbox img, .lightbox video { inset: 4.5rem 1rem 1rem; width: calc(100% - 2rem); height: calc(100% - 5.5rem); }
+  .footer-cols { grid-template-columns: 1fr 1fr; padding: 0 0 4rem; gap: 3rem 2rem; }
+  .footer-cols > :first-child { grid-column: 1 / -1; }
+  .footer-base { padding: 1.5rem 0 1.75rem; }
+}
+@media (max-width: 600px) {
+  .nav { padding: 1rem; } .nav-logo { width: 8.5rem; }
+  .pill { height: 2.5rem; } .nav-contact { display: none; } .nav-menu { padding: 0 1rem; }
+  .h-hero { font-size: 3.4rem; } .h-section { font-size: 3.4rem; } .h-big { font-size: 3.6rem; } .h-line { font-size: 3.2rem; }
+  .menu-links a { font-size: 3rem; }
+  .footer { padding: 5rem 1rem 0; }
+  .footer-line, .clock { font-size: 1.6rem; }
+  .footer-base { flex-direction: column; gap: .5rem; }
+}
+@media (prefers-reduced-motion: reduce) { .grain { animation: none; } }
+
+/* Draft 14: motion graphics in SVG, all run by scroll. Three scenes: the gate, the split, the glow */
+.scene { position: relative; height: 100vh; height: 100svh; overflow: hidden; background: var(--forest); }
+.scene-num { color: var(--ember); }
+.scene-copy { position: absolute; z-index: 3; display: flex; flex-direction: column; gap: 1.4rem; }
+.scene-note { max-width: 22rem; font-size: 1rem; line-height: 1.6; color: rgba(248,242,235,.72); }
+.sample { color: rgba(248,242,235,.45); }
+
+/* Scene one: the t pattern and the reels pulled through a gate, one frame at a time */
+.fg-copy { left: 5rem; top: 50%; translate: 0 -50%; max-width: 32rem; }
+.fg-title { font-size: 6.4rem; line-height: .92; letter-spacing: -.02em; text-transform: lowercase; }
+.fg-rig { position: absolute; left: 50%; top: 50%; translate: -50% -50%; --gw: 19rem; --gh: calc(var(--gw) * 16 / 9); --fl: 1.4rem; width: calc(var(--gw) + 7rem); height: calc(var(--gh) + 6rem); }
+.fg-gate { position: absolute; inset: 3rem 3.5rem; overflow: hidden; background: var(--night); }
+.fg-strip { position: absolute; left: 0; top: 0; width: 100%; will-change: transform; }
+.fg-frame { position: relative; width: var(--gw); height: var(--gh); margin-bottom: var(--fl); overflow: hidden; background: var(--forest); }
+.fg-frame img { width: 100%; height: 100%; object-fit: cover; }
+.fg-frame svg { width: 100%; height: 100%; }
+.fg-frame.is-orange { background: var(--orange); }
+.fg-shutter { position: absolute; inset: 0; background: var(--night); opacity: 0; pointer-events: none; }
+/* The plate around the gate: sprockets running on both sides, and four corner marks */
+.fg-plate { position: absolute; inset: 0; pointer-events: none; }
+.fg-sprockets { position: absolute; top: 0; bottom: 0; width: 1.3rem; overflow: hidden; }
+.fg-sprockets.l { left: 1.3rem; } .fg-sprockets.r { right: 1.3rem; }
+.fg-sprockets i { position: absolute; left: 0; right: 0; top: -4rem; bottom: -4rem; will-change: transform;
+  background: repeating-linear-gradient(to bottom, rgba(248,242,235,.16) 0 1.3rem, transparent 1.3rem 2.6rem); border-radius: .25rem; }
+.fg-mark { position: absolute; width: 1.3rem; height: 1.3rem; border: 2px solid var(--paper); opacity: .7; }
+.fg-mark:nth-of-type(1) { left: 2.8rem; top: 2.3rem; border-right: 0; border-bottom: 0; }
+.fg-mark:nth-of-type(2) { right: 2.8rem; top: 2.3rem; border-left: 0; border-bottom: 0; }
+.fg-mark:nth-of-type(3) { left: 2.8rem; bottom: 2.3rem; border-right: 0; border-top: 0; }
+.fg-mark:nth-of-type(4) { right: 2.8rem; bottom: 2.3rem; border-left: 0; border-top: 0; }
+.fg-read { position: absolute; z-index: 3; right: 5rem; top: 50%; translate: 0 -50%; display: flex; flex-direction: column; gap: 1.6rem; align-items: flex-end; text-align: right; }
+.fg-counter { font-size: 5rem; font-weight: 900; line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.fg-now { display: flex; flex-direction: column; gap: .5rem; min-height: 3.6rem; }
+.fg-now b { font-size: 1.6rem; font-weight: 900; text-transform: lowercase; letter-spacing: -.01em; }
+.fg-now span { color: rgba(248,242,235,.6); }
+.fg-open { pointer-events: auto; }
+
+/* Scene two: two arcs draw, close round a photograph, then split it */
+.fs { background: var(--forest); }
+.fs-art { position: absolute; left: 50%; top: 50%; width: 38rem; height: 38rem; translate: -50% -50%; overflow: visible; }
+.fs-art .arc { fill: none; stroke: var(--paper); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.fs-line { position: absolute; z-index: 3; font-size: 5rem; line-height: 1; letter-spacing: -.02em; text-transform: lowercase; white-space: nowrap; }
+.fs-line.top { left: 5rem; top: 7rem; font-weight: 200; }
+.fs-line.bottom { right: 5rem; bottom: 4.5rem; font-weight: 900; color: var(--orange); }
+.fs-copy { right: 5rem; top: 8rem; align-items: flex-end; text-align: right; }
+.fs-cap { position: absolute; z-index: 3; left: 5rem; bottom: 5rem; color: rgba(248,242,235,.6); }
+
+/* Scene three: the glow behaves like light crossing a lens */
+.fl { background: var(--forest); }
+.fl-light { position: absolute; left: 0; top: 0; width: 70rem; height: 70rem; margin: -35rem 0 0 -35rem; border-radius: 50%; pointer-events: none; will-change: transform;
+  background: radial-gradient(circle, var(--gold) 0 3%, var(--ember) 18%, rgba(198,77,1,.35) 38%, rgba(22,44,41,0) 66%); }
+.fl-streak { position: absolute; left: 0; top: 0; width: 120rem; height: .9rem; margin: -.45rem 0 0 -60rem; border-radius: 50%; pointer-events: none; will-change: transform;
+  background: radial-gradient(closest-side, rgba(249,192,82,.9), rgba(198,77,1,.35) 45%, rgba(22,44,41,0)); }
+.fl-ghosts { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.fl-ghosts circle { fill: none; stroke: var(--gold); }
+.fl-copy { left: 5rem; bottom: 5rem; }
+.fl-title { font-size: 9rem; line-height: .92; letter-spacing: -.02em; text-transform: lowercase; }
+.fl-read { position: absolute; z-index: 3; right: 5rem; top: 8rem; text-align: right; color: rgba(248,242,235,.6); }
+
+.wk-cta { padding: 8rem 5rem; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 3rem; }
+.wk-cta .btn-corner { margin-left: .6rem; }
+
+@media (max-width: 991px) {
+  .fg-copy { left: 1.5rem; right: 1.5rem; top: 6rem; translate: none; max-width: none; gap: 1rem; }
+  .fg-title { font-size: 5rem; }
+  .fg-rig { --gw: 15rem; top: auto; bottom: 4rem; translate: -50% 0; }
+  .fg-read { right: 1.5rem; top: auto; bottom: 8rem; translate: none; gap: 1rem; }
+  .fg-counter { font-size: 3.2rem; }
+  .fg-copy .scene-note { display: none; }
+  .fs-art { width: 34rem; height: 34rem; }
+  .fs-line { font-size: 4.4rem; }
+  .fs-line.top { left: 1.5rem; top: 6rem; } .fs-line.bottom { right: 1.5rem; bottom: 4.5rem; }
+  .fs-copy { display: none; }
+  .fs-cap { left: 1.5rem; bottom: 10rem; }
+  .fl-copy { left: 1.5rem; right: 1.5rem; bottom: 4.5rem; }
+  .fl-title { font-size: 6.5rem; }
+  .fl-read { right: 1.5rem; top: 6rem; }
+  .wk-cta { padding: 6rem 1.5rem; min-height: 0; }
+}
+@media (max-width: 600px) {
+  .fg-copy { left: 1rem; right: 1rem; top: 5.2rem; }
+  .fg-title { font-size: 2.6rem; }
+  .fg-rig { --gw: 9.5rem; --fl: 1rem; bottom: 4.2rem; left: 1rem; translate: none; }
+  .fg-sprockets { width: 1rem; } .fg-sprockets.l { left: .9rem; } .fg-sprockets.r { right: .9rem; }
+  .fg-mark { width: 1rem; height: 1rem; }
+  .fg-read { right: 1rem; bottom: 5.5rem; }
+  .fg-counter { font-size: 2.4rem; }
+  .fg-now b { font-size: 1.1rem; }
+  .fs-art { width: 19rem; height: 19rem; }
+  .fs-line { font-size: 2.8rem; }
+  .fs-line.top { left: 1rem; top: 5.5rem; } .fs-line.bottom { right: 1rem; bottom: 5rem; }
+  .fs-cap { left: 1rem; bottom: 8.5rem; }
+  .fl-copy { left: 1rem; right: 1rem; bottom: 5rem; }
+  .fl-title { font-size: 3.6rem; }
+  .fl-read { right: auto; left: 1rem; top: auto; bottom: 15.5rem; text-align: left; }
+  .fl-light { width: 40rem; height: 40rem; margin: -20rem 0 0 -20rem; }
+  .wk-cta { padding: 5rem 1rem; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="wipe" aria-hidden="true">
+  <div class="wipe-half wipe-top"><svg viewBox="0 0 200 100"><path class="arc-top" d="M4 100 A96 96 0 0 1 196 100"/></svg></div>
+  <div class="wipe-half wipe-bottom"><svg viewBox="0 0 200 100"><path class="arc-bottom" d="M196 0 A96 96 0 0 1 4 0"/></svg></div>
+</div>
+
+<div class="focus" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="focus-label">view project</span></div>
+
+<nav class="nav">
+  <a href="#top" class="nav-logo" aria-label="3not8 Studios, back to top">
+    <img class="logo-dark" src="../03-sections/assets/logo-horizontal.png" alt="3not8 Studios" width="640" height="251">
+    <img class="logo-light" src="../03-sections/assets/logo-horizontal-light.png" alt="" width="640" height="251">
+  </a>
+  <div class="nav-pill pill label">
+    <a href="../05-work/" class="nav-link" data-draw-line><span>Work</span><span class="draw-line"></span></a>
+    <a href="../10-services/" class="nav-link" data-draw-line><span>Services</span><span class="draw-line"></span></a>
+    <a href="../07-studio/" class="nav-link" data-draw-line><span>Studio</span><span class="draw-line"></span></a>
+    <a href="../08-contact/" class="nav-link" data-draw-line><span>Contact</span><span class="draw-line"></span></a>
+  </div>
+  <div class="nav-right">
+    <a href="../03-sections/#contact" class="nav-contact pill label"><span class="dot"></span><span>Contact</span></a>
+    <button class="nav-menu pill label" aria-expanded="false" aria-controls="menu"><span class="menu-lines"></span><span class="menu-word">Menu</span></button>
+  </div>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu-layer"></div><div class="menu-layer"></div><div class="menu-layer"></div>
+  <div class="menu-content">
+    <div class="menu-links">
+      <a href="../05-work/"><span>01</span><span>work</span></a>
+      <a href="../10-services/"><span>02</span><span>services</span></a>
+      <a href="../07-studio/"><span>03</span><span>studio</span></a>
+      <a href="../08-contact/"><span>04</span><span>contact</span></a>
+    </div>
+    <div class="menu-foot label"><span>Mannagudda Road, Gandhinagar</span><span>Mangaluru 575003</span></div>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- Scene one: the t pattern and the reels run through a gate like film, pulled down one frame at a time by scroll -->
+  <section class="scene fg" data-gate>
+    <div class="scene-copy fg-copy">
+      <p class="label scene-num" data-text-reveal="element">01 the gate</p>
+      <h1 class="fg-title" data-text-reveal="chars"><span class="w-light">every frame,</span><br><span class="w-heavy accent">pulled through.</span></h1>
+      <p class="scene-note" data-text-reveal="lines">Scroll moves the film one frame at a time, the way a projector does. Reels and the pattern share the strip. The pattern drawn here is a stand in until the source file arrives.</p>
+    </div>
+    <div class="fg-rig" aria-hidden="true">
+      <div class="fg-gate"><div class="fg-strip"></div><div class="fg-shutter"></div></div>
+      <div class="fg-plate">
+        <div class="fg-sprockets l"><i></i></div><div class="fg-sprockets r"><i></i></div>
+        <span class="fg-mark"></span><span class="fg-mark"></span><span class="fg-mark"></span><span class="fg-mark"></span>
+      </div>
+    </div>
+    <div class="fg-read label">
+      <p class="fg-counter" aria-hidden="true"><span data-gate-count>01</span></p>
+      <div class="fg-now" aria-live="polite"><span data-gate-kind>Pattern</span><b data-gate-name>the t, in orange</b></div>
+      <a class="fg-open" href="#top" data-gate-open data-draw-line hidden>Open the reel<span class="draw-line"></span></a>
+    </div>
+  </section>
+
+  <!-- Scene two: two arcs draw, close round a photograph, then split it in two -->
+  <section class="scene fs" data-split>
+    <p class="fs-line top" data-split-top>your vision.</p>
+    <svg class="fs-art" viewBox="0 0 400 400" role="img" aria-label="A photograph of a camera operator in a circle that splits into two halves">
+      <defs>
+        <clipPath id="fsTop"><path d="M20 200 A180 180 0 0 1 380 200 Z"/></clipPath>
+        <clipPath id="fsBottom"><path d="M380 200 A180 180 0 0 1 20 200 Z"/></clipPath>
+      </defs>
+      <g class="fs-half top">
+        <image class="fs-img" href="../03-sections/assets/orange-operator.webp" x="20" y="20" width="360" height="360" preserveAspectRatio="xMidYMid slice" clip-path="url(#fsTop)"/>
+        <path class="arc" d="M20 200 A180 180 0 0 1 380 200"/>
+      </g>
+      <g class="fs-half bottom">
+        <image class="fs-img" href="../03-sections/assets/orange-operator.webp" x="20" y="20" width="360" height="360" preserveAspectRatio="xMidYMid slice" clip-path="url(#fsBottom)"/>
+        <path class="arc" d="M380 200 A180 180 0 0 1 20 200"/>
+      </g>
+    </svg>
+    <p class="fs-line bottom" data-split-bottom>our execution.</p>
+    <div class="scene-copy fs-copy">
+      <p class="label scene-num">02 the split</p>
+      <p class="scene-note">Two arcs draw in, close round the frame, then part. Scroll runs it forward and back.</p>
+    </div>
+    <p class="fs-cap label">Operator, orange light</p>
+  </section>
+
+  <!-- Scene three: the glow crosses the frame like light through a lens -->
+  <section class="scene fl" data-flare>
+    <div class="fl-light"></div>
+    <div class="fl-streak"></div>
+    <svg class="fl-ghosts" aria-hidden="true"></svg>
+    <p class="fl-read label"><span class="scene-num">03 the glow</span><br>Scroll moves the light</p>
+    <div class="scene-copy fl-copy">
+      <h2 class="fl-title"><span class="w-light">be impossible</span><br><span class="w-heavy">to ignore.</span></h2>
+    </div>
+  </section>
+
+  <section class="wk-cta" data-page-theme="paper">
+    <div class="section-head" data-scroll-reveal-group>
+      <p class="label label-ember" data-scroll-reveal="element">After the film</p>
+      <h2 class="h-big" data-scroll-reveal="chars" data-font-weight-hover>
+        <span class="w-light" data-wght-rest="200" data-wght-near="900">your story</span><br>
+        <span class="w-heavy accent" data-wght-rest="900" data-wght-near="200">runs next.</span>
+      </h2>
+    </div>
+    <a href="../08-contact/" class="btn-corner label"><i></i><i></i><i></i><i></i>Start a project</a>
+  </section>
+</main>
+
+<div class="lightbox" role="dialog" aria-label="Photograph" aria-hidden="true">
+  <button class="lightbox-close label">Close</button>
+  <img alt="">
+  <video controls playsinline preload="none" hidden></video>
+</div>
+
+<footer class="footer">
+  <div class="footer-cols">
+    <div><p class="footer-line">good ideas deserve<br><b>great execution.</b></p></div>
+    <div><h4 class="label">Studio</h4><ul>
+      <li><a href="../03-sections/#work" data-draw-line>Work<span class="draw-line"></span></a></li>
+      <li><a href="../03-sections/#services" data-draw-line>Services<span class="draw-line"></span></a></li>
+      <li><a href="../03-sections/#process" data-draw-line>Process<span class="draw-line"></span></a></li>
+      <li><a href="../03-sections/#contact" data-draw-line>Contact<span class="draw-line"></span></a></li></ul></div>
+    <div><h4 class="label">Follow</h4><ul>
+      <li><a href="#top" data-draw-line>Instagram<span class="draw-line"></span></a></li>
+      <li><a href="#top" data-draw-line>YouTube<span class="draw-line"></span></a></li>
+      <li><a href="#top" data-draw-line>LinkedIn<span class="draw-line"></span></a></li></ul></div>
+    <div><h4 class="label">Mangaluru time</h4><p class="clock" data-clock>--:--</p>
+      <ul style="margin-top: 1.2rem"><li>Mannagudda Road, Gandhinagar</li><li>Mangaluru 575003</li></ul></div>
+  </div>
+  <div class="footer-logo" data-footer-logo><img src="../03-sections/assets/logo-footer.webp" alt="3not8 Studios" width="1600" height="629" loading="lazy" decoding="async"></div>
+  <div class="footer-base label"><span>© 2026 3not8 Studios</span><span>Draft 14, direction only</span></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.17/dist/lenis.min.js"></script>
+<script>
+(() => {
+  const html = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const fine = matchMedia('(hover: hover) and (pointer: fine)');
+  const desktop = '(min-width: 992px)';
+  const revealAll = () => { html.classList.add('reveal-all'); html.setAttribute('data-page-ready', ''); html.setAttribute('data-transition-ready', ''); };
+  if (!window.gsap || !window.ScrollTrigger || !window.SplitText) { revealAll(); return; }
+  setTimeout(() => { if (!html.hasAttribute('data-page-ready')) revealAll(); }, 4000);
+  gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
+
+  /* Smooth scroll */
+  let lenis = null;
+  if (!reduce.matches && window.Lenis) {
+    lenis = new Lenis({ lerp: 0.165, wheelMultiplier: 1.25 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+  const scrollToTarget = target => {
+    if (lenis) lenis.scrollTo(target, { duration: 1.4 });
+    else if (target === 0) window.scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });
+    else target.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth' });
+  };
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    const target = id === '#top' ? 0 : document.querySelector(id);
+    if (target === null) return;
+    e.preventDefault();
+    if (html.hasAttribute('data-menu-open')) { closeMenu(); setTimeout(() => scrollToTarget(target), 450); }
+    else scrollToTarget(target);
+  }));
+
+  /* Text splitting and reveals */
+  function split(el) {
+    if (el._split) return el._split;
+    const mode = el.dataset.textReveal || el.dataset.scrollReveal;
+    const needChars = mode === 'chars' || el.hasAttribute('data-font-weight-hover');
+    el._split = SplitText.create(el, { type: needChars ? 'chars,words,lines' : 'lines,words', linesClass: 'line', charsClass: 'char', autoSplit: false, ...(mode === 'focus' ? {} : { mask: 'lines' }) });
+    return el._split;
+  }
+  function revealTween(el) {
+    const mode = el.dataset.textReveal || el.dataset.scrollReveal;
+    if (mode === 'element') return gsap.fromTo(el, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: 'expo.out' });
+    const s = split(el);
+    gsap.set(el, { visibility: 'visible' });
+    const done = () => el.dispatchEvent(new Event('reveal:done'));
+    if (mode === 'focus') return gsap.fromTo(s.lines, { filter: 'blur(.32em)', autoAlpha: 0, yPercent: 12, scale: 1.04 },
+      { filter: 'blur(0em)', autoAlpha: 1, yPercent: 0, scale: 1, duration: 1.6, ease: 'expo.out', stagger: .18, clearProps: 'filter,scale', onComplete: done });
+    const targets = mode === 'chars' ? s.chars : s.lines;
+    return gsap.fromTo(targets, { yPercent: 135 }, { yPercent: 0, duration: 1, ease: 'expo.out', stagger: mode === 'chars' ? 0.0175 : 0.07, onComplete: done });
+  }
+  function scrollReveals() {
+    document.querySelectorAll('[data-scroll-reveal-group]').forEach(group => {
+      const tl = gsap.timeline({ paused: true });
+      group.querySelectorAll('[data-scroll-reveal]').forEach((el, i) => tl.add(revealTween(el), i * 0.12));
+      ScrollTrigger.create({ trigger: group, start: 'top 85%', once: true, onEnter: () => tl.play() });
+    });
+    document.querySelectorAll('[data-scroll-reveal]').forEach(el => {
+      if (el.closest('[data-scroll-reveal-group]')) return;
+      const tw = revealTween(el); tw.pause();
+      ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => tw.play() });
+    });
+  }
+
+  /* Hand drawn underline */
+  const LINES = [
+    'M5 20.9999C26.7762 16.2245 49.5532 11.5572 71.7979 14.6666C84.9553 16.5057 97.0392 21.8432 109.987 24.3888C116.413 25.6523 123.012 25.5143 129.042 22.6388C135.981 19.3303 142.586 15.1422 150.092 13.3333C156.799 11.7168 161.702 14.6225 167.887 16.8333C181.562 21.7212 194.975 22.6234 209.252 21.3888C224.678 20.0548 239.912 17.991 255.42 18.3055C272.027 18.6422 288.409 18.867 305 17.9999',
+    'M4.99805 20.9998C65.6267 17.4649 126.268 13.845 187.208 12.8887C226.483 12.2723 265.751 13.2796 304.998 13.9998',
+    'M5 29.8857C52.3147 26.9322 99.4329 21.6611 146.503 17.1765C151.753 16.6763 157.115 15.9505 162.415 15.6551C163.28 15.6069 165.074 15.4123 164.383 16.4275C161.704 20.3627 157.134 23.7551 153.95 27.4983C153.209 28.3702 148.194 33.4751 150.669 34.6605C153.638 36.0819 163.621 32.6063 165.039 32.2029C178.55 28.3608 191.49 23.5968 204.869 19.5404C231.903 11.3436 259.347 5.83254 288.793 5.12258C294.094 4.99476 299.722 4.82265 305 5.45025'
+  ];
+  let lineIdx = Math.floor(Math.random() * LINES.length);
+  const lineSvg = () => { const d = LINES[lineIdx]; lineIdx = (lineIdx + 1) % LINES.length;
+    return `<svg viewBox="0 0 310 40" preserveAspectRatio="none"><path d="${d}" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/></svg>`; };
+  function drawLines() {
+    document.querySelectorAll('[data-draw-line]').forEach(link => {
+      const box = link.querySelector('.draw-line'); let drawIn = null;
+      link.addEventListener('mouseenter', () => { box.innerHTML = lineSvg(); drawIn = gsap.fromTo(box.querySelector('path'), { drawSVG: '0%' }, { drawSVG: '100%', duration: .5, ease: 'power2.inOut' }); });
+      link.addEventListener('mouseleave', () => { const p = box.querySelector('path'); if (!p) return;
+        const wait = drawIn && drawIn.isActive() ? drawIn.duration() - drawIn.time() : 0;
+        gsap.to(p, { drawSVG: '100% 100%', duration: .5, ease: 'power2.inOut', delay: wait, onComplete: () => p.remove() }); });
+    });
+  }
+  function drawAlways(duration = .6) {
+    document.querySelectorAll('[data-draw-line-always]').forEach(box => { box.innerHTML = lineSvg();
+      gsap.fromTo(box.querySelector('path'), { drawSVG: '0%' }, { drawSVG: '100%', duration, ease: 'power2.inOut' }); });
+  }
+
+  /* Font weight follows the cursor */
+  function weightHover() {
+    if (reduce.matches || !fine.matches) return;
+    const items = [];
+    document.querySelectorAll('[data-font-weight-hover]').forEach(root => {
+      split(root).chars.forEach(c => {
+        const host = c.closest('[data-wght-rest]'); if (!host) return;
+        const rest = +host.dataset.wghtRest, near = +host.dataset.wghtNear;
+        c.style.setProperty('--wght', rest); c.style.fontVariationSettings = "'wght' var(--wght)";
+        items.push({ c, rest, near, cur: rest, x: 0, y: 0, q: gsap.quickTo(c, '--wght', { duration: .4, ease: 'power2.out' }) });
+      });
+    });
+    let px = -1e5, py = -1e5, lastScroll = scrollY;
+    const measure = () => items.forEach(it => { const r = it.c.getBoundingClientRect(); it.x = r.left + r.width / 2 + scrollX; it.y = r.top + r.height / 2 + scrollY; });
+    measure();
+    window.addEventListener('resize', measure);
+    document.addEventListener('reveal:done', measure, true);
+    window.addEventListener('pointermove', e => { px = e.pageX; py = e.pageY; }, { passive: true });
+    window.addEventListener('scroll', () => { py += scrollY - lastScroll; lastScroll = scrollY; measure(); }, { passive: true });
+    gsap.ticker.add(() => {
+      if (px < -1e4) return;
+      for (const it of items) {
+        const d = Math.hypot(it.x - px, it.y - py), f = d >= 400 ? 0 : 1 - d / 400;
+        const t = Math.round(it.rest + (it.near - it.rest) * f);
+        if (Math.abs(t - it.cur) >= 1) { it.cur = t; it.q(t); }
+      }
+    });
+  }
+
+  /* Lightbox: the frame opens from where it was clicked */
+  let openBox = () => {};
+  function lightbox() {
+    const lb = document.querySelector('.lightbox'), img = lb.querySelector('img'), vid = lb.querySelector('video'), closeBtn = lb.querySelector('.lightbox-close');
+    let tl = null, last = null;
+    const close = () => { if (tl) tl.reverse(); };
+    openBox = (e, o) => {
+      last = o.from;
+      img.hidden = !!o.video; vid.hidden = !o.video;
+      if (o.video) { vid.poster = o.poster; vid.src = o.video; vid.setAttribute('aria-label', o.alt); vid.play().catch(() => {}); }
+      else { img.src = o.src; img.alt = o.alt; }
+      const at = `${e.clientX || innerWidth / 2}px ${e.clientY || innerHeight / 2}px`;
+      tl = gsap.timeline({ onReverseComplete: () => { vid.pause(); vid.removeAttribute('src'); vid.load(); gsap.set(lb, { visibility: 'hidden' }); lb.setAttribute('aria-hidden', 'true'); lenis && lenis.start(); last && last.focus({ preventScroll: true }); } });
+      tl.set(lb, { visibility: 'visible' })
+        .fromTo(lb, { clipPath: `circle(0% at ${at})` }, { clipPath: `circle(150% at ${at})`, duration: reduce.matches ? 0.01 : .9, ease: 'expo.inOut' })
+        .fromTo(o.video ? vid : img, { scale: 1.08 }, { scale: 1, duration: reduce.matches ? 0.01 : 1.1, ease: 'expo.out' }, .15);
+      lb.setAttribute('aria-hidden', 'false'); lenis && lenis.stop(); closeBtn.focus({ preventScroll: true });
+    };
+    lb.addEventListener('click', e => { if (e.target !== vid) close(); });
+    window.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.getAttribute('aria-hidden') === 'false') close(); });
+  }
+
+  /* Real reels carried over from the previous site */
+  const REELS = [ { "t": "YSC Drive", "c": "Automotive", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781540915/yamuna_event_reel_final_logo_1_ebgn4h.jpg", "ig": "https://www.instagram.com/reel/DYw2zErSivv/", "v": "" }, { "t": "LaMostra 2025", "c": "Automotive", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781540865/Screenshot_2026-06-15_215710_ilw3us.png", "ig": "https://www.instagram.com/reel/DShsrxPFlUu/", "v": "" }, { "t": "Spark Coaching", "c": "Talking head", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541034/Screenshot_2026-06-15_220012_oinasl.png", "ig": "https://www.instagram.com/reel/DVGyksOjcIW/", "v": "" }, { "t": "YSC", "c": "Real estate", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541559/VID-20260615-WA0013_llerwn.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539988/YSC_yefj6s.mp4" }, { "t": "Scylla", "c": "Ambience", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541559/VID-20260615-WA0009_zt3deh.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539988/prop_nahamb.mp4" }, { "t": "Customer reviews", "c": "Talking head", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541562/VID-20260615-WA0010_gxxlc8.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539982/Lesparrow2_udqxdh.mp4" }, { "t": "Client Engagement", "c": "Talking head", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541560/VID-20260615-WA0006_d9sbn8.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539984/le3_dbpbyk.mp4" }, { "t": "Property walkthrough", "c": "Real estate", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781544135/VID-20260615-WA0011_wg5foq.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539984/Scylla_mfytys.mp4" } ];
+  const cdn = (u, t) => u.replace('/upload/', `/upload/${t}/`);
+  const A = '../03-sections/assets/';
+
+  /* Scene one: film through a gate. Scroll sets the frame, the claw holds each frame still, then pulls the next one down while the shutter closes */
+  function gate() {
+    const sec = document.querySelector('[data-gate]'), strip = sec.querySelector('.fg-strip'), shutter = sec.querySelector('.fg-shutter');
+    const sprockets = sec.querySelectorAll('.fg-sprockets i');
+    const countEl = sec.querySelector('[data-gate-count]'), kindEl = sec.querySelector('[data-gate-kind]'), nameEl = sec.querySelector('[data-gate-name]'), openEl = sec.querySelector('[data-gate-open]');
+    // The t curl, mirrored and repeated, two colours only. A stand in drawing until the pattern source file arrives
+    const tile = (id, ink) => `<pattern id="${id}" width="36" height="48" patternUnits="userSpaceOnUse">
+      <path d="M10 -4 V20 A10 10 0 0 0 20 30 H29 M10 44 V52" fill="none" stroke="${ink}" stroke-width="5.5"/>
+      <path d="M26 20 V44 A10 10 0 0 1 16 54 H7 M26 -4 V6" fill="none" stroke="${ink}" stroke-width="5.5" transform="translate(0 -24)"/></pattern>`;
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    defs.setAttribute('width', 0); defs.setAttribute('height', 0); defs.style.position = 'absolute';
+    defs.innerHTML = `<defs>${tile('tcO', '#F5731D')}${tile('tcF', '#162C29')}</defs>`;
+    sec.appendChild(defs);
+    const reels = REELS.map(d => ({ kind: d.ig ? 'Reel · Instagram' : 'Reel', name: d.t.toLowerCase(), src: cdn(d.img, 'f_auto,q_auto,c_fill,ar_9:16,w_480'), ig: d.ig }));
+    const frames = [];
+    reels.forEach((r, i) => { frames.push({ pattern: i % 2 ? 'tcF' : 'tcO' }); frames.push(r); });
+    frames.forEach((f, i) => {
+      const el = document.createElement('div');
+      el.className = 'fg-frame' + (f.pattern === 'tcF' ? ' is-orange' : '');
+      el.innerHTML = f.pattern ? `<svg viewBox="0 0 90 160" preserveAspectRatio="xMidYMid slice"><rect width="90" height="160" fill="url(#${f.pattern})"/></svg>`
+        : `<img src="${f.src}" alt="" loading="${i < 4 ? 'eager' : 'lazy'}" decoding="async">`;
+      strip.appendChild(el);
+    });
+    const N = frames.length;
+    let current = -1;
+    const show = i => {
+      if (i === current) return; current = i; const f = frames[i];
+      countEl.textContent = String(i + 1).padStart(2, '0');
+      kindEl.textContent = f.pattern ? 'Pattern' : f.kind;
+      nameEl.textContent = f.pattern ? (f.pattern === 'tcO' ? 'the t, orange on forest' : 'the t, forest on orange') : f.name;
+      if (f.ig) { openEl.hidden = false; openEl.href = f.ig; openEl.target = '_blank'; openEl.rel = 'noopener'; } else openEl.hidden = true;
+    };
+    let step = 0, period = 0;
+    const measure = () => {
+      const f = strip.firstElementChild; step = f.offsetHeight + parseFloat(getComputedStyle(f).marginBottom);
+      period = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2.6;
+    };
+    // Hold for most of the frame, then pull fast: the step a projector makes
+    const pull = x => { const i = Math.floor(x), t = x - i, k = t < .6 ? 0 : (t - .6) / .4;
+      return { pos: i + (k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2), k }; };
+    const render = x => {
+      const { pos, k } = pull(x), y = pos * step;
+      gsap.set(strip, { y: -y });
+      gsap.set(sprockets, { y: -(y % period) });
+      shutter.style.opacity = (Math.sin(k * Math.PI) * .8).toFixed(3);
+      show(Math.min(N - 1, Math.round(pos)));
+    };
+    measure();
+    window.addEventListener('resize', () => { measure(); render(cur); });
+    let cur = reduce.matches ? 1 : 0, target = cur;
+    render(cur);
+    if (reduce.matches) return;
+    ScrollTrigger.create({ trigger: sec, start: 'top top', end: () => '+=' + Math.round(innerHeight * 3), pin: true, refreshPriority: 3,
+      onUpdate: self => { target = self.progress * (N - 1); } });
+    let onScreen = true;
+    new IntersectionObserver(([en]) => { onScreen = en.isIntersecting; }).observe(sec);
+    gsap.ticker.add(() => {
+      if (!onScreen || Math.abs(target - cur) < .0005) return;
+      cur += (target - cur) * .14; render(cur);
+    });
+  }
+
+  /* Scene two: two arcs draw a circle, the photograph fills it, then the halves part */
+  function splitScene() {
+    const sec = document.querySelector('[data-split]');
+    const arcs = sec.querySelectorAll('.fs-art .arc'), imgs = sec.querySelectorAll('.fs-img');
+    const top = sec.querySelector('.fs-half.top'), bottom = sec.querySelector('.fs-half.bottom');
+    const lt = sec.querySelector('[data-split-top]'), lb = sec.querySelector('[data-split-bottom]');
+    const gap = () => innerWidth < 600 ? 20 : 30;
+    if (reduce.matches) { gsap.set(top, { x: -gap(), y: -gap() }); gsap.set(bottom, { x: gap(), y: gap() }); return; }
+    const tl = gsap.timeline({ defaults: { ease: 'none' },
+      scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + Math.round(innerHeight * 2), pin: true, scrub: 1, refreshPriority: 2, invalidateOnRefresh: true } });
+    tl.fromTo(arcs, { drawSVG: '0%' }, { drawSVG: '100%', duration: 1 })
+      .fromTo(imgs, { opacity: 0, scale: 1.18, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: .9, ease: 'power2.out' }, '-=.25')
+      .fromTo(lt, { autoAlpha: 0, x: -40 }, { autoAlpha: 1, x: 0, duration: .5, ease: 'power2.out' }, '-=.5')
+      .addLabel('split')
+      .to(top, { x: () => -gap(), y: () => -gap(), duration: 1, ease: 'power2.inOut' }, 'split')
+      .to(bottom, { x: () => gap(), y: () => gap(), duration: 1, ease: 'power2.inOut' }, 'split')
+      .fromTo(lb, { autoAlpha: 0, x: 40 }, { autoAlpha: 1, x: 0, duration: .5, ease: 'power2.out' }, 'split+=.4')
+      .to({}, { duration: .4 });
+  }
+
+  /* Scene three: the glow crosses the frame, with a streak and ghost rings on the line through the centre, the way a lens throws them */
+  function flare() {
+    const sec = document.querySelector('[data-flare]'), light = sec.querySelector('.fl-light'), streak = sec.querySelector('.fl-streak'), svg = sec.querySelector('.fl-ghosts');
+    const G = [[-.45, 1.4, 1, .32], [.28, .7, 1, .5], [.55, 3, 2, .22], [.85, 1.1, 1, .45], [1.3, 4.6, 1, .16]]; // position along the line, radius in rem, stroke, opacity
+    svg.innerHTML = G.map(() => '<circle/>').join('');
+    const rings = [...svg.querySelectorAll('circle')];
+    let w = 0, h = 0, rem = 16;
+    const size = () => { w = sec.clientWidth; h = sec.clientHeight; rem = parseFloat(getComputedStyle(document.documentElement).fontSize); svg.setAttribute('viewBox', `0 0 ${w} ${h}`); };
+    const place = p => {
+      if (!w) size();
+      if (!w) return;
+      const lx = w * (-.08 + p * 1.16), ly = h * (.3 + Math.sin(p * Math.PI) * -.08 + p * .06);
+      const cx = w / 2, cy = h / 2, near = 1 - Math.min(1, Math.hypot(lx - cx, ly - cy) / (w * .6));
+      gsap.set(light, { x: lx, y: ly, scale: .75 + near * .35 });
+      gsap.set(streak, { x: lx, y: ly, scaleX: .55 + near * .7, opacity: .45 + near * .55 });
+      G.forEach(([k, r, sw, o], i) => {
+        const c = rings[i];
+        c.setAttribute('cx', cx + (cx - lx) * k); c.setAttribute('cy', cy + (cy - ly) * k);
+        c.setAttribute('r', r * rem * (.8 + near * .5)); c.setAttribute('stroke-width', sw); c.setAttribute('opacity', (o * (.3 + near * .7)).toFixed(3));
+      });
+    };
+    size();
+    let cur = reduce.matches ? .42 : 0, target = cur;
+    place(cur);
+    window.addEventListener('resize', () => { size(); place(cur); });
+    ScrollTrigger.addEventListener('refresh', () => { size(); place(cur); });
+    if (reduce.matches) return;
+    ScrollTrigger.create({ trigger: sec, start: 'top top', end: () => '+=' + Math.round(innerHeight * 1.6), pin: true, refreshPriority: 1,
+      onUpdate: self => { target = self.progress; } });
+    let onScreen = true;
+    new IntersectionObserver(([en]) => { onScreen = en.isIntersecting; }).observe(sec);
+    gsap.ticker.add(() => {
+      if (!onScreen || Math.abs(target - cur) < .0005) return;
+      cur += (target - cur) * .1; place(cur);
+    });
+  }
+
+
+  /* Footer: local time and the wordmark rising into place */
+  function footer() {
+    const clock = document.querySelector('[data-clock]');
+    const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
+    const tick = () => { clock.textContent = fmt.format(new Date()) + ' IST'; };
+    tick(); setInterval(tick, 20000);
+    if (!reduce.matches) gsap.fromTo('[data-footer-logo] img', { yPercent: 55 }, { yPercent: 0, ease: 'none',
+      scrollTrigger: { trigger: '[data-footer-logo]', start: 'top bottom', end: 'bottom bottom', scrub: true } });
+  }
+
+  /* Focus brackets: snap round work like autofocus */
+  function focusCursor() {
+    if (!fine.matches) return;
+    const f = document.querySelector('.focus'), label = f.querySelector('.focus-label');
+    const pad = 10;
+    const to = { x: gsap.quickTo(f, 'x', { duration: .45, ease: 'power3' }), y: gsap.quickTo(f, 'y', { duration: .45, ease: 'power3' }),
+      w: gsap.quickTo(f, 'width', { duration: .45, ease: 'power3' }), h: gsap.quickTo(f, 'height', { duration: .45, ease: 'power3' }) };
+    let target = null, lx = -100, ly = -100, shown = false;
+    const place = () => {
+      if (!target) return;
+      const r = target.getBoundingClientRect();
+      to.x(r.left - pad); to.y(r.top - pad); to.w(r.width + pad * 2); to.h(r.height + pad * 2);
+    };
+    const check = () => {
+      const el = document.elementFromPoint(lx, ly);
+      const t = el && !el.closest('.menu') ? el.closest('[data-focus]') : null;
+      if (t !== target) {
+        target = t;
+        if (t) {
+          label.textContent = t.dataset.focus;
+          if (!shown) { const r = t.getBoundingClientRect(); gsap.set(f, { x: lx - 30, y: ly - 30, width: 60, height: 60 }); }
+          gsap.to(f, { opacity: 1, duration: .3, overwrite: 'auto' }); shown = true; place();
+        } else { gsap.to(f, { opacity: 0, duration: .25, overwrite: 'auto' }); shown = false; }
+      }
+    };
+    window.addEventListener('pointermove', e => { lx = e.clientX; ly = e.clientY; check(); }, { passive: true });
+    window.addEventListener('scroll', check, { passive: true });
+    gsap.ticker.add(() => { if (target) place(); });
+  }
+
+  /* Staggered menu */
+  let menuTl = null;
+  function closeMenu() { if (menuTl) menuTl.reverse(); }
+  function menu() {
+    const btn = document.querySelector('.nav-menu'), m = document.querySelector('.menu');
+    const layers = m.querySelectorAll('.menu-layer'), links = m.querySelectorAll('.menu-links a span:last-child'), foot = m.querySelector('.menu-foot');
+    const word = btn.querySelector('.menu-word');
+    menuTl = gsap.timeline({ paused: true,
+      onStart: () => { html.setAttribute('data-menu-open', ''); m.setAttribute('aria-hidden', 'false'); btn.setAttribute('aria-expanded', 'true'); word.textContent = 'Close'; lenis && lenis.stop(); },
+      onReverseComplete: () => { html.removeAttribute('data-menu-open'); m.setAttribute('aria-hidden', 'true'); btn.setAttribute('aria-expanded', 'false'); word.textContent = 'Menu'; gsap.set(m, { visibility: 'hidden' }); lenis && lenis.start(); } });
+    menuTl.set(m, { visibility: 'visible' })
+      .fromTo(layers, { xPercent: 100 }, { xPercent: 0, duration: .7, ease: 'expo.inOut', stagger: .08 })
+      .fromTo(links, { yPercent: 110 }, { yPercent: 0, duration: .8, ease: 'expo.out', stagger: .06 }, '-=.35')
+      .fromTo(foot, { autoAlpha: 0 }, { autoAlpha: 1, duration: .4 }, '-=.5');
+    btn.addEventListener('click', () => { if (html.hasAttribute('data-menu-open') && !menuTl.reversed()) menuTl.reverse(); else menuTl.timeScale(1).play(); });
+    window.addEventListener('keydown', e => { if (e.key === 'Escape' && html.hasAttribute('data-menu-open')) closeMenu(); });
+  }
+
+  /* Page theme */
+  function themes() {
+    const els = [...document.querySelectorAll('[data-page-theme]')];
+    const apply = () => {
+      const mid = innerHeight / 2;
+      const el = els.find(e => { const r = e.getBoundingClientRect(); return r.top <= mid && r.bottom > mid; });
+      if (el) html.dataset.theme = el.dataset.pageTheme; else delete html.dataset.theme;
+    };
+    els.forEach(el => ScrollTrigger.create({ trigger: el, start: 'top 50%', end: 'bottom 50%', refreshPriority: -1, onToggle: apply, onRefresh: apply }));
+  }
+
+  function init() {
+    gate(); splitScene(); flare(); lightbox(); footer(); themes();
+    focusCursor(); drawLines(); menu();
+    if (reduce.matches) gsap.set('[data-scroll-reveal]', { visibility: 'visible' }); else scrollReveals();
+    weightHover();
+    ScrollTrigger.refresh();
+  }
+
+  /* Load sequence */
+  let started = false;
+  const start = () => {
+    if (started) return; started = true;
+    html.setAttribute('data-page-ready', '');
+    if (reduce.matches) { html.setAttribute('data-transition-ready', ''); gsap.set('[data-text-reveal]', { visibility: 'visible' }); init(); drawAlways(0); return; }
+    init();
+    const top = document.querySelector('.arc-top'), bottom = document.querySelector('.arc-bottom');
+    gsap.set([top, bottom], { drawSVG: '0%' });
+    const tl = gsap.timeline();
+    tl.to(top, { drawSVG: '100%', duration: .5, ease: 'power2.in' })
+      .to(bottom, { drawSVG: '100%', duration: .5, ease: 'power2.out' })
+      .addLabel('reveal', '+=.12')
+      .to('.wipe-top', { yPercent: -100, duration: 1.15, ease: 'expo.inOut' }, 'reveal')
+      .to('.wipe-bottom', { yPercent: 100, duration: 1.15, ease: 'expo.inOut' }, 'reveal')
+      .add(() => html.setAttribute('data-transition-ready', ''));
+    document.querySelectorAll('[data-text-reveal]').forEach((el, i) => tl.add(revealTween(el), `reveal+=${.5 + i * .12}`));
+    tl.add(() => drawAlways(), 'reveal+=1.4');
+  };
+  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]).then(start);
+})();
+</script>
+<script src="../draft-bar.js" defer></script>
+</body>
+</html>

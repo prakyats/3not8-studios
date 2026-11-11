@@ -19,6 +19,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 11 | `prototypes/11-navigation` | Full screen menu and page transitions | Small pieces |
 | 12 | `prototypes/12-footers` | Three footers behind a switch | Pick one |
 | 13 | `prototypes/13-wall` | Work as one curved three.js wall, turned by scroll and drag, with a lens warp | Inner pages |
+| 14 | `prototypes/14-film-gate` | Three SVG scenes run by scroll: the t pattern and reels pulled through a film gate, arcs that draw and split a photo, a glow that crosses like a lens flare | Small pieces |
 
 ## How a draft is put together
 
@@ -57,7 +58,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 ## Ideas not built yet
 
 - More hero options with depth: a cropped mark turning in 3D, layered light with parallax, type that turns on a cylinder.
-- Custom motion graphics in SVG: the t curl pattern running like film through a gate, arcs that draw and split, a glow that behaves like a lens flare. Tie each to scroll.
 - A showreel page: a full screen player with chapters styled as an edit timeline.
 - Client words: the real customer review reel as the centrepiece, with sample quotes marked as samples.
 - An events section for 3not8 Events.
@@ -68,3 +68,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - The wall as a home page hero: start inside the wall, then pull the camera back out of the ring as the page scrolls.
 - Filters on the wall: a chip turns the ring so only that kind of work faces you, the rest dims.
 - A final candidate: one page that joins the pieces the team is most likely to pick.
+- Draft 14's gate as the reels section on the home page: one gate, the strip of real reels, the open link under it.
+- The split on scroll as the hero itself: the circle closes on the showreel, then parts to let the page in.
+- Swap Draft 14's stand in curl for the real t pattern once the source SVG arrives.
