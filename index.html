@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>3not8 Studios · Website drafts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root { --forest: #162C29; --night: #051511; --paper: #F8F2EB; --orange: #F5731D; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { min-height: 100vh; background: var(--forest); color: var(--paper); font-family: Montserrat, Arial, sans-serif; -webkit-font-smoothing: antialiased;
+  display: flex; flex-direction: column; gap: clamp(2.5rem, 7vh, 5rem); padding: clamp(1.25rem, 4vw, 4rem); }
+a { color: inherit; text-decoration: none; }
+.logo { width: 11rem; height: auto; display: block; }
+.label { font-weight: 700; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; }
+h1 { font-size: clamp(2.6rem, 7vw, 6rem); line-height: .95; letter-spacing: -.01em; text-transform: lowercase; font-weight: 200; margin-top: 1rem; }
+h1 b { font-weight: 900; color: var(--orange); }
+ul { list-style: none; border-top: 2px solid var(--paper); margin-top: auto; }
+li a { display: grid; grid-template-columns: 4rem 1fr auto; align-items: baseline; gap: 1rem; padding: 1.6rem 0; border-bottom: 1px solid rgba(248,242,235,.2); }
+.num { color: var(--orange); }
+.name { font-size: clamp(1.5rem, 3.4vw, 2.8rem); font-weight: 200; text-transform: lowercase; letter-spacing: -.01em; transition: font-weight .5s cubic-bezier(.65,.05,0,1); }
+.name small { display: block; margin-top: .5rem; font-size: 1rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: rgba(248,242,235,.65); }
+.go { color: rgba(248,242,235,.6); }
+li a:hover .name, li a:focus-visible .name { font-weight: 900; }
+li a:hover .go, li a:focus-visible .go { color: var(--orange); }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+footer { color: rgba(248,242,235,.5); }
+@media (max-width: 600px) { li a { grid-template-columns: 2.5rem 1fr; } .go { display: none; } }
+@media (prefers-reduced-motion: reduce) { .name { transition: none; } }
+</style>
+</head>
+<body>
+<header>
+  <img class="logo" src="prototypes/03-sections/assets/logo-horizontal.png" alt="3not8 Studios" width="640" height="251">
+</header>
+<main>
+  <p class="label" style="color: var(--orange)">Website drafts</p>
+  <h1>pick a draft, <b>tell us what works.</b></h1>
+</main>
+<ul>
+  <li><a href="prototypes/03-sections/"><span class="num label">03</span><span class="name">section experiments<small>Latest. Full page with real photos and reels, lens dial, call sheet, gallery, reel cylinder, timeline and brief builder.</small></span><span class="go label">Open</span></a></li>
+  <li><a href="prototypes/02-home/"><span class="num label">02</span><span class="name">full home page<small>Hero, showreel, 3D work stack, services panels, reels strip, process and contact.</small></span><span class="go label">Open</span></a></li>
+  <li><a href="prototypes/01-hero-direction/"><span class="num label">01</span><span class="name">hero direction<small>The first hero and selected work study.</small></span><span class="go label">Open</span></a></li>
+</ul>
+<footer class="label">Drafts for review, direction only</footer>
+</body>
+</html>

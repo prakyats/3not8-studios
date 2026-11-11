@@ -36,6 +36,16 @@
         "prototypes/03-sections"
       ],
       "port": 4323
+    },
+    {
+      "name": "site-root",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4320"
+      ],
+      "port": 4320
     }
   ]
 }
