@@ -217,7 +217,7 @@ html.reveal-all [data-vr] { visibility: visible; }
 .switch button b { font-weight: 900; }
 .switch button[aria-pressed="true"] { background: var(--forest); color: var(--paper); }
 .switch button[aria-pressed="true"] b { color: var(--orange); }
-.hv-name { position: fixed; z-index: 40; left: 1.5rem; top: 50%; writing-mode: vertical-rl; rotate: 180deg; translate: 0 -50%; color: var(--ink); opacity: .45; pointer-events: none; }
+.hv-name { position: fixed; z-index: 40; right: 1.5rem; top: 50%; writing-mode: vertical-rl; rotate: 180deg; translate: 0 -50%; color: var(--ink); opacity: .45; pointer-events: none; }
 
 /* B. The split */
 .hv-split { background: var(--night); color: var(--paper); }
@@ -264,7 +264,7 @@ html.reveal-all [data-vr] { visibility: visible; }
 .hp-strip { position: absolute; left: 6.5rem; bottom: 2.2rem; display: flex; align-items: center; gap: 1.2rem; color: rgba(22,44,41,.6); }
 
 @media (max-width: 991px) {
-  .switch { position: fixed; z-index: 70; top: auto; bottom: 1rem; }
+  .switch { position: fixed; z-index: 70; top: auto; bottom: 1rem; left: auto; right: .5rem; translate: none; }
   .switch button span { display: none; }
   .hv-name { display: none; }
   .hero .marquee { bottom: 4.2rem; border-top: 0; } .hero .hero-meta { bottom: 9rem; }
@@ -331,10 +331,10 @@ html.reveal-all [data-vr] { visibility: visible; }
   <div class="menu-layer"></div><div class="menu-layer"></div><div class="menu-layer"></div>
   <div class="menu-content">
     <div class="menu-links">
-      <a href="../../"><span>01</span><span>all drafts</span></a>
-      <a href="../03-sections/"><span>02</span><span>full page</span></a>
-      <a href="../05-work/"><span>03</span><span>work</span></a>
-      <a href="../06-project/"><span>04</span><span>project</span></a>
+      <a href="../05-work/"><span>01</span><span>work</span></a>
+      <a href="../10-services/"><span>02</span><span>services</span></a>
+      <a href="../07-studio/"><span>03</span><span>studio</span></a>
+      <a href="../08-contact/"><span>04</span><span>contact</span></a>
     </div>
     <div class="menu-foot label"><span>Mannagudda Road, Gandhinagar</span><span>Mangaluru 575003</span></div>
   </div>
@@ -789,5 +789,6 @@ html.reveal-all [data-vr] { visibility: visible; }
   Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]).then(start);
 })();
 </script>
+<script src="../draft-bar.js" defer></script>
 </body>
 </html>
