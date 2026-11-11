@@ -12,23 +12,27 @@
 :root { --forest: #162C29; --night: #051511; --paper: #F8F2EB; --orange: #F5731D; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { min-height: 100vh; background: var(--forest); color: var(--paper); font-family: Montserrat, Arial, sans-serif; -webkit-font-smoothing: antialiased;
-  display: flex; flex-direction: column; gap: clamp(2.5rem, 7vh, 5rem); padding: clamp(1.25rem, 4vw, 4rem); }
+  display: flex; flex-direction: column; gap: clamp(2rem, 5vh, 3.5rem); padding: clamp(1.25rem, 4vw, 4rem); }
 a { color: inherit; text-decoration: none; }
 .logo { width: 11rem; height: auto; display: block; }
 .label { font-weight: 700; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; }
 h1 { font-size: clamp(2.6rem, 7vw, 6rem); line-height: .95; letter-spacing: -.01em; text-transform: lowercase; font-weight: 200; margin-top: 1rem; }
 h1 b { font-weight: 900; color: var(--orange); }
-ul { list-style: none; border-top: 2px solid var(--paper); margin-top: auto; }
-li a { display: grid; grid-template-columns: 4rem 1fr auto; align-items: baseline; gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid rgba(248,242,235,.2); }
+.how { max-width: 40rem; margin-top: 1.5rem; font-size: 1.05rem; line-height: 1.6; color: rgba(248,242,235,.75); }
+h2 { display: flex; align-items: baseline; gap: 1rem; padding-bottom: .9rem; border-bottom: 2px solid var(--paper); }
+h2 span { color: rgba(248,242,235,.55); }
+section { display: flex; flex-direction: column; }
+ul { list-style: none; }
+li a { display: grid; grid-template-columns: 4rem 1fr auto; align-items: baseline; gap: 1rem; padding: 1.15rem 0; border-bottom: 1px solid rgba(248,242,235,.2); }
 .num { color: var(--orange); }
-.name { font-size: clamp(1.5rem, 3.4vw, 2.8rem); font-weight: 200; text-transform: lowercase; letter-spacing: -.01em; transition: font-weight .5s cubic-bezier(.65,.05,0,1); }
+.name { font-size: clamp(1.4rem, 3vw, 2.4rem); font-weight: 200; text-transform: lowercase; letter-spacing: -.01em; transition: font-weight .5s cubic-bezier(.65,.05,0,1); }
 .name small { display: block; margin-top: .5rem; font-size: 1rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: rgba(248,242,235,.65); }
 .go { color: rgba(248,242,235,.6); }
 li a:hover .name, li a:focus-visible .name { font-weight: 900; }
 li a:hover .go, li a:focus-visible .go { color: var(--orange); }
 :focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
 footer { color: rgba(248,242,235,.5); }
-@media (max-width: 600px) { li a { grid-template-columns: 2.5rem 1fr; } .go { display: none; } }
+@media (max-width: 600px) { li a { grid-template-columns: 2.5rem 1fr; } .go { display: none; } h2 { flex-direction: column; gap: .4rem; } }
 @media (prefers-reduced-motion: reduce) { .name { transition: none; } }
 </style>
 </head>
@@ -39,18 +43,45 @@ footer { color: rgba(248,242,235,.5); }
 <main>
   <p class="label" style="color: var(--orange)">Website drafts</p>
   <h1>pick a draft, <b>tell us what works.</b></h1>
+  <p class="how">The drafts are sorted into four groups below. Every draft has a tab on its left edge with its number and name, so you always know which one you are looking at. Tap the tab to jump to another draft.</p>
 </main>
-<ul>
-  <li><a href="prototypes/04-hero-options/"><span class="num label">04</span><span class="name">hero options<small>Four heroes on one screen. Switch between A, B, C and D at the top and tell us the letter you like.</small></span><span class="go label">Open</span></a></li>
-  <li><a href="prototypes/05-work/"><span class="num label">05</span><span class="name">work page<small>The full portfolio. Every reel and photograph in one grid, with filters and hover previews.</small></span><span class="go label">Open</span></a></li>
-  <li><a href="prototypes/06-project/"><span class="num label">06</span><span class="name">project page<small>How one project is told. Sample copy with real photographs.</small></span><span class="go label">Open</span></a></li>
-  <li><a href="prototypes/07-studio/"><span class="num label">07</span><span class="name">studio page<small>About the studio. Photo inside the big title, tilted wall of frames, crew cards that flip.</small></span><span class="go label">Open</span></a></li>
-  <li><a href="prototypes/08-contact/"><span class="num label">08</span><span class="name">contact page<small>A line lit by the cursor and a form that writes the brief for WhatsApp.</small></span><span class="go label">Open</span></a></li>
-  <li><a href="prototypes/09-details/"><span class="num label">09</span><span class="name">small details<small>Loading screen, hover project list, before and after grade slider, optional shutter sound.</small></span><span class="go label">Open</span></a></li>
-  <li><a href="prototypes/03-sections/"><span class="num label">03</span><span class="name">home page, version two<small>Full page with real photos and reels, lens dial, call sheet, gallery, reel cylinder, timeline and brief builder.</small></span><span class="go label">Open</span></a></li>
-  <li><a href="prototypes/02-home/"><span class="num label">02</span><span class="name">home page, version one<small>Hero, showreel, 3D work stack, services panels, reels strip, process and contact.</small></span><span class="go label">Open</span></a></li>
-  <li><a href="prototypes/01-hero-direction/"><span class="num label">01</span><span class="name">first hero study<small>The first hero and selected work study.</small></span><span class="go label">Open</span></a></li>
-</ul>
+
+<section>
+  <h2 class="label">Full home pages <span>Compare the two</span></h2>
+  <ul>
+    <li><a href="prototypes/03-sections/"><span class="num label">03</span><span class="name">home page, version two<small>Real photos and reels, lens dial, call sheet, gallery, reel cylinder, timeline and brief builder.</small></span><span class="go label">Open</span></a></li>
+    <li><a href="prototypes/02-home/"><span class="num label">02</span><span class="name">home page, version one<small>Hero, showreel, 3D work stack, services panels, reels strip, process and contact.</small></span><span class="go label">Open</span></a></li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="label">Pick one <span>Several options on one screen, switch with A, B, C</span></h2>
+  <ul>
+    <li><a href="prototypes/04-hero-options/"><span class="num label">04</span><span class="name">hero options<small>Four heroes. Tell us the letter you like.</small></span><span class="go label">Open</span></a></li>
+    <li><a href="prototypes/12-footers/"><span class="num label">12</span><span class="name">footer options<small>Three ways to end a page.</small></span><span class="go label">Open</span></a></li>
+    <li><a href="prototypes/01-hero-direction/"><span class="num label">01</span><span class="name">first hero study<small>The earliest hero, kept for reference.</small></span><span class="go label">Open</span></a></li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="label">Inner pages <span>One draft per page of the site</span></h2>
+  <ul>
+    <li><a href="prototypes/05-work/"><span class="num label">05</span><span class="name">work page<small>Every reel and photograph in one grid, with filters and hover previews.</small></span><span class="go label">Open</span></a></li>
+    <li><a href="prototypes/06-project/"><span class="num label">06</span><span class="name">project page<small>How one project is told. Sample copy with real photographs.</small></span><span class="go label">Open</span></a></li>
+    <li><a href="prototypes/10-services/"><span class="num label">10</span><span class="name">services page<small>Four service cards that stack as you scroll, and common questions.</small></span><span class="go label">Open</span></a></li>
+    <li><a href="prototypes/07-studio/"><span class="num label">07</span><span class="name">studio page<small>Photo inside the big title, tilted wall of frames, crew cards that flip.</small></span><span class="go label">Open</span></a></li>
+    <li><a href="prototypes/08-contact/"><span class="num label">08</span><span class="name">contact page<small>A line lit by the cursor and a form that writes the brief for WhatsApp.</small></span><span class="go label">Open</span></a></li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="label">Small pieces <span>Details that could go anywhere</span></h2>
+  <ul>
+    <li><a href="prototypes/09-details/"><span class="num label">09</span><span class="name">small details<small>Loading screen, hover project list, before and after grade slider, optional shutter sound.</small></span><span class="go label">Open</span></a></li>
+    <li><a href="prototypes/11-navigation/"><span class="num label">11</span><span class="name">menu and page transitions<small>The full screen menu, and three ways to move between pages.</small></span><span class="go label">Open</span></a></li>
+  </ul>
+</section>
+
 <footer class="label">Drafts for review, direction only</footer>
 </body>
 </html>
