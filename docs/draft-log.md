@@ -20,6 +20,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 12 | `prototypes/12-footers` | Three footers behind a switch | Pick one |
 | 13 | `prototypes/13-wall` | Work as one curved three.js wall, turned by scroll and drag, with a lens warp | Inner pages |
 | 14 | `prototypes/14-film-gate` | Three SVG scenes run by scroll: the t pattern and reels pulled through a film gate, arcs that draw and split a photo, a glow that crosses like a lens flare | Small pieces |
+| 15 | `prototypes/15-depth` | Two hero scenes in CSS 3D, no WebGL: the hero line on a drum turned by scroll, and one frame pulled into layers of light that the camera moves through | Pick one |
 
 ## How a draft is put together
 
@@ -57,7 +58,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 
 ## Ideas not built yet
 
-- More hero options with depth: a cropped mark turning in 3D, layered light with parallax, type that turns on a cylinder.
 - A showreel page: a full screen player with chapters styled as an edit timeline.
 - Client words: the real customer review reel as the centrepiece, with sample quotes marked as samples.
 - An events section for 3not8 Events.
@@ -71,3 +71,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - Draft 14's gate as the reels section on the home page: one gate, the strip of real reels, the open link under it.
 - The split on scroll as the hero itself: the circle closes on the showreel, then parts to let the page in.
 - Swap Draft 14's stand in curl for the real t pattern once the source SVG arrives.
+- The drum from Draft 15 as a work index: each face a project name, the photo behind changes as the face lands.
+- Draft 15's layers with a real reel as the deepest layer instead of a still, playing muted.
+- A cropped mark turning in 3D was left out on purpose: the guidelines say never rotate the logo. If depth on the mark is wanted, move the light round a still mark instead.
