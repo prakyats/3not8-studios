@@ -24,6 +24,18 @@
         "prototypes/02-home"
       ],
       "port": 4322
+    },
+    {
+      "name": "prototype-03",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4323",
+        "--directory",
+        "prototypes/03-sections"
+      ],
+      "port": 4323
     }
   ]
 }
