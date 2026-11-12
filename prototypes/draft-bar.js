@@ -17,7 +17,8 @@
     ['13', '13-wall', 'Curved wall of work', 'Inner page'],
     ['14', '14-film-gate', 'Motion in SVG, run by scroll', 'Pieces'],
     ['15', '15-depth', 'Heroes with depth', 'Hero'],
-    ['16', '16-drum-index', 'Work index on a drum', 'Inner page']
+    ['16', '16-drum-index', 'Work index on a drum', 'Inner page'],
+    ['17', '17-split-hero', 'The split as the hero', 'Hero']
   ];
   const m = location.pathname.match(/prototypes\/(\d\d)-/);
   const cur = DRAFTS.find(d => m && d[0] === m[1]);
