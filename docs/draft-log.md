@@ -28,6 +28,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 20 | `prototypes/20-combination-index` | Draft 16's drum as a combination, CSS 3D, no WebGL: a kind wheel and a project wheel on one window, seen from the gap so they lean apart, turning against each other. Scroll turns the project wheel and the kind wheel follows a beat behind only when the kind changes; tapping the kind wheel jumps to the next kind | Inner pages |
 | 21 | `prototypes/21-final-candidate` | Home page, final candidate. Joins Draft 18's ring hero, Draft 10's stacking service cards and Draft 03's client band, lens dial, split, reel cylinder and brief builder on one page. The owner picked this mix | Full home pages |
 | 22 | `prototypes/22-combination-hero` | Draft 20's two wheels as the home page hero, CSS 3D, no WebGL: your vision on the left wheel, our execution on the right, spun home against each other as the page loads and landing on a detent. Scroll carries each line away from the gap, vision up, execution down, while the slit between them opens through bright light into the YSC reel playing muted, bitten by one Forest half circle. Dial ticks on the slot edges slide with each wheel | Pick one |
+| 23 | `prototypes/23-wall-filters` | Draft 13's wall with a chip for each kind of work: reels, road, table, crew. A chip turns the nearest frame of that kind round to face you, a band of gold light sweeps outward over the lit frames, and the rest sink back on the ring and drain into Forest shadow. Scroll and drag still turn the wall and it settles on a lit frame when they rest; arrow keys step between lit frames. The still fallback swaps its row to the chosen kind | Inner pages |
 
 ## How a draft is put together
 
@@ -72,7 +73,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - A second take on the work page: a list first layout, and a map of Mangaluru locations.
 - A second take on the project page: a horizontal story, and footage inside the title letters.
 - Phone first versions of the strongest desktop sections.
-- Filters on the wall: a chip turns the ring so only that kind of work faces you, the rest dims.
 - Draft 21 trimmed: it still carries Draft 03's unused hero, showreel, gallery, call sheet and timeline rules in its tablet and phone block.
 - Swap Draft 14's stand in curl for the real t pattern once the source SVG arrives.
 - Draft 15's layers with a real reel as the deepest layer instead of a still, playing muted.
@@ -87,3 +87,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - Draft 20 with a soft detent click as each wheel lands, off by default, using the shutter sound switch from Draft 09.
 - Draft 22 joined to Draft 21: the two wheels as the first beat of the home page, opening into the ring of work instead of a single reel.
 - Draft 22 with the frame opening on the real showreel cut once it exists, and the wheel words chosen per page (your brief, our crew on the services page).
+- Draft 23's chips on the home page ring (Draft 18 and 21): the crane lands, then the chips appear and light one kind of work round the ring below.
+- Draft 23 with the chip choice kept in the address, so a link to the reels view opens with reels already lit.
+- Draft 23 with lit reels playing muted once they face you, while the dimmed frames stay still.

@@ -23,7 +23,8 @@
     ['19', '19-reel-gate', 'Reels through the gate', 'Pieces'],
     ['20', '20-combination-index', 'Work index on two wheels', 'Inner page'],
     ['21', '21-final-candidate', 'Home page, final candidate', 'Full page'],
-    ['22', '22-combination-hero', 'The hero line on two wheels', 'Hero']
+    ['22', '22-combination-hero', 'The hero line on two wheels', 'Hero'],
+    ['23', '23-wall-filters', 'The wall with filters', 'Inner page']
   ];
   const m = location.pathname.match(/prototypes\/(\d\d)-/);
   const cur = DRAFTS.find(d => m && d[0] === m[1]);
