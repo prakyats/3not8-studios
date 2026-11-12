@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3not8 Studios · Draft 24</title>
+<meta name="description" content="3not8 Studios. Films, photography and campaigns from Mangaluru.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #162C29; --night: #051511; --paper: #F8F2EB; --orange: #F5731D;
+  --ember: #C64D01; --gold: #F9C052; --sand: #D2BDA1; --linen: #EADCC6;
+  --page: var(--forest); --ink: var(--paper);
+  --ease: cubic-bezier(.65,.05,0,1);
+}
+/* One unit scales with the window, and is capped by its height so a screen of content stays a screen */
+html { font-size: min(calc(100vw / 90), calc(100vh / 56.25)); }
+@media (max-width: 991px) { html { font-size: calc(100vw / 60); } }
+@media (max-width: 600px) { html { font-size: calc(100vw / 24.375); } }
+html[data-theme="paper"] { --page: var(--paper); --ink: var(--forest); }
+html[data-theme="night"] { --page: var(--night); --ink: var(--paper); }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+img, svg { display: block; }
+body {
+  background: var(--page); color: var(--ink);
+  font-family: Montserrat, Arial, sans-serif; overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .7s var(--ease), color .7s var(--ease);
+}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+main { visibility: hidden; }
+html[data-page-ready] main { visibility: visible; }
+[data-text-reveal], [data-scroll-reveal] { visibility: hidden; }
+html.reveal-all main, html.reveal-all [data-text-reveal], html.reveal-all [data-scroll-reveal] { visibility: visible !important; }
+html.reveal-all .wipe { display: none; }
+.line { padding-bottom: .1em; margin-bottom: -.1em; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+
+/* Type */
+.label { font-weight: 700; font-size: .8rem; line-height: 1.4; letter-spacing: .2em; text-transform: uppercase; }
+.label-ember { color: var(--ember); }
+.h-hero, .h-section, .h-big { text-transform: lowercase; letter-spacing: -.01em; }
+.h-hero { font-size: 8.25rem; line-height: .95; }
+.h-section { font-size: 6.5rem; line-height: .95; }
+.h-big { font-size: 9rem; line-height: .92; }
+.h-line { font-size: 5rem; line-height: 1; text-transform: lowercase; letter-spacing: -.01em; }
+.w-light { font-weight: 200; }
+.w-heavy { font-weight: 900; }
+.accent { color: var(--orange); }
+.body-l { font-size: 1.2rem; line-height: 1.6; }
+.section-head { display: flex; flex-direction: column; gap: 1.4rem; }
+
+/* Film grain, one shared layer */
+.grain {
+  position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain .9s steps(5) infinite;
+}
+@keyframes grain { 0%,100% { transform: translate(0,0); } 20% { transform: translate(-3%,2%); } 40% { transform: translate(2%,-3%); } 60% { transform: translate(-2%,-1%); } 80% { transform: translate(3%,3%); } }
+
+/* Load wipe */
+.wipe { position: fixed; inset: 0; z-index: 1000; pointer-events: none; }
+.wipe-half { position: absolute; left: 0; width: 100%; background: var(--night); }
+.wipe-top { top: 0; height: 50%; }
+.wipe-bottom { bottom: 0; height: calc(50% + 1px); }
+.wipe svg { position: absolute; left: 50%; width: 14rem; height: 7rem; translate: -50% 0; overflow: visible; }
+.wipe-top svg { bottom: 0; } .wipe-bottom svg { top: 1px; }
+.wipe path { fill: none; stroke: var(--orange); stroke-width: 3; stroke-linecap: round; }
+html[data-transition-ready] .wipe { display: none; }
+
+/* Focus brackets cursor */
+.focus { position: fixed; top: 0; left: 0; z-index: 95; pointer-events: none; opacity: 0; width: 4rem; height: 4rem; }
+.focus i { position: absolute; width: 1.1rem; height: 1.1rem; border: 2px solid var(--orange); }
+.focus i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; }
+.focus i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+.focus i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; }
+.focus i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+.focus-label {
+  position: absolute; left: 0; top: calc(100% + .6rem); white-space: nowrap;
+  background: var(--orange); color: var(--forest); padding: .45em .7em;
+  font-weight: 700; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+}
+
+/* Nav */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 60; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; pointer-events: none; }
+.nav > * { pointer-events: auto; }
+.nav-logo { position: relative; width: 11.25rem; display: block; }
+.nav-logo img { width: 100%; height: auto; transition: opacity .7s var(--ease); }
+.nav-logo .logo-light { position: absolute; inset: 0; opacity: 0; }
+html[data-theme="paper"] .nav-logo .logo-dark { opacity: 0; }
+html[data-theme="paper"] .nav-logo .logo-light { opacity: 1; }
+html[data-menu-open] .nav-logo .logo-dark { opacity: 1; }
+html[data-menu-open] .nav-logo .logo-light { opacity: 0; }
+.pill { height: 3rem; display: flex; align-items: center; border-radius: 10rem; background: var(--paper); color: var(--forest); transition: box-shadow .7s var(--ease); }
+html[data-theme="paper"] .pill { box-shadow: 0 0 0 1px rgba(22,44,41,.18); }
+.nav-pill { position: absolute; left: 50%; top: 1.25rem; translate: -50% 0; padding: 0 1.75rem; gap: 2.25rem; }
+.nav-right { display: flex; gap: .6rem; }
+.nav-contact { padding: 0 1.4rem; gap: .65rem; }
+.nav-menu { padding: 0 1.3rem; gap: .6rem; display: none; }
+.menu-lines { width: 1.1rem; height: .6rem; position: relative; }
+.menu-lines::before, .menu-lines::after { content: ""; position: absolute; left: 0; width: 100%; height: 2px; background: currentColor; transition: transform .5s var(--ease), top .5s var(--ease); }
+.menu-lines::before { top: 0; } .menu-lines::after { top: calc(100% - 2px); }
+html[data-menu-open] .menu-lines::before { top: calc(50% - 1px); transform: rotate(45deg); }
+html[data-menu-open] .menu-lines::after { top: calc(50% - 1px); transform: rotate(-45deg); }
+.nav-link { position: relative; display: flex; flex-direction: column; }
+.dot { width: .45rem; height: .45rem; border-radius: 50%; background: var(--orange); }
+.draw-line { position: absolute; left: 0; top: 100%; width: 100%; height: .6em; color: var(--orange); pointer-events: none; }
+.draw-line svg { width: 100%; height: 100%; overflow: visible; }
+
+/* Staggered menu */
+.menu { position: fixed; inset: 0; z-index: 55; pointer-events: none; visibility: hidden; }
+html[data-menu-open] .menu { pointer-events: auto; }
+.menu-layer { position: absolute; inset: 0; }
+.menu-layer:nth-child(1) { background: var(--ember); }
+.menu-layer:nth-child(2) { background: var(--night); }
+.menu-layer:nth-child(3) { background: var(--forest); }
+.menu-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 6rem 1.5rem 2.5rem; gap: 2.5rem; color: var(--paper); }
+.menu-links { display: flex; flex-direction: column; gap: .4rem; }
+.menu-links a { font-size: 4.2rem; line-height: 1; font-weight: 900; text-transform: lowercase; display: flex; align-items: baseline; gap: .8rem; overflow: hidden; }
+.menu-links a span:first-child { font-size: .8rem; font-weight: 700; letter-spacing: .2em; color: var(--orange); }
+.menu-foot { display: flex; flex-direction: column; gap: .5rem; color: rgba(248,242,235,.6); }
+
+.lightbox { position: fixed; inset: 0; z-index: 80; background: var(--night); visibility: hidden; cursor: zoom-out; }
+.lightbox img, .lightbox video { position: absolute; inset: 4.5rem 3rem 3rem; width: calc(100% - 6rem); height: calc(100% - 7.5rem); object-fit: contain; }
+.lightbox video { cursor: auto; }
+.lightbox [hidden] { display: none; }
+.lightbox-close { position: absolute; right: 1.5rem; top: 1.25rem; height: 3rem; padding: 0 1.4rem; border-radius: 10rem; background: var(--paper); color: var(--forest); z-index: 1; }
+.btn-corner { position: relative; display: inline-flex; align-items: center; gap: .8rem; padding: 1.3rem 2rem; background: var(--orange); color: var(--forest); }
+.btn-corner i { position: absolute; width: .8rem; height: .8rem; border: 2px solid var(--orange); transition: transform .5s var(--ease); }
+.btn-corner i:nth-of-type(1) { left: -.6rem; top: -.6rem; border-right: 0; border-bottom: 0; }
+.btn-corner i:nth-of-type(2) { right: -.6rem; top: -.6rem; border-left: 0; border-bottom: 0; }
+.btn-corner i:nth-of-type(3) { left: -.6rem; bottom: -.6rem; border-right: 0; border-top: 0; }
+.btn-corner i:nth-of-type(4) { right: -.6rem; bottom: -.6rem; border-left: 0; border-top: 0; }
+.btn-corner:hover i:nth-of-type(1) { transform: translate(-.35rem,-.35rem); }
+.btn-corner:hover i:nth-of-type(2) { transform: translate(.35rem,-.35rem); }
+.btn-corner:hover i:nth-of-type(3) { transform: translate(-.35rem,.35rem); }
+.btn-corner:hover i:nth-of-type(4) { transform: translate(.35rem,.35rem); }
+.btn-copy { display: inline-flex; align-items: center; gap: .8rem; padding: 1.3rem 1.6rem; border: 1px solid rgba(248,242,235,.25); color: var(--paper); }
+.btn-copy .copied { color: var(--orange); }
+
+
+/* Footer */
+.footer { position: relative; padding: 7rem 1.5rem 0; overflow: hidden; background: var(--forest); color: var(--paper); }
+.footer-cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr; gap: 2rem; padding: 0 3.5rem 6rem; }
+.footer-cols h4 { margin-bottom: 1.2rem; color: rgba(248,242,235,.5); }
+.footer-cols ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; font-size: 1.05rem; }
+.footer-cols a { position: relative; display: inline-flex; flex-direction: column; }
+.footer-line { font-size: 2.2rem; font-weight: 200; line-height: 1.15; text-transform: lowercase; }
+.footer-line b { font-weight: 900; color: var(--orange); }
+.clock { font-size: 2.2rem; font-weight: 900; letter-spacing: -.01em; }
+.footer-logo { padding: 0 1rem; overflow: hidden; }
+.footer-logo img { width: 100%; height: auto; }
+.footer-base { display: flex; justify-content: space-between; padding: 1.5rem 3.5rem 1.75rem; color: rgba(248,242,235,.5); border-top: 1px solid rgba(248,242,235,.12); margin-top: 2rem; }
+
+/* Shared tablet and phone rules */
+@media (max-width: 991px) {
+  .nav-pill { display: none; } .nav-menu { display: flex; }
+  .h-hero { font-size: 5.6rem; } .h-section { font-size: 5rem; } .h-big { font-size: 6.5rem; } .h-line { font-size: 4.4rem; }
+  .lightbox img, .lightbox video { inset: 4.5rem 1rem 1rem; width: calc(100% - 2rem); height: calc(100% - 5.5rem); }
+  .footer-cols { grid-template-columns: 1fr 1fr; padding: 0 0 4rem; gap: 3rem 2rem; }
+  .footer-cols > :first-child { grid-column: 1 / -1; }
+  .footer-base { padding: 1.5rem 0 1.75rem; }
+}
+@media (max-width: 600px) {
+  .nav { padding: 1rem; } .nav-logo { width: 8.5rem; }
+  .pill { height: 2.5rem; } .nav-contact { display: none; } .nav-menu { padding: 0 1rem; }
+  .h-hero { font-size: 3.4rem; } .h-section { font-size: 3.4rem; } .h-big { font-size: 3.6rem; } .h-line { font-size: 3.2rem; }
+  .menu-links a { font-size: 3rem; }
+  .footer { padding: 5rem 1rem 0; }
+  .footer-line, .clock { font-size: 1.6rem; }
+  .footer-base { flex-direction: column; gap: .5rem; }
+}
+@media (prefers-reduced-motion: reduce) { .grain { animation: none; } }
+
+/* Draft 24: one home page, top to bottom, in the manner of a quiet premium studio site.
+   Focus pull hero, a reel that follows you, a story that closes into a reel with subtitles, tilted service cards,
+   a run of full screen work, client words round a real reel, scattered words that come into focus, contact cards */
+html:root { --page: var(--night); }
+.glowy { position: absolute; pointer-events: none; border-radius: 50%; background: radial-gradient(closest-side, rgba(249,192,82,.45), rgba(198,77,1,.32) 40%, rgba(198,77,1,0) 100%); }
+
+/* 1. Focus pull hero */
+.fp { position: relative; height: 100vh; height: 100svh; overflow: hidden; background: var(--night); color: var(--paper); }
+.fp-glow { width: 120rem; height: 60rem; left: 50%; bottom: -36rem; translate: -50% 0; }
+.fp-lines { position: absolute; left: 5rem; right: 5rem; top: 50%; translate: 0 -54%; display: flex; flex-direction: column; gap: .2rem; }
+.fp-line { display: block; font-size: 11.5rem; line-height: .9; letter-spacing: -.02em; text-transform: lowercase; will-change: filter, opacity; white-space: nowrap; }
+.fp-line.two { align-self: flex-end; }
+.fp-ring { position: absolute; right: 5rem; top: 7.5rem; display: flex; align-items: center; gap: 1rem; color: rgba(248,242,235,.6); }
+.fp-ring svg { width: 4.2rem; height: 4.2rem; overflow: visible; }
+.fp-ring circle { fill: none; stroke-width: 2; }
+.fp-ring .track { stroke: rgba(248,242,235,.15); }
+.fp-ring .run { stroke: var(--orange); stroke-linecap: round; }
+.fp-ring b { display: block; color: var(--paper); font-size: 1.1rem; font-weight: 900; letter-spacing: .05em; }
+.fp-base { position: absolute; left: 5rem; right: 5rem; bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; }
+.fp-base .body-l { max-width: 24rem; color: rgba(248,242,235,.72); font-size: 1.05rem; }
+.fp-hint { color: rgba(248,242,235,.55); display: flex; align-items: center; gap: .8rem; }
+.fp-hint i { width: 1.1rem; height: .55rem; background: var(--orange); border-radius: 0 0 .55rem .55rem; }
+
+/* 2. The reel that follows you round the page */
+.pip { position: fixed; z-index: 55; left: 1.5rem; bottom: 1.5rem; width: 7rem; opacity: 0; visibility: hidden; transition: opacity .6s var(--ease), visibility .6s; }
+html.pip-on .pip { opacity: 1; visibility: visible; }
+html.pip-away .pip { opacity: 0; visibility: hidden; }
+html.pip-off .pip { opacity: 0 !important; visibility: hidden !important; }
+.pip-frame { position: relative; display: block; width: 100%; aspect-ratio: 9 / 16; border-radius: .8rem; overflow: hidden; background: var(--forest); box-shadow: 0 1rem 2.5rem rgba(5,21,17,.55), 0 0 0 1px rgba(248,242,235,.18); }
+.pip-frame img, .pip-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pip-play { position: absolute; left: .55rem; bottom: .55rem; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--paper); display: grid; place-items: center; }
+.pip-play svg { width: .7rem; height: .7rem; margin-left: .1rem; fill: var(--forest); }
+.pip-close { position: absolute; right: -.6rem; top: -.6rem; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--paper); color: var(--forest); font-size: .9rem; line-height: 1; display: grid; place-items: center; box-shadow: 0 .3rem .8rem rgba(5,21,17,.4); }
+.pip-name { margin-top: .6rem; color: rgba(248,242,235,.8); font-size: .65rem; }
+html[data-theme="paper"] .pip-name { color: rgba(22,44,41,.7); }
+
+/* 3. Story: one frame closes into a reel, subtitles under it, then it steps aside for the copy */
+.st { position: relative; background: var(--night); color: var(--paper); }
+.st-pin { position: relative; height: 100vh; overflow: hidden; }
+.st-frame { position: absolute; left: 50%; top: 50%; width: 100vw; height: 100vh; translate: -50% -50%; overflow: hidden; background: var(--forest); will-change: width, height, transform; }
+.st-frame img, .st-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.st-frame video { opacity: 0; }
+.st-shade { position: absolute; inset: 0; background: rgba(5,21,17,.28); }
+.st-subs { position: absolute; left: 1rem; right: 1rem; bottom: 2.2rem; text-align: center; }
+.st-subs p { position: absolute; left: 0; right: 0; bottom: 0; opacity: 0; font-size: 1.05rem; font-weight: 500; line-height: 1.45; color: var(--paper); text-shadow: 0 .1rem .6rem rgba(5,21,17,.9); }
+.st-copy { position: absolute; right: 5rem; top: 50%; translate: 0 -50%; width: 34rem; display: flex; flex-direction: column; gap: 1.6rem; opacity: 0; }
+.st-copy .body-l { color: rgba(248,242,235,.78); }
+.st-note { color: rgba(248,242,235,.45); }
+.st-tc { position: absolute; left: 5rem; top: 7rem; color: rgba(248,242,235,.6); opacity: 0; }
+.st-tc b { color: var(--paper); }
+html.st-still .st-frame { width: 28rem; height: 49.8rem; max-height: 82vh; left: 5rem; translate: 0 -50%; border-radius: 1rem; }
+html.st-still .st-subs p:first-child, html.st-still .st-copy, html.st-still .st-tc { opacity: 1; }
+
+/* 4. Services: tall cards on a track that straighten as they reach the middle */
+.sv { position: relative; background: var(--night); color: var(--paper); overflow: hidden; }
+.sv-pin { height: 100vh; display: flex; flex-direction: column; justify-content: center; gap: 1.2rem; padding-top: 4.5rem; }
+.sv-head .h-section { font-size: 5rem; }
+.sv-head { padding: 0 5rem; display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; }
+.sv-count { color: rgba(248,242,235,.55); } .sv-count b { color: var(--paper); }
+.sv-track { display: flex; gap: 2.4rem; padding: 1.5rem 5rem 2rem; width: max-content; will-change: transform; }
+.sv-card { position: relative; flex: none; width: 23rem; height: 32rem; border-radius: 1.2rem; overflow: hidden; padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; gap: 1rem;
+  background: var(--forest); box-shadow: 0 0 0 1px rgba(248,242,235,.1), 0 1.6rem 3rem rgba(5,21,17,.5); transform-origin: 50% 100%; will-change: transform; }
+.sv-card .glowy { width: 36rem; height: 30rem; left: 50%; top: -19rem; translate: -50% 0; opacity: .8; }
+.sv-card .n { position: absolute; left: 2rem; top: 1.8rem; color: rgba(248,242,235,.5); }
+.sv-art { position: absolute; left: 50%; top: 40%; width: 11rem; height: 11rem; translate: -50% -50%; overflow: visible; }
+.sv-art path, .sv-art circle, .sv-art rect, .sv-art line { fill: none; stroke: var(--paper); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.sv-art .hot { stroke: var(--orange); stroke-width: 2.4; }
+.sv-card h3 { position: relative; font-size: 3rem; line-height: .95; font-weight: 900; text-transform: lowercase; letter-spacing: -.01em; }
+.sv-card p { position: relative; font-size: 1rem; line-height: 1.55; color: rgba(248,242,235,.75); }
+.sv-card ul { position: relative; list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; }
+.sv-card li { padding: .55em .85em; border: 1px solid rgba(248,242,235,.3); border-radius: 10rem; font-size: .62rem; }
+.sv-card.is-cta { background: var(--paper); color: var(--forest); justify-content: space-between; }
+.sv-card.is-cta .n { color: rgba(22,44,41,.55); }
+.sv-card.is-cta h3 { font-size: 4rem; margin-top: 3.5rem; }
+.sv-card.is-cta p { color: rgba(22,44,41,.75); }
+
+/* 5. Work: one photograph a screen, the next arrives in two halves */
+.wk { position: relative; background: var(--night); color: var(--paper); }
+.wk-pin { position: relative; height: 100vh; overflow: hidden; }
+.wk-panel { position: absolute; inset: 0; }
+.wk-panel .half { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.wk-panel .tint { position: absolute; inset: 0; background: rgba(5,21,17,.32); }
+.wk-text { position: absolute; left: 5rem; right: 5rem; bottom: 3rem; display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; }
+.wk-title { font-size: 10rem; line-height: .86; font-weight: 900; letter-spacing: -.025em; text-transform: lowercase; text-shadow: 0 .2rem 2rem rgba(5,21,17,.35); }
+.wk-meta { display: flex; flex-direction: column; gap: .5rem; align-items: flex-end; text-align: right; }
+.wk-meta span { color: rgba(248,242,235,.8); }
+.wk-top { position: absolute; z-index: 3; left: 5rem; right: 5rem; top: 7rem; display: flex; justify-content: space-between; color: rgba(248,242,235,.85); pointer-events: none; }
+.wk-top b { color: var(--paper); }
+.wk-bar { position: absolute; z-index: 3; left: 5rem; right: 5rem; bottom: 1.4rem; height: 2px; background: rgba(248,242,235,.2); }
+.wk-bar i { position: absolute; inset: 0; background: var(--paper); transform-origin: 0 50%; transform: scaleX(0); }
+.wk-end { padding: 8rem 5rem; background: var(--night); color: var(--paper); }
+.wk-end p { font-size: 4.2rem; line-height: 1.08; font-weight: 300; letter-spacing: -.01em; text-transform: lowercase; max-width: 70rem; }
+.wk-end a { font-weight: 900; color: var(--orange); white-space: nowrap; }
+.wk-end a span { display: inline-block; transition: transform .5s var(--ease); }
+.wk-end a:hover span { transform: translateX(.2em); }
+
+/* 6. Client words: the real review reel in the middle, sample quotes round it */
+.cw { position: relative; min-height: 100vh; padding: 7rem 0 5rem; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 2.4rem; background: var(--forest); color: var(--paper); }
+.cw .glowy { width: 90rem; height: 50rem; left: 50%; top: 55%; translate: -50% -50%; opacity: .35; }
+.cw-head { position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.cw-stage { position: relative; width: 100%; height: 34rem; touch-action: pan-y; }
+.cw-card { position: absolute; left: 50%; top: 0; width: 26rem; height: 34rem; margin-left: -13rem; border-radius: 1.2rem; overflow: hidden; padding: 2.2rem; display: flex; flex-direction: column; justify-content: space-between;
+  background: var(--night); box-shadow: 0 0 0 1px rgba(248,242,235,.12); cursor: pointer; will-change: transform, opacity; }
+.cw-card.is-active { box-shadow: 0 0 0 1px rgba(245,115,29,.65), 0 2rem 4rem rgba(5,21,17,.5); cursor: default; }
+.cw-card.paper { background: var(--paper); color: var(--forest); }
+.cw-q { font-size: 1.45rem; line-height: 1.45; font-weight: 500; }
+.cw-mark { width: 2.4rem; height: 1.2rem; background: var(--orange); border-radius: 1.2rem 1.2rem 0 0; }
+.cw-who b { display: block; font-size: 1.05rem; font-weight: 900; text-transform: lowercase; }
+.cw-who span { opacity: .6; }
+.cw-card.reel { padding: 0; }
+.cw-card.reel img, .cw-card.reel video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cw-card.reel .cw-reel-base { position: absolute; left: 1.4rem; right: 1.4rem; bottom: 1.3rem; display: flex; justify-content: space-between; align-items: center; text-shadow: 0 .1rem .6rem rgba(5,21,17,.8); }
+.cw-sound { padding: .7em 1em; border-radius: 10rem; background: var(--paper); color: var(--forest); text-shadow: none; }
+.cw-nav { position: relative; display: flex; align-items: center; gap: 1.6rem; }
+.cw-nav button.arrow { width: 3.2rem; height: 3.2rem; border-radius: 50%; border: 1px solid rgba(248,242,235,.35); display: grid; place-items: center; }
+.cw-nav button.arrow:hover { border-color: var(--orange); }
+.cw-nav svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; }
+.cw-dots { display: flex; gap: .5rem; }
+.cw-dots button { width: .55rem; height: .55rem; border-radius: 50%; background: rgba(248,242,235,.3); transition: width .5s var(--ease), background-color .5s; }
+.cw-dots button[aria-current] { width: 2rem; border-radius: 1rem; background: var(--orange); }
+.cw-note { position: relative; color: rgba(248,242,235,.45); }
+
+/* 7. Words that come into focus */
+.fw { position: relative; background: var(--paper); color: var(--forest); }
+.fw-pin { height: 100vh; display: flex; align-items: center; justify-content: center; padding: 0 6rem; overflow: hidden; }
+.fw-text { font-size: 6.4rem; line-height: 1.04; letter-spacing: -.015em; text-align: center; text-transform: lowercase; font-weight: 300; max-width: 78rem; }
+.fw-text .w { display: inline-block; will-change: transform, opacity, filter; }
+.fw-text .loud { font-weight: 900; color: var(--orange); }
+
+/* 8. Contact cards */
+.ct { position: relative; min-height: 100vh; padding: 8rem 5rem 5rem; display: grid; grid-template-columns: 1.15fr 1fr; gap: 4rem; align-items: center; background: var(--night); color: var(--paper); overflow: hidden; }
+.ct .glowy { width: 80rem; height: 46rem; left: 20%; bottom: -30rem; opacity: .6; }
+.ct-left { position: relative; display: flex; flex-direction: column; gap: 2rem; align-items: flex-start; }
+.ct-left .body-l { max-width: 30rem; color: rgba(248,242,235,.78); }
+.ct-book { position: relative; width: 100%; max-width: 32rem; padding: 1.6rem; border-radius: 1.2rem; background: rgba(248,242,235,.04); box-shadow: 0 0 0 1px rgba(248,242,235,.12); display: flex; flex-direction: column; gap: 1.2rem; }
+.ct-book p b { display: block; font-size: 1.2rem; }
+.ct-book p span { color: rgba(248,242,235,.6); }
+.ct-go { display: flex; justify-content: center; align-items: center; gap: .7rem; height: 3.6rem; border-radius: 10rem; background: var(--orange); color: var(--forest); transition: background-color .4s var(--ease); }
+.ct-go:hover { background: var(--gold); }
+.ct-cards { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.ct-card { padding: 1.6rem; border-radius: 1.2rem; background: rgba(248,242,235,.04); box-shadow: 0 0 0 1px rgba(248,242,235,.12); display: flex; flex-direction: column; gap: .7rem; min-height: 11rem; transition: box-shadow .4s var(--ease), background-color .4s var(--ease); }
+a.ct-card:hover { box-shadow: 0 0 0 1px rgba(245,115,29,.7); background: rgba(248,242,235,.07); }
+.ct-card.wide { grid-column: 1 / -1; }
+.ct-card i { width: 1.6rem; height: .8rem; background: var(--orange); border-radius: .8rem .8rem 0 0; margin-bottom: auto; }
+.ct-card:nth-child(even) i { border-radius: 0 0 .8rem .8rem; }
+.ct-card span.label { color: rgba(248,242,235,.55); }
+.ct-card b { font-size: 1.35rem; font-weight: 900; text-transform: lowercase; }
+.ct-card small { color: rgba(248,242,235,.6); font-size: .9rem; }
+
+@media (max-width: 991px) {
+  .fp-lines { left: 1.5rem; right: 1.5rem; }
+  .fp-line { font-size: 7.6rem; white-space: normal; }
+  .fp-ring { right: 1.5rem; top: 6.5rem; }
+  .fp-base { left: 1.5rem; right: 1.5rem; bottom: 5rem; flex-direction: column; align-items: flex-start; }
+  .pip { left: auto; right: 1rem; bottom: 1rem; width: 5.6rem; }
+  .pip-name { display: none; }
+  .st-copy { left: 1.5rem; right: 1.5rem; width: auto; top: auto; bottom: 3rem; translate: none; gap: 1rem; }
+  .st-copy .h-section { font-size: 4rem; }
+  .st-copy .body-l { font-size: 1.05rem; }
+  .st-tc { left: 1.5rem; top: 6rem; }
+  html.st-still .st-frame { left: 50%; translate: -50% -50%; top: 38%; width: 20rem; height: 35.5rem; }
+  .sv-pin { height: auto; padding: 6rem 0 4rem; }
+  .sv-head { padding: 0 1.5rem; }
+  .sv-track { width: auto; flex-direction: column; padding: 1rem 1.5rem 0; gap: 1.6rem; }
+  .sv-card { width: 100%; height: 30rem; }
+  .wk-text { left: 1.5rem; right: 1.5rem; bottom: 3rem; flex-direction: column; align-items: flex-start; }
+  .wk-meta { align-items: flex-start; text-align: left; }
+  .wk-title { font-size: 6.5rem; }
+  .wk-top { left: 1.5rem; right: 1.5rem; top: 6rem; }
+  .wk-bar { left: 1.5rem; right: 1.5rem; }
+  .wk-end { padding: 5rem 1.5rem; } .wk-end p { font-size: 3.2rem; }
+  .cw-stage { height: 30rem; } .cw-card { width: 22rem; height: 30rem; margin-left: -11rem; }
+  .fw-pin { padding: 0 1.5rem; } .fw-text { font-size: 4.8rem; }
+  .ct { grid-template-columns: 1fr; padding: 7rem 1.5rem 5rem; }
+}
+@media (max-width: 600px) {
+  .fp-lines { left: 1rem; right: 1rem; }
+  .fp-line { font-size: 4.1rem; }
+  .fp-ring { right: 1rem; top: 6rem; } .fp-ring svg { width: 3rem; height: 3rem; }
+  .fp-base { left: 1rem; right: 1rem; bottom: 4.6rem; }
+  .fp-base .body-l { font-size: .95rem; }
+  .st-copy { left: 1rem; right: 1rem; bottom: 2rem; }
+  .st-copy .h-section { font-size: 2.6rem; } .st-copy .body-l { font-size: .9rem; line-height: 1.5; }
+  .st-subs p { font-size: .8rem; }
+  .st-tc { left: 1rem; }
+  .sv-head { padding: 0 1rem; flex-direction: column; align-items: flex-start; }
+  .sv-track { padding: 1rem 1rem 0; }
+  .sv-card { height: 27rem; padding: 1.5rem; } .sv-art { top: 30%; width: 7.5rem; height: 7.5rem; } .sv-card h3 { font-size: 2.3rem; } .sv-card.is-cta h3 { font-size: 2.8rem; }
+  .wk-title { font-size: 3.6rem; } .wk-text { left: 1rem; right: 1rem; } .wk-top { left: 1rem; right: 1rem; } .wk-bar { left: 1rem; right: 1rem; }
+  .wk-end { padding: 4rem 1rem; } .wk-end p { font-size: 1.9rem; }
+  .cw { padding: 5.5rem 0 4rem; }
+  .cw-stage { height: 25rem; } .cw-card { width: 16.5rem; height: 25rem; margin-left: -8.25rem; padding: 1.5rem; } .cw-q { font-size: 1.05rem; }
+  .fw-pin { padding: 0 1rem; } .fw-text { font-size: 2.6rem; }
+  .ct { padding: 6rem 1rem 4rem; gap: 3rem; }
+  .ct-cards { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .pip, .cw-dots button, .ct-go, .ct-card { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="wipe" aria-hidden="true">
+  <div class="wipe-half wipe-top"><svg viewBox="0 0 200 100"><path class="arc-top" d="M4 100 A96 96 0 0 1 196 100"/></svg></div>
+  <div class="wipe-half wipe-bottom"><svg viewBox="0 0 200 100"><path class="arc-bottom" d="M196 0 A96 96 0 0 1 4 0"/></svg></div>
+</div>
+
+<div class="focus" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="focus-label">view project</span></div>
+
+<nav class="nav">
+  <a href="#top" class="nav-logo" aria-label="3not8 Studios, back to top">
+    <img class="logo-dark" src="../03-sections/assets/logo-horizontal.png" alt="3not8 Studios" width="640" height="251">
+    <img class="logo-light" src="../03-sections/assets/logo-horizontal-light.png" alt="" width="640" height="251">
+  </a>
+  <div class="nav-pill pill label">
+    <a href="#work" class="nav-link" data-draw-line><span>Work</span><span class="draw-line"></span></a>
+    <a href="#services" class="nav-link" data-draw-line><span>Services</span><span class="draw-line"></span></a>
+    <a href="#story" class="nav-link" data-draw-line><span>Studio</span><span class="draw-line"></span></a>
+    <a href="#contact" class="nav-link" data-draw-line><span>Contact</span><span class="draw-line"></span></a>
+  </div>
+  <div class="nav-right">
+    <a href="#contact" class="nav-contact pill label"><span class="dot"></span><span>Contact</span></a>
+    <button class="nav-menu pill label" aria-expanded="false" aria-controls="menu"><span class="menu-lines"></span><span class="menu-word">Menu</span></button>
+  </div>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu-layer"></div><div class="menu-layer"></div><div class="menu-layer"></div>
+  <div class="menu-content">
+    <div class="menu-links">
+      <a href="../05-work/"><span>01</span><span>work</span></a>
+      <a href="#services"><span>02</span><span>services</span></a>
+      <a href="#story"><span>03</span><span>studio</span></a>
+      <a href="#contact"><span>04</span><span>contact</span></a>
+    </div>
+    <div class="menu-foot label"><span>Mannagudda Road, Gandhinagar</span><span>Mangaluru 575003</span></div>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- 1. Hero: the signature pulls focus from one line to the other as the page scrolls -->
+  <section class="fp" data-fp data-page-theme="night">
+    <div class="glowy fp-glow" aria-hidden="true"></div>
+    <h1 class="fp-lines">
+      <span class="fp-line one w-light">your vision.</span>
+      <span class="fp-line two w-heavy accent">our execution.</span>
+    </h1>
+    <div class="fp-ring label" aria-hidden="true">
+      <svg viewBox="0 0 64 64"><circle class="track" cx="32" cy="32" r="28"/><circle class="run" cx="32" cy="32" r="28" transform="rotate(-90 32 32)"/></svg>
+      <span>Focus<b data-fp-dist>0.9 m</b></span>
+    </div>
+    <div class="fp-base">
+      <p class="body-l">3not8 Studios makes films, photography and campaigns from Mangaluru, planned and shot by one crew.</p>
+      <p class="fp-hint label"><i></i>Scroll to pull focus</p>
+    </div>
+  </section>
+
+  <!-- 2. Story: a still frame closes into a reel, the subtitles carry the story, then the reel steps aside -->
+  <section class="st" id="story" data-st data-page-theme="night">
+    <div class="st-pin">
+      <p class="st-tc label" aria-hidden="true">Reel <b data-st-tc>00:00:00</b></p>
+      <div class="st-frame">
+        <img src="../03-sections/assets/rally-dust.webp" alt="Rally car trailing a long cloud of orange dust" decoding="async">
+        <video muted loop playsinline preload="none" aria-hidden="true"></video>
+        <div class="st-shade"></div>
+        <div class="st-subs" aria-live="off">
+          <p>Every frame starts as a conversation.</p>
+          <p>We plan it, light it, shoot it and cut it in Mangaluru.</p>
+          <p>So what reaches your audience looks the way you meant it.</p>
+        </div>
+      </div>
+      <div class="st-copy">
+        <p class="label accent">The studio</p>
+        <h2 class="h-section"><span class="w-light">one crew,</span><br><span class="w-heavy">start to finish.</span></h2>
+        <p class="body-l">A production and marketing studio. The people who plan your campaign are the people on set and in the edit, so the idea you bring in is the idea that goes out.</p>
+        <p class="st-note label">Subtitles are sample copy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Services: tall cards on a track, each one straightens as it reaches the middle and its drawing draws itself -->
+  <section class="sv" id="services" data-sv data-page-theme="night">
+    <div class="sv-pin">
+      <div class="sv-head" data-scroll-reveal-group>
+        <div class="section-head">
+          <p class="label accent" data-scroll-reveal="element">Services</p>
+          <h2 class="h-section" data-scroll-reveal="chars"><span class="w-light">what we</span> <span class="w-heavy">make.</span></h2>
+        </div>
+        <p class="sv-count label" aria-hidden="true"><b data-sv-now>01</b> / 05</p>
+      </div>
+      <div class="sv-track">
+        <article class="sv-card"><div class="glowy" aria-hidden="true"></div><span class="n label">01 · Before the shoot</span>
+          <svg class="sv-art" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="44"/><path class="hot" d="M16 60 A44 44 0 0 1 104 60"/><line x1="60" y1="8" x2="60" y2="112"/><line x1="8" y1="60" x2="112" y2="60"/><circle cx="60" cy="60" r="6" class="hot"/></svg>
+          <h3>brand strategy</h3><p>Positioning, campaign planning and a content plan, so every piece has a job before a camera comes out.</p>
+          <ul class="label"><li>Positioning</li><li>Campaigns</li><li>Content plan</li></ul></article>
+        <article class="sv-card"><div class="glowy" aria-hidden="true"></div><span class="n label">02 · On set</span>
+          <svg class="sv-art" viewBox="0 0 120 120" aria-hidden="true"><path d="M14 34 V14 H34 M86 14 H106 V34 M106 86 V106 H86 M34 106 H14 V86"/><circle cx="60" cy="60" r="24"/><path class="hot" d="M36 60 A24 24 0 0 0 84 60"/></svg>
+          <h3>content production</h3><p>Reels, commercial films, drone work and photography, shot by our own crew and graded as one series.</p>
+          <ul class="label"><li>Reels and films</li><li>Drone</li><li>Photography</li></ul></article>
+        <article class="sv-card"><div class="glowy" aria-hidden="true"></div><span class="n label">03 · Every week</span>
+          <svg class="sv-art" viewBox="0 0 120 120" aria-hidden="true"><rect x="22" y="16" width="34" height="60" rx="5"/><rect x="64" y="44" width="34" height="60" rx="5"/><path class="hot" d="M39 90 A20 20 0 0 0 81 30"/></svg>
+          <h3>social media</h3><p>We plan the calendar, publish the work and answer the people who respond to it.</p>
+          <ul class="label"><li>Calendar</li><li>Publishing</li><li>Community</li></ul></article>
+        <article class="sv-card"><div class="glowy" aria-hidden="true"></div><span class="n label">04 · After launch</span>
+          <svg class="sv-art" viewBox="0 0 120 120" aria-hidden="true"><line x1="10" y1="104" x2="110" y2="104"/><path d="M20 104 A40 40 0 0 1 100 104"/><path class="hot" d="M40 104 A20 20 0 0 1 80 104"/><line x1="60" y1="104" x2="92" y2="40" class="hot"/></svg>
+          <h3>performance marketing</h3><p>Paid campaigns and lead generation, reported in plain numbers you can check.</p>
+          <ul class="label"><li>Paid ads</li><li>Leads</li><li>Reporting</li></ul></article>
+        <article class="sv-card is-cta"><span class="n label">05 · Your turn</span>
+          <h3>bring us the brief.</h3>
+          <div><p>Tell us what you are making and when it needs to be out. We will come back with a plan.</p></div>
+          <a href="#contact" class="btn-corner label"><i></i><i></i><i></i><i></i>Start a project</a></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Work: one photograph a screen. The next arrives in two halves, the title rises with it -->
+  <section class="wk" id="work" data-wk data-page-theme="night">
+    <div class="wk-pin">
+      <p class="wk-top label"><span>Selected work</span><span><b data-wk-now>01</b> / <span data-wk-total>05</span></span></p>
+      <div class="wk-bar" aria-hidden="true"><i></i></div>
+    </div>
+  </section>
+  <div class="wk-end" data-page-theme="night" data-scroll-reveal-group>
+    <p data-scroll-reveal="lines">every frame here started as someone's brief, a place, a product, a plate of food. <a href="../05-work/" data-focus="all work">see all the work <span>→</span></a></p>
+  </div>
+
+  <!-- 5. Client words: the real customer review reel in the middle, sample quotes round it -->
+  <section class="cw" id="words" data-cw>
+    <div class="glowy" aria-hidden="true"></div>
+    <div class="cw-head" data-scroll-reveal-group>
+      <p class="label accent" data-scroll-reveal="element">Client words</p>
+      <h2 class="h-section" data-scroll-reveal="chars"><span class="w-light">in their</span> <span class="w-heavy">words.</span></h2>
+    </div>
+    <div class="cw-stage" aria-roledescription="carousel" aria-label="Client words"></div>
+    <div class="cw-nav">
+      <button class="arrow" type="button" data-cw-prev aria-label="Previous"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5"/></svg></button>
+      <div class="cw-dots"></div>
+      <button class="arrow" type="button" data-cw-next aria-label="Next"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+    </div>
+    <p class="cw-note label">The reel is real. The written quotes are samples until clients approve their words</p>
+  </section>
+
+  <!-- 6. The closing line: scattered words come into focus as one sentence -->
+  <section class="fw" data-fw data-page-theme="paper">
+    <div class="fw-pin">
+      <p class="fw-text" data-fw-text>tell us what you are making, and we will bring it <span class="loud">into focus.</span></p>
+    </div>
+  </section>
+
+  <!-- 7. Contact -->
+  <section class="ct" id="contact" data-page-theme="night">
+    <div class="glowy" aria-hidden="true"></div>
+    <div class="ct-left" data-scroll-reveal-group>
+      <p class="label accent" data-scroll-reveal="element">Contact</p>
+      <h2 class="h-section" data-scroll-reveal="chars"><span class="w-light">let's make</span><br><span class="w-heavy accent">the next one.</span></h2>
+      <p class="body-l" data-scroll-reveal="lines">Send us the idea, the date and where it will be seen. We usually reply the same day.</p>
+      <div class="ct-book" data-scroll-reveal="element">
+        <p><b>A first call</b><span>Thirty minutes to talk through the brief</span></p>
+        <a class="ct-go label" href="https://wa.me/?text=Hi%203not8%20Studios%2C%20I%20would%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" data-focus="whatsapp">Message us on WhatsApp <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="ct-cards" data-scroll-reveal-group>
+      <a class="ct-card" href="mailto:hello@example.com" data-scroll-reveal="element"><i></i><span class="label">Write to us</span><b>hello@[domain]</b><small>Address to confirm</small></a>
+      <a class="ct-card" href="#top" data-scroll-reveal="element"><i></i><span class="label">Follow</span><b>instagram</b><small>Link to confirm</small></a>
+      <div class="ct-card wide" data-scroll-reveal="element"><i></i><span class="label">The studio</span><b>mannagudda road, gandhinagar</b><small>Mangaluru 575003 · <span data-ct-clock>--:--</span> here now</small></div>
+    </div>
+  </section>
+</main>
+
+<!-- The reel that follows you round the page. Plays muted, opens full screen -->
+<aside class="pip" aria-label="Now showing">
+  <button class="pip-frame" type="button" data-pip-open data-focus="play reel" aria-label="Play the reel with sound">
+    <img alt="" decoding="async"><video muted loop playsinline preload="none" aria-hidden="true"></video>
+    <span class="pip-play" aria-hidden="true"><svg viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z"/></svg></span>
+  </button>
+  <button class="pip-close" type="button" data-pip-close aria-label="Hide the reel">×</button>
+  <p class="pip-name label">Now showing <span data-pip-name></span></p>
+</aside>
+
+<div class="lightbox" role="dialog" aria-label="Photograph" aria-hidden="true">
+  <button class="lightbox-close label">Close</button>
+  <img alt="">
+  <video controls playsinline preload="none" hidden></video>
+</div>
+
+<footer class="footer">
+  <div class="footer-cols">
+    <div><p class="footer-line">good ideas deserve<br><b>great execution.</b></p></div>
+    <div><h4 class="label">Studio</h4><ul>
+      <li><a href="#work" data-draw-line>Work<span class="draw-line"></span></a></li>
+      <li><a href="#services" data-draw-line>Services<span class="draw-line"></span></a></li>
+      <li><a href="#story" data-draw-line>Studio<span class="draw-line"></span></a></li>
+      <li><a href="#contact" data-draw-line>Contact<span class="draw-line"></span></a></li></ul></div>
+    <div><h4 class="label">Follow</h4><ul>
+      <li><a href="#top" data-draw-line>Instagram<span class="draw-line"></span></a></li>
+      <li><a href="#top" data-draw-line>YouTube<span class="draw-line"></span></a></li>
+      <li><a href="#top" data-draw-line>LinkedIn<span class="draw-line"></span></a></li></ul></div>
+    <div><h4 class="label">Mangaluru time</h4><p class="clock" data-clock>--:--</p>
+      <ul style="margin-top: 1.2rem"><li>Mannagudda Road, Gandhinagar</li><li>Mangaluru 575003</li></ul></div>
+  </div>
+  <div class="footer-logo" data-footer-logo><img src="../03-sections/assets/logo-footer.webp" alt="3not8 Studios" width="1600" height="629" loading="lazy" decoding="async"></div>
+  <div class="footer-base label"><span>© 2026 3not8 Studios</span><span>Draft 24, direction only</span></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.17/dist/lenis.min.js"></script>
+<script>
+(() => {
+  const html = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const fine = matchMedia('(hover: hover) and (pointer: fine)');
+  const desktop = '(min-width: 992px)';
+  const revealAll = () => { html.classList.add('reveal-all'); html.setAttribute('data-page-ready', ''); html.setAttribute('data-transition-ready', ''); };
+  if (!window.gsap || !window.ScrollTrigger || !window.SplitText) { revealAll(); return; }
+  setTimeout(() => { if (!html.hasAttribute('data-page-ready')) revealAll(); }, 4000);
+  gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
+
+  /* Smooth scroll */
+  let lenis = null;
+  if (!reduce.matches && window.Lenis) {
+    // A heavier glide than the other drafts: low lerp so the page keeps moving after the wheel stops and eases to rest
+    lenis = new Lenis({ lerp: 0.072, wheelMultiplier: 0.95, touchMultiplier: 1.3, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+  const scrollToTarget = target => {
+    if (lenis) lenis.scrollTo(target, { duration: 1.4 });
+    else if (target === 0) window.scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });
+    else target.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth' });
+  };
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    const target = id === '#top' ? 0 : document.querySelector(id);
+    if (target === null) return;
+    e.preventDefault();
+    if (html.hasAttribute('data-menu-open')) { closeMenu(); setTimeout(() => scrollToTarget(target), 450); }
+    else scrollToTarget(target);
+  }));
+
+  /* Text splitting and reveals */
+  function split(el) {
+    if (el._split) return el._split;
+    const mode = el.dataset.textReveal || el.dataset.scrollReveal;
+    const needChars = mode === 'chars' || el.hasAttribute('data-font-weight-hover');
+    el._split = SplitText.create(el, { type: needChars ? 'chars,words,lines' : 'lines,words', linesClass: 'line', charsClass: 'char', autoSplit: false, ...(mode === 'focus' ? {} : { mask: 'lines' }) });
+    return el._split;
+  }
+  function revealTween(el) {
+    const mode = el.dataset.textReveal || el.dataset.scrollReveal;
+    if (mode === 'element') return gsap.fromTo(el, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: 'expo.out' });
+    const s = split(el);
+    gsap.set(el, { visibility: 'visible' });
+    const done = () => el.dispatchEvent(new Event('reveal:done'));
+    if (mode === 'focus') return gsap.fromTo(s.lines, { filter: 'blur(.32em)', autoAlpha: 0, yPercent: 12, scale: 1.04 },
+      { filter: 'blur(0em)', autoAlpha: 1, yPercent: 0, scale: 1, duration: 1.6, ease: 'expo.out', stagger: .18, clearProps: 'filter,scale', onComplete: done });
+    const targets = mode === 'chars' ? s.chars : s.lines;
+    return gsap.fromTo(targets, { yPercent: 135 }, { yPercent: 0, duration: 1, ease: 'expo.out', stagger: mode === 'chars' ? 0.0175 : 0.07, onComplete: done });
+  }
+  function scrollReveals() {
+    document.querySelectorAll('[data-scroll-reveal-group]').forEach(group => {
+      const tl = gsap.timeline({ paused: true });
+      group.querySelectorAll('[data-scroll-reveal]').forEach((el, i) => tl.add(revealTween(el), i * 0.12));
+      ScrollTrigger.create({ trigger: group, start: 'top 85%', once: true, onEnter: () => tl.play() });
+    });
+    document.querySelectorAll('[data-scroll-reveal]').forEach(el => {
+      if (el.closest('[data-scroll-reveal-group]')) return;
+      const tw = revealTween(el); tw.pause();
+      ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => tw.play() });
+    });
+  }
+
+  /* Hand drawn underline */
+  const LINES = [
+    'M5 20.9999C26.7762 16.2245 49.5532 11.5572 71.7979 14.6666C84.9553 16.5057 97.0392 21.8432 109.987 24.3888C116.413 25.6523 123.012 25.5143 129.042 22.6388C135.981 19.3303 142.586 15.1422 150.092 13.3333C156.799 11.7168 161.702 14.6225 167.887 16.8333C181.562 21.7212 194.975 22.6234 209.252 21.3888C224.678 20.0548 239.912 17.991 255.42 18.3055C272.027 18.6422 288.409 18.867 305 17.9999',
+    'M4.99805 20.9998C65.6267 17.4649 126.268 13.845 187.208 12.8887C226.483 12.2723 265.751 13.2796 304.998 13.9998',
+    'M5 29.8857C52.3147 26.9322 99.4329 21.6611 146.503 17.1765C151.753 16.6763 157.115 15.9505 162.415 15.6551C163.28 15.6069 165.074 15.4123 164.383 16.4275C161.704 20.3627 157.134 23.7551 153.95 27.4983C153.209 28.3702 148.194 33.4751 150.669 34.6605C153.638 36.0819 163.621 32.6063 165.039 32.2029C178.55 28.3608 191.49 23.5968 204.869 19.5404C231.903 11.3436 259.347 5.83254 288.793 5.12258C294.094 4.99476 299.722 4.82265 305 5.45025'
+  ];
+  let lineIdx = Math.floor(Math.random() * LINES.length);
+  const lineSvg = () => { const d = LINES[lineIdx]; lineIdx = (lineIdx + 1) % LINES.length;
+    return `<svg viewBox="0 0 310 40" preserveAspectRatio="none"><path d="${d}" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/></svg>`; };
+  function drawLines() {
+    document.querySelectorAll('[data-draw-line]').forEach(link => {
+      const box = link.querySelector('.draw-line'); let drawIn = null;
+      link.addEventListener('mouseenter', () => { box.innerHTML = lineSvg(); drawIn = gsap.fromTo(box.querySelector('path'), { drawSVG: '0%' }, { drawSVG: '100%', duration: .5, ease: 'power2.inOut' }); });
+      link.addEventListener('mouseleave', () => { const p = box.querySelector('path'); if (!p) return;
+        const wait = drawIn && drawIn.isActive() ? drawIn.duration() - drawIn.time() : 0;
+        gsap.to(p, { drawSVG: '100% 100%', duration: .5, ease: 'power2.inOut', delay: wait, onComplete: () => p.remove() }); });
+    });
+  }
+  function drawAlways(duration = .6) {
+    document.querySelectorAll('[data-draw-line-always]').forEach(box => { box.innerHTML = lineSvg();
+      gsap.fromTo(box.querySelector('path'), { drawSVG: '0%' }, { drawSVG: '100%', duration, ease: 'power2.inOut' }); });
+  }
+
+  /* Font weight follows the cursor */
+  function weightHover() {
+    if (reduce.matches || !fine.matches) return;
+    const items = [];
+    document.querySelectorAll('[data-font-weight-hover]').forEach(root => {
+      split(root).chars.forEach(c => {
+        const host = c.closest('[data-wght-rest]'); if (!host) return;
+        const rest = +host.dataset.wghtRest, near = +host.dataset.wghtNear;
+        c.style.setProperty('--wght', rest); c.style.fontVariationSettings = "'wght' var(--wght)";
+        items.push({ c, rest, near, cur: rest, x: 0, y: 0, q: gsap.quickTo(c, '--wght', { duration: .4, ease: 'power2.out' }) });
+      });
+    });
+    let px = -1e5, py = -1e5, lastScroll = scrollY;
+    const measure = () => items.forEach(it => { const r = it.c.getBoundingClientRect(); it.x = r.left + r.width / 2 + scrollX; it.y = r.top + r.height / 2 + scrollY; });
+    measure();
+    window.addEventListener('resize', measure);
+    document.addEventListener('reveal:done', measure, true);
+    window.addEventListener('pointermove', e => { px = e.pageX; py = e.pageY; }, { passive: true });
+    window.addEventListener('scroll', () => { py += scrollY - lastScroll; lastScroll = scrollY; measure(); }, { passive: true });
+    gsap.ticker.add(() => {
+      if (px < -1e4) return;
+      for (const it of items) {
+        const d = Math.hypot(it.x - px, it.y - py), f = d >= 400 ? 0 : 1 - d / 400;
+        const t = Math.round(it.rest + (it.near - it.rest) * f);
+        if (Math.abs(t - it.cur) >= 1) { it.cur = t; it.q(t); }
+      }
+    });
+  }
+
+  /* Lightbox: the frame opens from where it was clicked */
+  let openBox = () => {};
+  function lightbox() {
+    const lb = document.querySelector('.lightbox'), img = lb.querySelector('img'), vid = lb.querySelector('video'), closeBtn = lb.querySelector('.lightbox-close');
+    let tl = null, last = null;
+    const close = () => { if (tl) tl.reverse(); };
+    openBox = (e, o) => {
+      last = o.from;
+      img.hidden = !!o.video; vid.hidden = !o.video;
+      if (o.video) { vid.poster = o.poster; vid.src = o.video; vid.setAttribute('aria-label', o.alt); vid.play().catch(() => {}); }
+      else { img.src = o.src; img.alt = o.alt; }
+      const at = `${e.clientX || innerWidth / 2}px ${e.clientY || innerHeight / 2}px`;
+      tl = gsap.timeline({ onReverseComplete: () => { vid.pause(); vid.removeAttribute('src'); vid.load(); gsap.set(lb, { visibility: 'hidden' }); lb.setAttribute('aria-hidden', 'true'); lenis && lenis.start(); last && last.focus({ preventScroll: true }); } });
+      tl.set(lb, { visibility: 'visible' })
+        .fromTo(lb, { clipPath: `circle(0% at ${at})` }, { clipPath: `circle(150% at ${at})`, duration: reduce.matches ? 0.01 : .9, ease: 'expo.inOut' })
+        .fromTo(o.video ? vid : img, { scale: 1.08 }, { scale: 1, duration: reduce.matches ? 0.01 : 1.1, ease: 'expo.out' }, .15);
+      lb.setAttribute('aria-hidden', 'false'); lenis && lenis.stop(); closeBtn.focus({ preventScroll: true });
+    };
+    lb.addEventListener('click', e => { if (e.target !== vid) close(); });
+    window.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.getAttribute('aria-hidden') === 'false') close(); });
+  }
+
+  /* Real reels carried over from the previous site */
+  const REELS = [ { "t": "YSC Drive", "c": "Automotive", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781540915/yamuna_event_reel_final_logo_1_ebgn4h.jpg", "ig": "https://www.instagram.com/reel/DYw2zErSivv/", "v": "" }, { "t": "LaMostra 2025", "c": "Automotive", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781540865/Screenshot_2026-06-15_215710_ilw3us.png", "ig": "https://www.instagram.com/reel/DShsrxPFlUu/", "v": "" }, { "t": "Spark Coaching", "c": "Talking head", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541034/Screenshot_2026-06-15_220012_oinasl.png", "ig": "https://www.instagram.com/reel/DVGyksOjcIW/", "v": "" }, { "t": "YSC", "c": "Real estate", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541559/VID-20260615-WA0013_llerwn.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539988/YSC_yefj6s.mp4" }, { "t": "Scylla", "c": "Ambience", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541559/VID-20260615-WA0009_zt3deh.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539988/prop_nahamb.mp4" }, { "t": "Customer reviews", "c": "Talking head", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541562/VID-20260615-WA0010_gxxlc8.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539982/Lesparrow2_udqxdh.mp4" }, { "t": "Client Engagement", "c": "Talking head", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541560/VID-20260615-WA0006_d9sbn8.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539984/le3_dbpbyk.mp4" }, { "t": "Property walkthrough", "c": "Real estate", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781544135/VID-20260615-WA0011_wg5foq.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539984/Scylla_mfytys.mp4" } ];
+  const cdn = (u, t) => u.replace('/upload/', `/upload/${t}/`);
+  const A = '../03-sections/assets/';
+
+  const pad2 = v => String(v).padStart(2, '0');
+  const isDesk = () => matchMedia(desktop).matches;
+
+  /* Scroll physics: one spring follows the scroll speed. It overshoots a little and settles,
+     and the pieces that lean, sway or skew with the scroll all read from it */
+  const phys = { x: 0, v: 0 };
+  function physics() {
+    let lastY = scrollY;
+    gsap.ticker.add(() => {
+      const raw = lenis ? lenis.velocity : (scrollY - lastY); lastY = scrollY;
+      const target = gsap.utils.clamp(-70, 70, raw || 0);
+      phys.v += (target - phys.x) * .1 - phys.v * .32;
+      phys.x += phys.v;
+      if (Math.abs(phys.x) < .001 && Math.abs(phys.v) < .001) phys.x = phys.v = 0;
+    });
+  }
+
+  /* 1. Focus pull: the signature comes into focus on load, then scroll racks focus from the first line to the second */
+  function focusPull() {
+    const sec = document.querySelector('[data-fp]'), lines = sec.querySelector('.fp-lines');
+    const one = sec.querySelector('.fp-line.one'), two = sec.querySelector('.fp-line.two');
+    const run = sec.querySelector('.fp-ring .run'), dist = sec.querySelector('[data-fp-dist]'), glow = sec.querySelector('.fp-glow');
+    if (reduce.matches) { gsap.set(run, { drawSVG: '100%' }); dist.textContent = '∞'; return; }
+    gsap.fromTo(lines, { filter: 'blur(26px)', opacity: 0, scale: 1.05 }, { filter: 'blur(0px)', opacity: 1, scale: 1, duration: 2.4, ease: 'expo.out', delay: 1.25,
+      onComplete: () => gsap.set(lines, { clearProps: 'filter' }) });
+    gsap.fromTo(glow, { opacity: 0, yPercent: 20 }, { opacity: 1, yPercent: 0, duration: 2.6, ease: 'expo.out', delay: 1.1 });
+    const stops = ['0.9 m', '1.2 m', '2 m', '4 m', '10 m', '∞'];
+    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + Math.round(innerHeight * 1.3), pin: true, scrub: 1.1, refreshPriority: 5,
+      onUpdate: s => { const t = stops[Math.min(stops.length - 1, Math.floor(s.progress * stops.length))]; if (dist.textContent !== t) dist.textContent = t; } } });
+    tl.fromTo(one, { filter: 'blur(0px)', opacity: 1 }, { filter: 'blur(18px)', opacity: .28, duration: 1 }, 0)
+      .fromTo(two, { filter: 'blur(16px)', opacity: .3 }, { filter: 'blur(0px)', opacity: 1, duration: 1 }, 0)
+      .fromTo(run, { drawSVG: '0%' }, { drawSVG: '100%', duration: 1 }, 0)
+      .to(glow, { scale: 1.25, opacity: .7, duration: 1 }, 0);
+  }
+
+  /* 2. The reel that follows you round the page */
+  function pip() {
+    const el = document.querySelector('.pip'), img = el.querySelector('img'), vid = el.querySelector('video');
+    const r = REELS[4];
+    img.src = cdn(r.img, 'f_auto,q_auto,c_fill,ar_9:16,w_240');
+    el.querySelector('[data-pip-name]').textContent = r.t.toLowerCase();
+    const show = () => {
+      html.classList.add('pip-on');
+      if (!reduce.matches && !vid.src) { vid.src = cdn(r.v, 'q_auto,w_360'); vid.play().catch(() => {}); }
+    };
+    setTimeout(show, reduce.matches ? 0 : 3200);
+    // Step out of the way where the page needs its corners: the work titles, the closing line and contact
+    const zones = [...document.querySelectorAll('[data-wk], [data-fw], #contact')];
+    let wasAway = false;
+    const check = () => {
+      const away = zones.some(z => { const r = (z.closest('.pin-spacer') || z).getBoundingClientRect(); return r.top < innerHeight * .85 && r.bottom > innerHeight * .15; });
+      if (away === wasAway) return; wasAway = away; html.classList.toggle('pip-away', away);
+      if (away) vid.pause(); else if (vid.src && !html.classList.contains('pip-off')) vid.play().catch(() => {});
+    };
+    window.addEventListener('scroll', check, { passive: true }); check();
+    el.querySelector('[data-pip-open]').addEventListener('click', e => { vid.pause(); openBox(e, { video: r.v, poster: cdn(r.img, 'f_auto,q_auto,w_1080'), alt: r.t, from: e.currentTarget }); });
+    el.querySelector('[data-pip-close]').addEventListener('click', () => { html.classList.add('pip-off'); vid.pause(); });
+    document.querySelector('.lightbox').addEventListener('click', () => { if (!html.classList.contains('pip-off') && vid.src) setTimeout(() => vid.play().catch(() => {}), 900); });
+  }
+
+  /* 3. Story: the still closes into the shape of a reel, the reel takes over, the subtitles carry the story, then it steps aside */
+  function story() {
+    const sec = document.querySelector('[data-st]'), frame = sec.querySelector('.st-frame'), vid = frame.querySelector('video');
+    const subs = [...sec.querySelectorAll('.st-subs p')], copy = sec.querySelector('.st-copy'), tc = sec.querySelector('.st-tc'), tcVal = sec.querySelector('[data-st-tc]');
+    const shade = sec.querySelector('.st-shade'), r = REELS[3];
+    vid.poster = cdn(r.img, 'f_auto,q_auto,w_720');
+    const load = () => { if (!vid.src) vid.src = cdn(r.v, 'q_auto,w_720'); };
+    if (reduce.matches) { html.classList.add('st-still'); return; }
+    const endH = () => isDesk() ? Math.min(innerHeight * .78, innerWidth * .62) : innerHeight * .5;
+    const endW = () => endH() * 9 / 16;
+    const endX = () => isDesk() ? -innerWidth * .22 : 0;
+    const endY = () => isDesk() ? 0 : -innerHeight * .16;
+    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + Math.round(innerHeight * 2.8), pin: true, scrub: 1.2, refreshPriority: 4, invalidateOnRefresh: true,
+      onEnter: load, onEnterBack: load,
+      onToggle: s => { if (s.isActive) { load(); vid.play().catch(() => {}); } else vid.pause(); },
+      onUpdate: s => { const sec2 = Math.floor(s.progress * 24); tcVal.textContent = `00:00:${pad2(sec2)}`; } } });
+    tl.fromTo(frame, { width: () => innerWidth, height: () => innerHeight, borderRadius: 0 }, { width: endW, height: endH, borderRadius: 16, duration: .32, ease: 'power2.inOut' }, 0)
+      .to(shade, { opacity: .15, duration: .32 }, 0)
+      .to(tc, { opacity: 1, duration: .1 }, .2)
+      .to(vid, { opacity: 1, duration: .1 }, .26)
+      .to(subs[0], { opacity: 1, duration: .05 }, .34).to(subs[0], { opacity: 0, duration: .04 }, .5)
+      .to(subs[1], { opacity: 1, duration: .05 }, .52).to(subs[1], { opacity: 0, duration: .04 }, .66)
+      .to(subs[2], { opacity: 1, duration: .05 }, .68)
+      .to(frame, { x: endX, y: endY, duration: .22, ease: 'power2.inOut' }, .74)
+      .fromTo(copy, { opacity: 0, x: () => isDesk() ? 60 : 0, y: () => isDesk() ? 0 : 40 }, { opacity: 1, x: 0, y: 0, duration: .2, ease: 'power2.out' }, .8)
+      .to({}, { duration: .06 });
+  }
+
+  /* 4. Services: the track runs sideways, each card straightens as it nears the middle, sways with the scroll speed, and draws its line drawing once */
+  function services() {
+    const sec = document.querySelector('[data-sv]'), track = sec.querySelector('.sv-track'), cards = [...track.querySelectorAll('.sv-card')];
+    const nowEl = sec.querySelector('[data-sv-now]'), tilt = [-6, 4, -3, 5, -4];
+    const drawn = new Set();
+    const draw = i => { if (drawn.has(i)) return; drawn.add(i); const parts = cards[i].querySelectorAll('.sv-art > *');
+      if (parts.length) gsap.fromTo(parts, { drawSVG: '0%' }, { drawSVG: '100%', duration: 1.4, ease: 'expo.inOut', stagger: .12 }); };
+    if (reduce.matches) return;
+    cards.forEach(c => c.querySelectorAll('.sv-art > *').forEach(p => gsap.set(p, { drawSVG: '0%' })));
+    const mm = gsap.matchMedia();
+    mm.add(desktop, () => {
+      const dist = () => track.scrollWidth - innerWidth;
+      gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, refreshPriority: 3, invalidateOnRefresh: true } });
+      const setters = cards.map(c => ({ r: gsap.quickSetter(c, 'rotation', 'deg'), y: gsap.quickSetter(c, 'y', 'px') }));
+      let last = -1;
+      const tick = () => {
+        const mid = innerWidth / 2; let best = 0, bd = 1e9;
+        cards.forEach((c, i) => { const b = c.getBoundingClientRect(); const d = (b.left + b.width / 2) - mid, k = Math.min(1, Math.abs(d) / (innerWidth * .5));
+          setters[i].r(tilt[i] * k + phys.x * .05 * (1 - k * .5)); setters[i].y(k * 26);
+          if (Math.abs(d) < bd) { bd = Math.abs(d); best = i; } if (Math.abs(d) < innerWidth * .32) draw(i); });
+        if (best !== last) { last = best; nowEl.textContent = pad2(best + 1); }
+      };
+      gsap.ticker.add(tick);
+      return () => { gsap.ticker.remove(tick); gsap.set(cards, { clearProps: 'transform' }); };
+    });
+    mm.add('(max-width: 991px)', () => {
+      cards.forEach((c, i) => gsap.fromTo(c, { rotation: tilt[i], y: 40 }, { rotation: 0, y: 0, ease: 'none',
+        scrollTrigger: { trigger: c, start: 'top bottom', end: 'top 40%', scrub: 1, onLeave: () => draw(i) } }));
+      cards.forEach((c, i) => ScrollTrigger.create({ trigger: c, start: 'top 60%', once: true, onEnter: () => draw(i) }));
+    });
+  }
+
+  /* 5. Work: one photograph a screen. The next arrives as two halves from opposite sides, the title rises with it,
+     and the titles skew with the scroll speed */
+  function work() {
+    const sec = document.querySelector('[data-wk]'), pin = sec.querySelector('.wk-pin'), top = sec.querySelector('.wk-top');
+    const nowEl = sec.querySelector('[data-wk-now]'), bar = sec.querySelector('.wk-bar i');
+    const W = [
+      ['rally-dust', 'rally, in the dust', 'Motorsport', 'Rally car trailing a long cloud of orange dust'],
+      ['moto-storm', 'the storm ride', 'Motorsport', 'Rider crossing wet ground under a storm sky'],
+      ['food-lobster', 'on the pass', 'Food', 'Lobster plated on a restaurant pass'],
+      ['lobby', 'after hours', 'Hospitality', 'Hotel lobby with armchairs and warm light'],
+      ['ferrari', 'red, head on', 'Automotive', 'Red sports car head on, on an open road']
+    ];
+    sec.querySelector('[data-wk-total]').textContent = pad2(W.length);
+    const panels = W.map(([f, t, k, alt], i) => {
+      const p = document.createElement('figure'); p.className = 'wk-panel';
+      p.innerHTML = `<img class="half a" src="${A}${f}.webp" alt="${alt}" decoding="async" loading="${i < 2 ? 'eager' : 'lazy'}"><img class="half b" src="${A}${f}.webp" alt="" aria-hidden="true" decoding="async" loading="${i < 2 ? 'eager' : 'lazy'}"><div class="tint"></div>
+        <figcaption class="wk-text"><h3 class="wk-title">${t}</h3><p class="wk-meta label"><b>${k}</b><span>Photograph · ${pad2(i + 1)}</span></p></figcaption>`;
+      pin.insertBefore(p, top); return p;
+    });
+    const titles = panels.map(p => p.querySelector('.wk-title'));
+    if (reduce.matches) {
+      gsap.set(pin, { height: 'auto' }); gsap.set(panels, { position: 'relative', height: '100vh' }); gsap.set([top, sec.querySelector('.wk-bar')], { display: 'none' });
+      return;
+    }
+    panels.forEach((p, i) => {
+      if (!i) return;
+      gsap.set(p.querySelector('.a'), { clipPath: 'inset(0% 100% 50% 0%)' });
+      gsap.set(p.querySelector('.b'), { clipPath: 'inset(50% 0% 0% 100%)' });
+      gsap.set(p.querySelector('.tint'), { opacity: 0 });
+      gsap.set(p.querySelector('.wk-text'), { opacity: 0, y: 70 });
+    });
+    const N = panels.length;
+    const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + Math.round(innerHeight * (N - 1) * 1.15), pin: true, scrub: 1, refreshPriority: 2, invalidateOnRefresh: true,
+      onUpdate: s => { const i = Math.min(N - 1, Math.round(s.progress * (N - 1))); const t = pad2(i + 1); if (nowEl.textContent !== t) nowEl.textContent = t; gsap.set(bar, { scaleX: s.progress }); } } });
+    for (let i = 1; i < N; i++) {
+      const p = panels[i], prev = panels[i - 1], at = i - 1;
+      tl.to(prev.querySelector('.wk-text'), { opacity: 0, y: -50, duration: .3 }, at)
+        .to(prev.querySelectorAll('.half'), { scale: 1.08, duration: .9 }, at)
+        .to(p.querySelector('.a'), { clipPath: 'inset(0% 0% 50% 0%)', duration: .7, ease: 'power2.inOut' }, at + .05)
+        .to(p.querySelector('.b'), { clipPath: 'inset(50% 0% 0% 0%)', duration: .7, ease: 'power2.inOut' }, at + .05)
+        .fromTo(p.querySelectorAll('.half'), { scale: 1.18 }, { scale: 1, duration: .9 }, at + .05)
+        .to(p.querySelector('.tint'), { opacity: 1, duration: .3 }, at + .5)
+        .to(p.querySelector('.wk-text'), { opacity: 1, y: 0, duration: .35, ease: 'power2.out' }, at + .55);
+    }
+    tl.to({}, { duration: .25 });
+    const skews = titles.map(t => gsap.quickSetter(t, 'skewX', 'deg'));
+    gsap.ticker.add(() => { const s = gsap.utils.clamp(-9, 9, -phys.x * .2); skews.forEach(f => f(s)); });
+  }
+
+  /* 6. Client words: a carousel round the real customer review reel. Cards ease into place, the reel plays while it is in the middle */
+  function clientWords() {
+    const sec = document.querySelector('[data-cw]'), stage = sec.querySelector('.cw-stage'), dotsEl = sec.querySelector('.cw-dots');
+    const rv = REELS[5];
+    const items = [
+      { q: 'They planned the shoot around how our guests actually move through the building. The film feels like the place.', who: 'sample client', role: 'Hospitality', paper: true },
+      { q: 'One crew from the first call to the final cut. We never had to explain the idea twice.', who: 'sample client', role: 'Real estate' },
+      { reel: true },
+      { q: 'The photographs made our menu look the way it tastes.', who: 'sample client', role: 'Restaurant', paper: true },
+      { q: 'They turned up early, shot through the rain and still made the evening look warm.', who: 'sample client', role: 'Events' }
+    ];
+    const cards = items.map((it, i) => {
+      const c = document.createElement('article');
+      c.className = 'cw-card' + (it.paper ? ' paper' : '') + (it.reel ? ' reel' : '');
+      c.setAttribute('aria-roledescription', 'slide'); c.setAttribute('aria-label', `${i + 1} of ${items.length}`);
+      c.innerHTML = it.reel
+        ? `<img src="${cdn(rv.img, 'f_auto,q_auto,c_fill,ar_9:16,w_520')}" alt="Customers talking about the studio, a real reel" loading="lazy" decoding="async"><video muted loop playsinline preload="none" aria-hidden="true"></video>
+           <div class="cw-reel-base"><span class="label">Customer reviews · real</span><button class="cw-sound label" type="button">Play with sound</button></div>`
+        : `<span class="cw-mark" aria-hidden="true"></span><p class="cw-q">“${it.q}”</p><p class="cw-who label"><b>${it.who}</b><span>${it.role} · Sample quote</span></p>`;
+      stage.appendChild(c);
+      const d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', `Show ${i + 1}`); d.addEventListener('click', () => go(i)); dotsEl.appendChild(d);
+      c.addEventListener('click', e => { if (i !== active) { e.preventDefault(); go(i); } });
+      return c;
+    });
+    const dots = [...dotsEl.children], reelCard = cards[2], vid = reelCard.querySelector('video');
+    reelCard.querySelector('.cw-sound').addEventListener('click', e => { e.stopPropagation(); vid.pause(); openBox(e, { video: rv.v, poster: cdn(rv.img, 'f_auto,q_auto,w_1080'), alt: rv.t, from: e.currentTarget }); });
+    let active = 2, seen = false;
+    const layout = instant => {
+      const w = cards[0].offsetWidth;
+      cards.forEach((c, i) => {
+        const o = i - active, a = Math.abs(o);
+        gsap.to(c, { x: o * w * .8, scale: 1 - Math.min(a, 2) * .13, rotation: o * 2.2, opacity: a === 0 ? 1 : a === 1 ? .55 : .22, zIndex: 10 - a,
+          duration: instant || reduce.matches ? 0 : 1.05, ease: 'elastic.out(1, .85)', overwrite: 'auto' });
+        c.classList.toggle('is-active', !o); c.setAttribute('aria-hidden', o ? 'true' : 'false');
+      });
+      dots.forEach((d, i) => i === active ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current'));
+      if (active === 2 && seen && !reduce.matches) { if (!vid.src) vid.src = cdn(rv.v, 'q_auto,w_540'); vid.play().catch(() => {}); } else vid.pause();
+    };
+    const go = i => { active = gsap.utils.clamp(0, cards.length - 1, i); layout(); };
+    sec.querySelector('[data-cw-prev]').addEventListener('click', () => go(active - 1));
+    sec.querySelector('[data-cw-next]').addEventListener('click', () => go(active + 1));
+    stage.tabIndex = 0;
+    stage.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') go(active - 1); if (e.key === 'ArrowRight') go(active + 1); });
+    let sx = null;
+    stage.addEventListener('pointerdown', e => { sx = e.clientX; });
+    stage.addEventListener('pointerup', e => { if (sx === null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 40) go(active + (dx < 0 ? 1 : -1)); });
+    ScrollTrigger.create({ trigger: sec, start: 'top 60%', end: 'bottom 30%', onToggle: s => { seen = s.isActive; layout(); } });
+    window.addEventListener('resize', () => layout(true));
+    layout(true);
+  }
+
+  /* 7. The closing line: the words start scattered and out of focus, scroll brings them together and sharp */
+  function finale() {
+    const sec = document.querySelector('[data-fw]'), text = sec.querySelector('[data-fw-text]');
+    if (reduce.matches) return;
+    const st = new SplitText(text, { type: 'words', wordsClass: 'w' });
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const spots = st.words.map(() => ({ x: rnd() - .5, y: rnd() - .5, r: (rnd() - .5) * 36 }));
+    gsap.timeline({ scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + Math.round(innerHeight * 1.6), pin: '.fw-pin', scrub: 1.3, refreshPriority: 1, invalidateOnRefresh: true } })
+      .fromTo(st.words,
+        { x: i => spots[i].x * innerWidth * .85, y: i => spots[i].y * innerHeight * .8, rotation: i => spots[i].r, opacity: .14, scale: .82, filter: 'blur(10px)' },
+        { x: 0, y: 0, rotation: 0, opacity: 1, scale: 1, filter: 'blur(0px)', ease: 'power3.out', duration: 1, stagger: { each: .04, from: 'random' } })
+      .to({}, { duration: .3 });
+  }
+
+  /* Contact: the local time in Mangaluru */
+  function contactClock() {
+    const el = document.querySelector('[data-ct-clock]'); if (!el) return;
+    const f = new Intl.DateTimeFormat('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kolkata' });
+    const set = () => { el.textContent = f.format(new Date()); }; set(); setInterval(set, 20000);
+  }
+
+
+  /* Footer: local time and the wordmark rising into place */
+  function footer() {
+    const clock = document.querySelector('[data-clock]');
+    const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
+    const tick = () => { clock.textContent = fmt.format(new Date()) + ' IST'; };
+    tick(); setInterval(tick, 20000);
+    if (!reduce.matches) gsap.fromTo('[data-footer-logo] img', { yPercent: 55 }, { yPercent: 0, ease: 'none',
+      scrollTrigger: { trigger: '[data-footer-logo]', start: 'top bottom', end: 'bottom bottom', scrub: true } });
+  }
+
+  /* Focus brackets: snap round work like autofocus */
+  function focusCursor() {
+    if (!fine.matches) return;
+    const f = document.querySelector('.focus'), label = f.querySelector('.focus-label');
+    const pad = 10;
+    const to = { x: gsap.quickTo(f, 'x', { duration: .45, ease: 'power3' }), y: gsap.quickTo(f, 'y', { duration: .45, ease: 'power3' }),
+      w: gsap.quickTo(f, 'width', { duration: .45, ease: 'power3' }), h: gsap.quickTo(f, 'height', { duration: .45, ease: 'power3' }) };
+    let target = null, lx = -100, ly = -100, shown = false;
+    const place = () => {
+      if (!target) return;
+      const r = target.getBoundingClientRect();
+      to.x(r.left - pad); to.y(r.top - pad); to.w(r.width + pad * 2); to.h(r.height + pad * 2);
+    };
+    const check = () => {
+      const el = document.elementFromPoint(lx, ly);
+      const t = el && !el.closest('.menu') ? el.closest('[data-focus]') : null;
+      if (t !== target) {
+        target = t;
+        if (t) {
+          label.textContent = t.dataset.focus;
+          if (!shown) { const r = t.getBoundingClientRect(); gsap.set(f, { x: lx - 30, y: ly - 30, width: 60, height: 60 }); }
+          gsap.to(f, { opacity: 1, duration: .3, overwrite: 'auto' }); shown = true; place();
+        } else { gsap.to(f, { opacity: 0, duration: .25, overwrite: 'auto' }); shown = false; }
+      }
+    };
+    window.addEventListener('pointermove', e => { lx = e.clientX; ly = e.clientY; check(); }, { passive: true });
+    window.addEventListener('scroll', check, { passive: true });
+    gsap.ticker.add(() => { if (target) place(); });
+  }
+
+  /* Staggered menu */
+  let menuTl = null;
+  function closeMenu() { if (menuTl) menuTl.reverse(); }
+  function menu() {
+    const btn = document.querySelector('.nav-menu'), m = document.querySelector('.menu');
+    const layers = m.querySelectorAll('.menu-layer'), links = m.querySelectorAll('.menu-links a span:last-child'), foot = m.querySelector('.menu-foot');
+    const word = btn.querySelector('.menu-word');
+    menuTl = gsap.timeline({ paused: true,
+      onStart: () => { html.setAttribute('data-menu-open', ''); m.setAttribute('aria-hidden', 'false'); btn.setAttribute('aria-expanded', 'true'); word.textContent = 'Close'; lenis && lenis.stop(); },
+      onReverseComplete: () => { html.removeAttribute('data-menu-open'); m.setAttribute('aria-hidden', 'true'); btn.setAttribute('aria-expanded', 'false'); word.textContent = 'Menu'; gsap.set(m, { visibility: 'hidden' }); lenis && lenis.start(); } });
+    menuTl.set(m, { visibility: 'visible' })
+      .fromTo(layers, { xPercent: 100 }, { xPercent: 0, duration: .7, ease: 'expo.inOut', stagger: .08 })
+      .fromTo(links, { yPercent: 110 }, { yPercent: 0, duration: .8, ease: 'expo.out', stagger: .06 }, '-=.35')
+      .fromTo(foot, { autoAlpha: 0 }, { autoAlpha: 1, duration: .4 }, '-=.5');
+    btn.addEventListener('click', () => { if (html.hasAttribute('data-menu-open') && !menuTl.reversed()) menuTl.reverse(); else menuTl.timeScale(1).play(); });
+    window.addEventListener('keydown', e => { if (e.key === 'Escape' && html.hasAttribute('data-menu-open')) closeMenu(); });
+  }
+
+  /* Page theme */
+  function themes() {
+    const els = [...document.querySelectorAll('[data-page-theme]')];
+    const apply = () => {
+      const mid = innerHeight / 2;
+      const el = els.find(e => { const r = e.getBoundingClientRect(); return r.top <= mid && r.bottom > mid; });
+      if (el) html.dataset.theme = el.dataset.pageTheme; else delete html.dataset.theme;
+    };
+    els.forEach(el => ScrollTrigger.create({ trigger: el, start: 'top 50%', end: 'bottom 50%', refreshPriority: -1, onToggle: apply, onRefresh: apply }));
+  }
+
+  function init() {
+    physics(); focusPull(); story(); services(); work(); finale(); clientWords(); pip(); contactClock(); lightbox(); footer(); themes();
+    focusCursor(); drawLines(); menu();
+    if (reduce.matches) gsap.set('[data-scroll-reveal]', { visibility: 'visible' }); else scrollReveals();
+    weightHover();
+    ScrollTrigger.refresh();
+  }
+
+  /* Load sequence */
+  let started = false;
+  const start = () => {
+    if (started) return; started = true;
+    html.setAttribute('data-page-ready', '');
+    if (reduce.matches) { html.setAttribute('data-transition-ready', ''); gsap.set('[data-text-reveal]', { visibility: 'visible' }); init(); drawAlways(0); return; }
+    init();
+    const top = document.querySelector('.arc-top'), bottom = document.querySelector('.arc-bottom');
+    gsap.set([top, bottom], { drawSVG: '0%' });
+    const tl = gsap.timeline();
+    tl.to(top, { drawSVG: '100%', duration: .5, ease: 'power2.in' })
+      .to(bottom, { drawSVG: '100%', duration: .5, ease: 'power2.out' })
+      .addLabel('reveal', '+=.12')
+      .to('.wipe-top', { yPercent: -100, duration: 1.15, ease: 'expo.inOut' }, 'reveal')
+      .to('.wipe-bottom', { yPercent: 100, duration: 1.15, ease: 'expo.inOut' }, 'reveal')
+      .add(() => html.setAttribute('data-transition-ready', ''));
+    document.querySelectorAll('[data-text-reveal]').forEach((el, i) => tl.add(revealTween(el), `reveal+=${.5 + i * .12}`));
+    tl.add(() => drawAlways(), 'reveal+=1.4');
+  };
+  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]).then(start);
+})();
+</script>
+<script src="../draft-bar.js" defer></script>
+</body>
+</html>

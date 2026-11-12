@@ -29,6 +29,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 21 | `prototypes/21-final-candidate` | Home page, final candidate. Joins Draft 18's ring hero, Draft 10's stacking service cards and Draft 03's client band, lens dial, split, reel cylinder and brief builder on one page. The owner picked this mix | Full home pages |
 | 22 | `prototypes/22-combination-hero` | Draft 20's two wheels as the home page hero, CSS 3D, no WebGL: your vision on the left wheel, our execution on the right, spun home against each other as the page loads and landing on a detent. Scroll carries each line away from the gap, vision up, execution down, while the slit between them opens through bright light into the YSC reel playing muted, bitten by one Forest half circle. Dial ticks on the slot edges slide with each wheel | Pick one |
 | 23 | `prototypes/23-wall-filters` | Draft 13's wall with a chip for each kind of work: reels, road, table, crew. A chip turns the nearest frame of that kind round to face you, a band of gold light sweeps outward over the lit frames, and the rest sink back on the ring and drain into Forest shadow. Scroll and drag still turn the wall and it settles on a lit frame when they rest; arrow keys step between lit frames. The still fallback swaps its row to the chosen kind | Inner pages |
+| 24 | `prototypes/24-studio-film` | A full home page built from what makes a quiet premium studio site feel expensive, redone in our brand: the signature racks focus from one line to the other, a real reel follows you round the page in a corner, the story closes from a still into a reel with subtitles, service cards on a track straighten as they reach the middle, full screen work where each photograph arrives in two halves, a carousel round the real customer review reel, and a closing line whose words start scattered and come into focus. The scroll is heavier (Lenis lerp 0.072) and one spring follows scroll speed, so cards sway and work titles skew, then settle | Full home pages |
 
 ## How a draft is put together
 
@@ -65,6 +66,9 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - The draft tab shows the right number and name.
 
 ## Ideas not built yet
+
+- Draft 24's scroll weight and speed spring on the other home pages, so the team can compare the same layout with and without it.
+- Draft 24's floating reel as a site wide piece: it keeps playing across page changes, like a picture in picture.
 
 - A showreel page: a full screen player with chapters styled as an edit timeline.
 - Client words: the real customer review reel as the centrepiece, with sample quotes marked as samples.
