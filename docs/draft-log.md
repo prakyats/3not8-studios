@@ -23,6 +23,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 15 | `prototypes/15-depth` | Two hero scenes in CSS 3D, no WebGL: the hero line on a drum turned by scroll, and one frame pulled into layers of light that the camera moves through | Pick one |
 | 16 | `prototypes/16-drum-index` | Work index on a CSS 3D drum, no WebGL: each face a project, scroll or the step buttons turn it, and the photograph opens out of a half circle bite as each face lands | Inner pages |
 | 17 | `prototypes/17-split-hero` | The split as the hero, drawn on one canvas and run by scroll: the full frame closes into a circle while a still gives way to a real reel, arcs draw round it, then the halves part and let the page in | Pick one |
+| 18 | `prototypes/18-wall-hero` | The wall as the home page hero, one three.js ring: the camera starts at its centre with the work all round, then scroll cranes it up over the wall and back until the whole ring sits below, near side dark and far side lit, while the second line of the signature sets itself | Pick one |
 
 ## How a draft is put together
 
@@ -67,7 +68,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - A second take on the work page: a list first layout, and a map of Mangaluru locations.
 - A second take on the project page: a horizontal story, and footage inside the title letters.
 - Phone first versions of the strongest desktop sections.
-- The wall as a home page hero: start inside the wall, then pull the camera back out of the ring as the page scrolls.
 - Filters on the wall: a chip turns the ring so only that kind of work faces you, the rest dims.
 - A final candidate: one page that joins the pieces the team is most likely to pick.
 - Draft 14's gate as the reels section on the home page: one gate, the strip of real reels, the open link under it.
@@ -78,3 +78,5 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - A cropped mark turning in 3D was left out on purpose: the guidelines say never rotate the logo. If depth on the mark is wanted, move the light round a still mark instead.
 - Draft 17 with the real showreel cut in the circle once it exists, and chapter marks on the timecode so the hold lands on a named shot.
 - Draft 17's canvas split as the page transition: the leaving page closes into a circle, the next page arrives through the parted halves.
+- Draft 18 with reels playing muted on the far side of the ring once the camera is outside, so the lit half moves while the dark half stays still.
+- Draft 18's crane in reverse as the last section of the home page: the camera drops back into the ring before the contact block.
