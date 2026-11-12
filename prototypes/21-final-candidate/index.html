@@ -235,59 +235,21 @@ html[data-menu-open] .menu { pointer-events: auto; }
 .split-statement b { font-weight: 800; color: var(--orange); }
 .split-copy .body-l { color: rgba(248,242,235,.75); padding-top: .6rem; }
 
-/* Services: the call sheet */
-.sheet { padding: 7rem 5rem 5rem; display: flex; flex-direction: column; gap: 3rem; }
-.sheet-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 3rem; }
-.sheet-meta { display: grid; grid-template-columns: auto auto; gap: .6rem 2rem; color: rgba(22,44,41,.55); }
-.sheet-meta dd { color: var(--forest); }
-.sheet-body { display: grid; grid-template-columns: 1fr 20rem; gap: 5rem; align-items: start; }
-.rows { border-top: 2px solid var(--forest); }
-.row { border-bottom: 1px solid rgba(22,44,41,.2); }
-.row-head { width: 100%; display: grid; grid-template-columns: 4rem 1fr auto; align-items: baseline; gap: 1rem; padding: 1.2rem 0; text-align: left; }
-.row-num { color: var(--ember); }
-.row-name { font-size: 3.2rem; line-height: 1; text-transform: lowercase; letter-spacing: -.01em; font-weight: 200; transition: font-weight .6s var(--ease); }
-.row-head:hover .row-name { font-weight: 500; }
-.row.is-open .row-name { font-weight: 900; }
-.row-call { color: rgba(22,44,41,.55); display: flex; align-items: center; gap: .8rem; }
-.row-call::after { content: ""; width: .9rem; height: .45rem; background: var(--orange); border-radius: .45rem .45rem 0 0; transition: transform .6s var(--ease); }
-.row.is-open .row-call::after { transform: rotate(180deg); }
-.row-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .7s var(--ease); }
-.row.is-open .row-body { grid-template-rows: 1fr; }
-.row-inner { overflow: hidden; min-height: 0; }
-.row-content { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; padding: .2rem 0 2rem 5rem; }
-.row-content p { font-size: 1.1rem; line-height: 1.6; max-width: 27rem; }
-.row-content ul { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
-.sheet-photo { position: sticky; top: 7rem; aspect-ratio: 3 / 4; border-radius: 10rem 10rem 0 0; overflow: hidden; background: var(--forest); }
-.sheet-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: circle(0% at 50% 100%); }
-.sheet-photo img:first-child { clip-path: circle(125% at 50% 100%); }
-
-/* Method: the job as an edit timeline */
-.method { padding: 7rem 5rem 5rem; display: flex; flex-direction: column; gap: 3.5rem; }
-.method-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 3rem; }
-.tc-box { display: flex; flex-direction: column; gap: .6rem; align-items: flex-end; color: rgba(22,44,41,.55); }
-.tc { font-size: 2.6rem; font-weight: 900; letter-spacing: -.01em; font-variant-numeric: tabular-nums; color: var(--forest); }
-.tl { position: relative; border: 1px solid rgba(22,44,41,.22); padding-left: 4rem; }
-.tl-ruler { height: 2rem; border-bottom: 1px solid rgba(22,44,41,.22); background: repeating-linear-gradient(90deg, rgba(22,44,41,.4) 0 1px, transparent 1px 2.5%) left bottom / 100% .5rem no-repeat; }
-.tl-track { position: relative; height: 4.4rem; border-bottom: 1px solid rgba(22,44,41,.12); }
-.tl-track:last-of-type { border-bottom: 0; height: 3.2rem; }
-.tl-name { position: absolute; left: -4rem; top: 0; bottom: 0; width: 4rem; display: grid; place-items: center; border-right: 1px solid rgba(22,44,41,.22); color: rgba(22,44,41,.5); }
-.clip { position: absolute; top: .55rem; bottom: .55rem; left: calc(var(--s) * 1%); width: calc((var(--e) - var(--s)) * 1%); display: flex; align-items: center; padding: 0 1rem; overflow: hidden; white-space: nowrap;
-  border: 1px solid rgba(22,44,41,.35); color: rgba(22,44,41,.5); font-weight: 900; font-size: 1.4rem; text-transform: lowercase; letter-spacing: -.01em;
-  transition: background-color .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease); }
-.clip.is-done { background: var(--forest); border-color: var(--forest); color: var(--paper); }
-.clip.is-live { background: var(--orange); border-color: var(--orange); color: var(--forest); }
-.tl-wave { position: absolute; inset: .5rem 0; display: flex; align-items: center; gap: 2px; }
-.tl-wave i { flex: 1; min-width: 1px; background: rgba(22,44,41,.22); }
-.tl-wave i.is-done { background: var(--forest); }
-.tl-area { position: absolute; left: 4rem; right: 0; top: 0; bottom: 0; pointer-events: none; }
-.tl-playhead { position: absolute; top: -.7rem; bottom: -.7rem; left: 0; width: 2px; margin-left: -1px; background: var(--orange); }
-.tl-playhead::before { content: ""; position: absolute; top: 0; left: 50%; width: 1.3rem; height: .65rem; translate: -50% 0; background: var(--orange); border-radius: 0 0 .65rem .65rem; }
-.method-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
-.step { display: flex; flex-direction: column; gap: 1rem; opacity: .3; transition: opacity .6s var(--ease); }
-.step.is-lit { opacity: 1; }
-.step-num { color: var(--ember); }
-.step h3 { font-size: 2.4rem; font-weight: 900; text-transform: lowercase; letter-spacing: -.01em; line-height: 1; }
-.step p { font-size: 1.05rem; line-height: 1.55; max-width: 16rem; }
+/* Vertical reels: a slow cylinder of frames, seen from the inside */
+.reels { position: relative; height: 100vh; min-height: 34rem; overflow: hidden; }
+.reels-top { position: absolute; z-index: 2; left: 0; right: 0; top: 6.5rem; padding: 0 1rem; display: flex; justify-content: center; text-align: center; pointer-events: none; }
+.reels-top .section-head { align-items: center; gap: 1rem; }
+.reels-top .h-section { font-size: 5rem; }
+.reels-hint { position: absolute; z-index: 2; left: 0; right: 0; bottom: 1.6rem; display: flex; justify-content: center; align-items: center; gap: .8rem; color: rgba(248,242,235,.55); pointer-events: none; }
+.reels-hint i { display: block; width: 3rem; height: 1px; background: currentColor; }
+.cyl { position: absolute; inset: 0; cursor: grab; touch-action: pan-y; user-select: none; }
+.cyl:active { cursor: grabbing; }
+.cyl-ring { position: absolute; left: 50%; top: 63%; width: 0; height: 0; transform-style: preserve-3d; will-change: transform; }
+.cyl-card { display: block; position: absolute; width: var(--w); height: calc(var(--w) * 16 / 9); left: calc(var(--w) / -2); top: calc(var(--w) * -8 / 9); overflow: hidden; background: var(--forest); backface-visibility: hidden; }
+.cyl-card img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.cyl-time { position: absolute; left: 1rem; top: 1rem; color: var(--paper); display: flex; align-items: center; gap: .5rem; }
+.cyl-time::before { content: ""; width: .45rem; height: .45rem; border-radius: 50%; background: var(--paper); }
+.cyl-meta { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; display: flex; justify-content: space-between; color: var(--paper); text-shadow: 0 0 .8em rgba(5,21,17,.7); }
 
 /* Contact: build the brief */
 .brief { position: relative; min-height: 100vh; padding: 7.5rem 5rem 5rem; display: grid; grid-template-columns: 1.25fr 1fr; gap: 5rem; align-items: center; overflow: hidden; }
@@ -423,6 +385,33 @@ html[data-menu-open] .menu { pointer-events: auto; }
   .split-top img { filter: none; }
 }
 
+/* Services: cards that stack, from Draft 10 */
+.sv-head { padding: 7rem 5rem 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+.sv-stack { padding: 2rem 1.5rem 6rem; }
+.sv-card { position: sticky; top: calc(5.5rem + var(--i, 0) * 1.1rem); height: 74vh; min-height: 30rem; margin-bottom: 2rem; }
+.sv-in { height: 100%; display: grid; grid-template-columns: 1.1fr 1fr; overflow: hidden; transform-origin: 50% 0; will-change: transform; box-shadow: 0 -1.5rem 3rem rgba(5,21,17,.35); }
+.sv-forest .sv-in { background: var(--forest); color: var(--paper); }
+.sv-paper .sv-in { background: var(--paper); color: var(--forest); }
+.sv-sand .sv-in { background: var(--sand); color: var(--forest); }
+.sv-copy { padding: 3rem 3.5rem; display: flex; flex-direction: column; gap: 1.4rem; justify-content: flex-end; }
+.sv-copy > .label { margin-bottom: auto; }
+.sv-copy h2 { font-size: 4.6rem; line-height: .95; font-weight: 900; text-transform: lowercase; letter-spacing: -.01em; }
+.sv-copy p:not(.label) { font-size: 1.15rem; line-height: 1.6; max-width: 28rem; }
+.sv-copy ul { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .4rem; }
+.sv-copy li { padding: .7em 1em; border: 1px solid currentColor; border-radius: 10rem; opacity: .8; }
+.sv-card figure { position: relative; overflow: hidden; }
+@media (max-width: 991px) {
+  .sv-head { padding: 5rem 1.5rem 1rem; }
+  .sv-stack { padding: 1rem 1rem 4rem; }
+  .sv-card { height: auto; min-height: 0; top: calc(4.5rem + var(--i, 0) * .8rem); }
+  .sv-in { grid-template-columns: 1fr; } .sv-card figure { aspect-ratio: 16 / 9; order: -1; }
+  .sv-copy { padding: 2rem 1.8rem 2.2rem; } .sv-copy > .label { margin-bottom: .6rem; } .sv-copy h2 { font-size: 3.6rem; }
+}
+@media (max-width: 600px) {
+  .sv-head { padding: 4rem 1rem .6rem; }
+  .sv-stack { padding: .6rem .6rem 3rem; } .sv-copy { padding: 1.5rem 1.3rem 1.8rem; } .sv-copy h2 { font-size: 2.3rem; } .sv-copy p:not(.label) { font-size: 1rem; }
+}
+
 /* The wall as the hero: start inside the ring, then crane up and back out of it */
 .wh { position: relative; height: 100vh; height: 100svh; overflow: hidden; background: var(--forest); }
 .wh-glow { position: absolute; left: 50%; top: 46%; width: 80vmax; height: 46vmax; translate: -50% -50%; pointer-events: none; opacity: 0;
@@ -480,106 +469,6 @@ html.wh-is-still .wh-exec .wh-line { visibility: visible; }
   .wk-cta { padding: 5rem 1rem; }
 }
 
-/* Draft 19: the reels section for the home page. One gate, the strip of real reels, the open link under it */
-.rg { position: relative; height: 100vh; height: 100svh; overflow: hidden; background: var(--forest); }
-.sample { color: rgba(248,242,235,.45); }
-
-/* Left: the one loud line */
-.rg-copy { position: absolute; z-index: 3; left: 5rem; top: 50%; translate: 0 -50%; width: 26rem; display: flex; flex-direction: column; gap: 1.4rem; }
-.rg-num { color: var(--ember); }
-.rg-title { font-size: 5.6rem; line-height: .92; letter-spacing: -.02em; text-transform: lowercase; }
-.rg-title > span { white-space: nowrap; }
-.rg-note { max-width: 20rem; font-size: 1rem; line-height: 1.6; color: rgba(248,242,235,.72); }
-.rg-all { align-self: flex-start; color: var(--paper); }
-
-/* Centre: the gate, the lamp behind it, the link under it */
-.rg-col { position: absolute; z-index: 2; left: 50%; top: 50%; translate: -50% -50%; display: flex; flex-direction: column; align-items: center; gap: .6rem; }
-.rg-rig { position: relative; --gw: 19rem; --gh: calc(var(--gw) * 16 / 9); --fl: 1.4rem; --side: 3.5rem; width: calc(var(--gw) + var(--side) * 2); height: calc(var(--gh) + 6rem); }
-.rg-lamp { position: absolute; left: 50%; top: 50%; width: 34rem; height: 50rem; translate: -50% -50%; pointer-events: none; opacity: .55;
-  background: radial-gradient(closest-side, rgba(249,192,82,.5), rgba(198,77,1,.34) 42%, rgba(22,44,41,0)); }
-.rg-gate { position: absolute; inset: 3rem var(--side); overflow: hidden; background: var(--night); cursor: pointer; }
-.rg-strip { position: absolute; left: 0; top: 0; width: 100%; will-change: transform; }
-.rg-frame { position: relative; width: var(--gw); height: var(--gh); margin-bottom: var(--fl); overflow: hidden; background: var(--forest); }
-.rg-frame img { width: 100%; height: 100%; object-fit: cover; }
-.rg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .7s var(--ease); pointer-events: none; }
-.rg-video.on { opacity: 1; }
-.rg-shutter { position: absolute; inset: 0; background: var(--night); opacity: 0; pointer-events: none; }
-.rg-plate { position: absolute; inset: 0; pointer-events: none; }
-.rg-sprockets { position: absolute; top: 0; bottom: 0; width: 1.3rem; overflow: hidden; }
-.rg-sprockets.l { left: 1.1rem; } .rg-sprockets.r { right: 1.1rem; }
-.rg-sprockets i { position: absolute; left: 0; right: 0; top: -4rem; bottom: -4rem; will-change: transform;
-  background: repeating-linear-gradient(to bottom, rgba(248,242,235,.16) 0 1.3rem, transparent 1.3rem 2.6rem); }
-.rg-mark { position: absolute; width: 1.3rem; height: 1.3rem; border: 2px solid var(--paper); opacity: .7; }
-.rg-mark:nth-of-type(1) { left: calc(var(--side) - .7rem); top: 2.3rem; border-right: 0; border-bottom: 0; }
-.rg-mark:nth-of-type(2) { right: calc(var(--side) - .7rem); top: 2.3rem; border-left: 0; border-bottom: 0; }
-.rg-mark:nth-of-type(3) { left: calc(var(--side) - .7rem); bottom: 2.3rem; border-right: 0; border-top: 0; }
-.rg-mark:nth-of-type(4) { right: calc(var(--side) - .7rem); bottom: 2.3rem; border-left: 0; border-top: 0; }
-.rg-open { color: var(--paper); }
-.rg-open .arrow { color: var(--orange); }
-
-/* Right: two halves of one spool, then the index of reels */
-.rg-read { position: absolute; z-index: 3; right: 5rem; top: 50%; translate: 0 -50%; width: 22rem; display: flex; flex-direction: column; gap: 1.8rem; }
-.rg-dial { display: flex; align-items: center; gap: 1.6rem; }
-.rg-spool { position: relative; width: 8.5rem; height: 8.5rem; flex: none; }
-.rg-spool svg { width: 100%; height: 100%; overflow: visible; }
-.rg-spool .track { fill: none; stroke: rgba(248,242,235,.14); stroke-width: 2; vector-effect: non-scaling-stroke; }
-.rg-spool .feed { fill: none; stroke: var(--paper); stroke-width: 2; vector-effect: non-scaling-stroke; }
-.rg-spool .take { fill: none; stroke: var(--orange); stroke-width: 2; vector-effect: non-scaling-stroke; }
-.rg-spool .hub { fill: none; stroke: rgba(248,242,235,.4); stroke-width: 1.5; stroke-dasharray: 3 7; vector-effect: non-scaling-stroke; }
-.rg-count { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.4rem; font-weight: 900; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-.rg-steps { display: flex; flex-direction: column; gap: .6rem; }
-.rg-step { width: 3rem; height: 3rem; border-radius: 50%; border: 1px solid rgba(248,242,235,.3); display: grid; place-items: center; transition: border-color .4s, opacity .4s; }
-.rg-step:hover:not([disabled]) { border-color: var(--paper); }
-.rg-step[disabled] { opacity: .3; cursor: default; }
-.rg-step svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; }
-.rg-now { display: flex; flex-direction: column; gap: .4rem; }
-.rg-now b { font-size: 1.3rem; font-weight: 900; text-transform: lowercase; letter-spacing: -.01em; }
-.rg-now span { color: rgba(248,242,235,.6); }
-.rg-list { list-style: none; border-top: 1px solid rgba(248,242,235,.14); }
-.rg-list button { width: 100%; display: grid; grid-template-columns: 2rem 1fr; gap: .25rem .8rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid rgba(248,242,235,.14);
-  text-align: left; color: rgba(248,242,235,.45); transition: color .4s var(--ease); }
-.rg-list button:hover { color: rgba(248,242,235,.8); }
-.rg-list .n { font-size: .75rem; font-weight: 700; letter-spacing: .2em; }
-.rg-list b { font-size: 1.1rem; font-weight: 900; text-transform: lowercase; letter-spacing: -.01em; }
-.rg-list i { grid-column: 2; font-style: normal; font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
-.rg-list [aria-current] { color: var(--paper); }
-.rg-list [aria-current] .n { color: var(--orange); }
-.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-
-.wk-cta { padding: 8rem 5rem; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 3rem; }
-.wk-cta .btn-corner { margin-left: .6rem; }
-
-@media (max-width: 991px) {
-  .rg-copy { left: 1.5rem; right: 1.5rem; top: 6rem; translate: none; width: auto; gap: 1rem; }
-  .rg-title { font-size: 5rem; }
-  .rg-note, .rg-all, .rg-list { display: none; }
-  .rg-col { left: 1.5rem; top: auto; bottom: 4rem; translate: none; }
-  .rg-rig { --gw: 15rem; --side: 2.6rem; }
-  .rg-sprockets.l { left: .7rem; } .rg-sprockets.r { right: .7rem; }
-  .rg-lamp { width: 24rem; height: 38rem; }
-  .rg-read { right: 1.5rem; top: auto; bottom: 7rem; translate: none; width: 14rem; gap: 1.4rem; }
-  .rg-now.vh { position: static; width: auto; height: auto; overflow: visible; clip-path: none; white-space: normal; }
-  .wk-cta { padding: 6rem 1.5rem; min-height: 0; }
-}
-@media (max-width: 600px) {
-  .rg-copy { left: 1rem; right: 1rem; top: 5.2rem; }
-  .rg-title { font-size: 2.9rem; }
-  .rg-col { left: 1rem; bottom: 4.4rem; }
-  .rg-rig { --gw: 9.5rem; --fl: 1rem; --side: 2rem; height: calc(var(--gh) + 4.4rem); }
-  .rg-gate { inset: 2.2rem var(--side); }
-  .rg-sprockets { width: .9rem; } .rg-sprockets.l { left: .5rem; } .rg-sprockets.r { right: .5rem; }
-  .rg-mark { width: 1rem; height: 1rem; }
-  .rg-mark:nth-of-type(1), .rg-mark:nth-of-type(2) { top: 1.6rem; } .rg-mark:nth-of-type(3), .rg-mark:nth-of-type(4) { bottom: 1.6rem; }
-  .rg-lamp { width: 15rem; height: 26rem; opacity: .4; }
-  .rg-read { right: 1rem; bottom: 6.4rem; width: 7.6rem; gap: 1rem; }
-  .rg-dial { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .rg-steps { flex-direction: row; }
-  .rg-spool { width: 6rem; height: 6rem; }
-  .rg-count { font-size: 1.8rem; }
-  .rg-now b { font-size: 1.05rem; }
-  .wk-cta { padding: 5rem 1rem; }
-}
-
 </style>
 </head>
 <body>
@@ -601,7 +490,7 @@ html.wh-is-still .wh-exec .wh-line { visibility: visible; }
   <div class="nav-pill pill label">
     <a href="../05-work/" class="nav-link" data-draw-line><span>Work</span><span class="draw-line"></span></a>
     <a href="#services" class="nav-link" data-draw-line><span>Services</span><span class="draw-line"></span></a>
-    <a href="#process" class="nav-link" data-draw-line><span>Method</span><span class="draw-line"></span></a>
+    <a href="#reels" class="nav-link" data-draw-line><span>Reels</span><span class="draw-line"></span></a>
     <a href="#contact" class="nav-link" data-draw-line><span>Contact</span><span class="draw-line"></span></a>
   </div>
   <div class="nav-right">
@@ -616,7 +505,7 @@ html.wh-is-still .wh-exec .wh-line { visibility: visible; }
     <div class="menu-links">
       <a href="../05-work/"><span>01</span><span>work</span></a>
       <a href="#services"><span>02</span><span>services</span></a>
-      <a href="#process"><span>03</span><span>method</span></a>
+      <a href="#reels"><span>03</span><span>reels</span></a>
       <a href="#contact"><span>04</span><span>contact</span></a>
     </div>
     <div class="menu-foot label"><span>Mannagudda Road, Gandhinagar</span><span>Mangaluru 575003</span></div>
@@ -715,140 +604,56 @@ html.wh-is-still .wh-exec .wh-line { visibility: visible; }
     </div>
   </section>
 
-  <!-- 6. Services: the call sheet -->
-  <section class="sheet" id="services" data-page-theme="paper">
-    <div class="sheet-head">
+  <!-- Services: four cards that stack as the page scrolls, from Draft 10 -->
+  <div id="services" data-page-theme="night">
+  <div class="sv-head" data-scroll-reveal-group>
+    <p class="label accent" data-scroll-reveal="element">Services</p>
+    <h2 class="h-section" data-scroll-reveal="chars"><span class="w-light">what we</span> <span class="w-heavy accent">make.</span></h2>
+  </div>
+  <section class="sv-stack" data-stack>
+    <article class="sv-card sv-forest"><div class="sv-in">
+      <div class="sv-copy"><p class="label accent">01 · Before the shoot</p><h2>brand strategy</h2>
+        <p>Positioning, campaign planning and a content plan, so every piece has a job before a camera comes out.</p>
+        <ul class="label"><li>Positioning</li><li>Campaign planning</li><li>Content strategy</li></ul></div>
+      <figure><img src="../03-sections/assets/lobby.webp" alt="Hotel lobby with armchairs and warm light" loading="lazy" decoding="async"></figure>
+    </div></article>
+    <article class="sv-card sv-paper"><div class="sv-in">
+      <div class="sv-copy"><p class="label label-ember">02 · On set</p><h2>content production</h2>
+        <p>Reels, commercial films, drone work and photography, shot by our own crew and graded as one series.</p>
+        <ul class="label"><li>Reels and films</li><li>Drone cinematography</li><li>Photography</li></ul></div>
+      <figure><img src="../03-sections/assets/moto-storm.webp" alt="Rider crossing wet ground under a storm sky" loading="lazy" decoding="async"></figure>
+    </div></article>
+    <article class="sv-card sv-sand"><div class="sv-in">
+      <div class="sv-copy"><p class="label label-ember">03 · Every week</p><h2>social media</h2>
+        <p>We plan the calendar, publish the work and answer the people who respond to it.</p>
+        <ul class="label"><li>Content calendar</li><li>Publishing</li><li>Community</li></ul></div>
+      <figure><img src="../03-sections/assets/food-fish.webp" alt="Grilled fish plated on a restaurant table" loading="lazy" decoding="async"></figure>
+    </div></article>
+    <article class="sv-card sv-forest"><div class="sv-in">
+      <div class="sv-copy"><p class="label accent">04 · After launch</p><h2>performance marketing</h2>
+        <p>Paid campaigns and lead generation, reported in plain numbers you can check.</p>
+        <ul class="label"><li>Paid advertising</li><li>Lead generation</li><li>Reporting</li></ul></div>
+      <figure><img src="../03-sections/assets/ferrari.webp" alt="Red sports car head on, on an open road" loading="lazy" decoding="async"></figure>
+    </div></article>
+  </section>
+  </div>
+
+  <!-- Vertical reels: cylinder carousel, from Draft 03 -->
+  <div data-page-theme="night">
+  <section class="reels" id="reels" data-reels>
+    <div class="reels-top">
       <div class="section-head" data-scroll-reveal-group>
-        <p class="label label-ember" data-scroll-reveal="element">Services</p>
-        <h2 class="h-line" data-scroll-reveal="chars" data-font-weight-hover>
-          <span class="w-light" data-wght-rest="200" data-wght-near="900">the call</span>
-          <span class="w-heavy" data-wght-rest="900" data-wght-near="200">sheet.</span>
+        <p class="label" data-scroll-reveal="element" style="color: var(--orange)">Vertical work</p>
+        <h2 class="h-section" data-scroll-reveal="chars" data-font-weight-hover>
+          <span class="w-light" data-wght-rest="200" data-wght-near="900">made for</span><br>
+          <span class="w-heavy" data-wght-rest="900" data-wght-near="200">the feed.</span>
         </h2>
       </div>
-      <dl class="sheet-meta label" data-scroll-reveal="element">
-        <dt>Production</dt><dd>Your brand</dd>
-        <dt>Unit</dt><dd>One crew, start to finish</dd>
-        <dt>Base</dt><dd>Mangaluru</dd>
-      </dl>
     </div>
-    <div class="sheet-body">
-      <div class="rows" data-sheet>
-        <article class="row is-open">
-          <button class="row-head" aria-expanded="true"><span class="row-num label">01</span><span class="row-name">brand strategy</span><span class="row-call label">Before the shoot</span></button>
-          <div class="row-body"><div class="row-inner"><div class="row-content">
-            <p>Positioning, campaign planning and a content plan, so every piece has a job before a camera comes out.</p>
-            <ul class="label"><li>Positioning</li><li>Campaign planning</li><li>Content strategy</li></ul>
-          </div></div></div>
-        </article>
-        <article class="row">
-          <button class="row-head" aria-expanded="false"><span class="row-num label">02</span><span class="row-name">content production</span><span class="row-call label">On set</span></button>
-          <div class="row-body"><div class="row-inner"><div class="row-content">
-            <p>Reels, commercial films, drone work and photography, shot by our own crew and graded as one series.</p>
-            <ul class="label"><li>Reels and films</li><li>Drone cinematography</li><li>Photography</li></ul>
-          </div></div></div>
-        </article>
-        <article class="row">
-          <button class="row-head" aria-expanded="false"><span class="row-num label">03</span><span class="row-name">social media</span><span class="row-call label">Every week</span></button>
-          <div class="row-body"><div class="row-inner"><div class="row-content">
-            <p>We plan the calendar, publish the work and answer the people who respond to it.</p>
-            <ul class="label"><li>Content calendar</li><li>Publishing</li><li>Community</li></ul>
-          </div></div></div>
-        </article>
-        <article class="row">
-          <button class="row-head" aria-expanded="false"><span class="row-num label">04</span><span class="row-name">performance marketing</span><span class="row-call label">After launch</span></button>
-          <div class="row-body"><div class="row-inner"><div class="row-content">
-            <p>Paid campaigns and lead generation, reported in plain numbers you can check.</p>
-            <ul class="label"><li>Paid advertising</li><li>Lead generation</li><li>Reporting</li></ul>
-          </div></div></div>
-        </article>
-      </div>
-      <div class="sheet-photo" aria-hidden="true">
-        <img src="../03-sections/assets/rally-crowd.webp" alt="" loading="lazy" decoding="async" style="object-position: 62% 50%">
-        <img src="../03-sections/assets/moto-storm.webp" alt="" loading="lazy" decoding="async" style="object-position: 62% 50%">
-        <img src="../03-sections/assets/food-fish.webp" alt="" loading="lazy" decoding="async" style="object-position: 38% 50%">
-        <img src="../03-sections/assets/rally-blue.webp" alt="" loading="lazy" decoding="async" style="object-position: 45% 50%">
-      </div>
-    </div>
+    <p class="reels-hint label"><i></i>Drag to spin<i></i></p>
+    <div class="cyl" aria-label="Reels, drag to spin"><div class="cyl-ring"></div></div>
   </section>
-
-  <!-- The reels section for the home page: one gate, the strip of real reels pulled through it a frame at a time, the open link under it -->
-  <section class="rg" id="reels" data-reels>
-    <div class="rg-copy">
-      <p class="label rg-num" data-text-reveal="element">02 Reels</p>
-      <h1 class="rg-title" data-text-reveal="chars"><span class="w-light">the work,</span><br><span class="w-heavy accent">moving.</span></h1>
-      <p class="rg-note" data-text-reveal="lines">Eight real reels from the studio, run through one gate. Scroll pulls the film a frame at a time. Rest on a frame and it plays, muted.</p>
-      <a class="rg-all label" href="../05-work/" data-draw-line>See all work<span class="draw-line"></span></a>
-    </div>
-
-    <div class="rg-col">
-      <div class="rg-rig">
-        <div class="rg-lamp" aria-hidden="true"></div>
-        <div class="rg-gate" data-focus="play reel" aria-hidden="true">
-          <div class="rg-strip"></div>
-          <video class="rg-video" muted playsinline loop preload="none"></video>
-          <div class="rg-shutter"></div>
-        </div>
-        <div class="rg-plate" aria-hidden="true">
-          <div class="rg-sprockets l"><i></i></div><div class="rg-sprockets r"><i></i></div>
-          <span class="rg-mark"></span><span class="rg-mark"></span><span class="rg-mark"></span><span class="rg-mark"></span>
-        </div>
-      </div>
-      <a class="rg-open label" href="../05-work/" data-reel-open data-draw-line><span data-reel-open-text>Play the reel</span> <span class="arrow" aria-hidden="true">&#8599;</span><span class="draw-line"></span></a>
-    </div>
-
-    <div class="rg-read">
-      <div class="rg-dial">
-        <div class="rg-spool" aria-hidden="true">
-          <svg viewBox="0 0 100 100">
-            <circle class="track" cx="50" cy="50" r="46"/>
-            <path class="feed" d="M4 50 A46 46 0 0 1 96 50" pathLength="1"/>
-            <path class="take" d="M96 50 A46 46 0 0 1 4 50" pathLength="1" stroke-dasharray="0 2"/>
-            <circle class="hub" cx="50" cy="50" r="34"/>
-          </svg>
-          <p class="rg-count"><span data-reel-count>01</span></p>
-        </div>
-        <div class="rg-steps">
-          <button class="rg-step" type="button" data-reel-step="-1" aria-label="Previous reel"><svg viewBox="0 0 16 16"><path d="M3 10 L8 5 L13 10"/></svg></button>
-          <button class="rg-step" type="button" data-reel-step="1" aria-label="Next reel"><svg viewBox="0 0 16 16"><path d="M3 6 L8 11 L13 6"/></svg></button>
-        </div>
-      </div>
-      <div class="rg-now label vh" aria-live="polite"><span data-reel-kind>Reel</span><b data-reel-name>ysc drive</b></div>
-      <ul class="rg-list" aria-label="Reels"></ul>
-    </div>
-  </section>
-
-  <!-- 9. Method: the job as an edit timeline -->
-  <section class="method" id="process" data-page-theme="paper" data-method>
-    <div class="method-head">
-      <div class="section-head" data-scroll-reveal-group>
-        <p class="label label-ember" data-scroll-reveal="element">How a job runs</p>
-        <h2 class="h-line" data-scroll-reveal="chars" data-font-weight-hover>
-          <span class="w-light" data-wght-rest="200" data-wght-near="900">one clear</span>
-          <span class="w-heavy" data-wght-rest="900" data-wght-near="200">timeline.</span>
-        </h2>
-      </div>
-      <div class="tc-box label" aria-hidden="true"><span>Timecode</span><span class="tc" data-tc>00:00:00:00</span></div>
-    </div>
-    <div class="tl" aria-hidden="true">
-      <div class="tl-ruler"></div>
-      <div class="tl-track"><span class="tl-name label">V2</span>
-        <div class="clip" style="--s: 0; --e: 26">discover</div>
-        <div class="clip" style="--s: 54; --e: 84">amplify</div>
-      </div>
-      <div class="tl-track"><span class="tl-name label">V1</span>
-        <div class="clip" style="--s: 20; --e: 60">create</div>
-        <div class="clip" style="--s: 78; --e: 100">convert</div>
-      </div>
-      <div class="tl-track"><span class="tl-name label">A1</span><div class="tl-wave"></div></div>
-      <div class="tl-area"><div class="tl-playhead"></div></div>
-    </div>
-    <div class="method-steps">
-      <div class="step"><span class="step-num label">01</span><h3>discover</h3><p>We learn the business, the audience and what is standing in the way.</p></div>
-      <div class="step"><span class="step-num label">02</span><h3>create</h3><p>We plan, shoot and cut the work around that one goal.</p></div>
-      <div class="step"><span class="step-num label">03</span><h3>amplify</h3><p>We put it where your audience already spends time.</p></div>
-      <div class="step"><span class="step-num label">04</span><h3>convert</h3><p>We make the next step obvious, then report what happened.</p></div>
-    </div>
-  </section>
+  </div>
 
   <!-- 9. Contact: build the brief -->
   <section class="brief" id="contact" data-page-theme="night" data-brief>
@@ -888,7 +693,7 @@ html.wh-is-still .wh-exec .wh-line { visibility: visible; }
     <div><h4 class="label">Studio</h4><ul>
       <li><a href="../05-work/" data-draw-line>Work<span class="draw-line"></span></a></li>
       <li><a href="#services" data-draw-line>Services<span class="draw-line"></span></a></li>
-      <li><a href="#process" data-draw-line>Process<span class="draw-line"></span></a></li>
+      <li><a href="#reels" data-draw-line>Reels<span class="draw-line"></span></a></li>
       <li><a href="#contact" data-draw-line>Contact<span class="draw-line"></span></a></li></ul></div>
     <div><h4 class="label">Follow</h4><ul>
       <li><a href="#top" data-draw-line>Instagram<span class="draw-line"></span></a></li>
@@ -1251,111 +1056,6 @@ html.wh-is-still .wh-exec .wh-line { visibility: visible; }
     }
   }
 
-  /* The reels gate. Scroll sets the frame: the claw holds each reel still, then pulls the next one down while the shutter closes and the lamp dims.
-     Rest on a frame and its reel plays muted inside the gate. The spool is two halves: paper feeds out on top, orange takes up below */
-  function reelGate() {
-    const sec = document.querySelector('[data-reels]'), strip = sec.querySelector('.rg-strip'), shutter = sec.querySelector('.rg-shutter');
-    const gateEl = sec.querySelector('.rg-gate'), lamp = sec.querySelector('.rg-lamp'), vid = sec.querySelector('.rg-video');
-    const sprockets = sec.querySelectorAll('.rg-sprockets i');
-    const countEl = sec.querySelector('[data-reel-count]'), kindEl = sec.querySelector('[data-reel-kind]'), nameEl = sec.querySelector('[data-reel-name]');
-    const openEl = sec.querySelector('[data-reel-open]'), openTxt = sec.querySelector('[data-reel-open-text]');
-    const feed = sec.querySelector('.rg-spool .feed'), take = sec.querySelector('.rg-spool .take'), hub = sec.querySelector('.rg-spool .hub');
-    const list = sec.querySelector('.rg-list'), steps = sec.querySelectorAll('[data-reel-step]');
-    const reels = REELS.map(d => ({ name: d.t.toLowerCase(), kind: d.c, ig: d.ig, full: d.v,
-      src: cdn(d.img, 'f_auto,q_auto,c_fill,ar_9:16,w_480'), poster: cdn(d.img, 'f_auto,q_auto,w_1080'), clip: d.v ? cdn(d.v, 'q_auto,w_540') : '' }));
-    const N = reels.length;
-    reels.forEach((r, i) => {
-      const el = document.createElement('div'); el.className = 'rg-frame';
-      el.innerHTML = `<img src="${r.src}" alt="" loading="${i < 3 ? 'eager' : 'lazy'}" decoding="async">`;
-      strip.appendChild(el);
-      const li = document.createElement('li');
-      li.innerHTML = `<button type="button"><span class="n">${String(i + 1).padStart(2, '0')}</span><b>${r.name}</b><i>${r.kind}</i></button>`;
-      li.firstChild.addEventListener('click', () => goTo(i));
-      list.appendChild(li);
-    });
-    const items = [...list.querySelectorAll('button')];
-
-    let current = -1;
-    const show = i => {
-      if (i === current) return; current = i; const r = reels[i];
-      countEl.textContent = String(i + 1).padStart(2, '0');
-      kindEl.textContent = r.kind; nameEl.textContent = r.name;
-      items.forEach((b, j) => j === i ? b.setAttribute('aria-current', 'true') : b.removeAttribute('aria-current'));
-      if (r.ig) { openTxt.textContent = 'Open on Instagram'; openEl.href = r.ig; openEl.target = '_blank'; openEl.rel = 'noopener'; gateEl.dataset.focus = 'open reel'; }
-      else { openTxt.textContent = 'Play the reel'; openEl.href = r.full; openEl.removeAttribute('target'); gateEl.dataset.focus = 'play reel'; }
-      steps[0].disabled = i === 0; steps[1].disabled = i === N - 1;
-    };
-    openEl.addEventListener('click', e => {
-      const r = reels[current]; if (!r || r.ig) return;
-      e.preventDefault(); openBox(e, { video: r.full, poster: r.poster, alt: r.name, from: openEl });
-    });
-    gateEl.addEventListener('click', e => { const r = reels[current]; if (!r) return;
-      if (r.ig) window.open(r.ig, '_blank', 'noopener'); else openBox(e, { video: r.full, poster: r.poster, alt: r.name, from: openEl }); });
-
-    let step = 0, period = 0;
-    const measure = () => {
-      const f = strip.firstElementChild; step = f.offsetHeight + parseFloat(getComputedStyle(f).marginBottom);
-      period = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2.6;
-    };
-    // Hold, then pull fast, then hold: the step a projector makes. Resting points sit inside the holds
-    const pull = x => { const i = Math.floor(x), t = x - i, k = Math.min(1, Math.max(0, (t - .35) / .3));
-      return { i, pos: Math.min(N - 1, i + (k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2)), k }; };
-    const render = x => {
-      const { pos, k } = pull(x), y = pos * step, sh = Math.sin(k * Math.PI);
-      gsap.set(strip, { y: -y });
-      gsap.set(sprockets, { y: -(y % period) });
-      shutter.style.opacity = (sh * .8).toFixed(3);
-      lamp.style.opacity = (.6 - sh * .4).toFixed(3);
-      const p = pos / (N - 1);
-      feed.setAttribute('stroke-dasharray', `${(1 - p).toFixed(4)} 2`);
-      take.setAttribute('stroke-dasharray', `${p.toFixed(4)} 2`);
-      hub.setAttribute('transform', `rotate(${(pos * 72).toFixed(2)} 50 50)`);
-      show(Math.round(pos));
-      return k;
-    };
-    measure();
-    let cur = 0, target = 0, st = null;
-    window.addEventListener('resize', () => { measure(); render(cur); });
-    render(cur);
-
-    function goTo(i) {
-      i = Math.max(0, Math.min(N - 1, i));
-      if (!st) { cur = target = i; stopClip(); render(cur); return; }
-      const y = st.start + (st.end - st.start) * i / (N - 1);
-      if (lenis) lenis.scrollTo(y, { duration: 1.2 }); else window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-    steps.forEach(b => b.addEventListener('click', () => goTo(current + +b.dataset.reelStep)));
-
-    // A reel plays only after the frame has rested, never with reduced motion or data saver on
-    const canPlay = !reduce.matches && !(navigator.connection && navigator.connection.saveData);
-    let playing = -1, rest = 0;
-    function stopClip() { if (playing < 0) return; playing = -1; vid.classList.remove('on'); vid.pause(); }
-    function startClip(i) {
-      const r = reels[i]; if (!r.clip || playing === i) return; playing = i;
-      vid.poster = r.src; vid.src = r.clip;
-      vid.play().then(() => { if (playing === i) vid.classList.add('on'); }).catch(() => { playing = -1; });
-    }
-
-    if (reduce.matches) return;
-    let lastMove = 0;
-    st = ScrollTrigger.create({ trigger: sec, start: 'top top', end: () => '+=' + Math.round(innerHeight * 2.6), pin: true, refreshPriority: 1,
-      onUpdate: self => { target = self.progress * (N - 1); lastMove = performance.now(); } });
-    let onScreen = true;
-    new IntersectionObserver(([en]) => { onScreen = en.isIntersecting; if (!onScreen) stopClip(); }).observe(sec);
-    gsap.ticker.add((time, delta) => {
-      if (!onScreen) return;
-      // When the scroll stops halfway through a pull, settle the film into the nearest hold
-      if (performance.now() - lastMove > 220) { const { i, k } = pull(target); if (k > 0 && k < 1) target = k < .5 ? i + .2 : i + .8; }
-      const moving = Math.abs(target - cur) >= .0008;
-      let k = pull(cur).k;
-      if (moving) { cur += (target - cur) * .14; k = render(cur); }
-      const still = !moving && (k === 0 || k === 1);
-      if (still) { rest += delta; if (canPlay && rest > 900) startClip(current); }
-      else { rest = 0; stopClip(); }
-    });
-  }
-
-
   /* Marquees: drift with the scroll, flip with its direction */
   function marquee() {
     document.querySelectorAll('[data-marquee]').forEach(m => {
@@ -1422,46 +1122,86 @@ html.wh-is-still .wh-exec .wh-line { visibility: visible; }
       scrollTrigger: { trigger: stage, start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
-  /* Services: one row of the call sheet open at a time */
-  function sheet() {
-    const rows = [...document.querySelectorAll('[data-sheet] .row')], imgs = [...document.querySelectorAll('.sheet-photo img')];
-    let z = 1, cur = 0, timer = 0;
-    const open = i => {
-      if (i === cur) return; cur = i;
-      rows.forEach((r, k) => { r.classList.toggle('is-open', k === i); r.querySelector('.row-head').setAttribute('aria-expanded', k === i); });
-      const img = imgs[i]; img.style.zIndex = ++z;
-      if (reduce.matches) gsap.set(img, { clipPath: 'circle(125% at 50% 100%)' });
-      else gsap.fromTo(img, { clipPath: 'circle(0% at 50% 100%)' }, { clipPath: 'circle(125% at 50% 100%)', duration: 1.1, ease: 'expo.inOut' });
-      clearTimeout(timer); timer = setTimeout(() => ScrollTrigger.refresh(), 800);
-    };
-    rows.forEach((r, i) => r.querySelector('.row-head').addEventListener('click', () => open(i)));
+
+  /* Services page: cards that stack, and questions that open one at a time */
+  function services() {
+    const cards = [...document.querySelectorAll('[data-stack] .sv-card')];
+    cards.forEach((c, i) => c.style.setProperty('--i', i));
+    // Each card settles back a little as the next one slides over it
+    if (!reduce.matches) cards.forEach((c, i) => {
+      const next = cards[i + 1]; if (!next) return;
+      gsap.fromTo(c.querySelector('.sv-in'), { scale: 1, filter: 'brightness(1)' }, { scale: .94, filter: 'brightness(.6)', ease: 'none',
+        scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 20%', scrub: true } });
+      gsap.fromTo(next.querySelector('img'), { scale: 1.25 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 20%', scrub: true } });
+    });
+    const items = [...document.querySelectorAll('[data-faq] .faq-item')]; let timer = 0;
+    items.forEach(it => it.querySelector('button').addEventListener('click', () => {
+      const open = !it.classList.contains('is-open');
+      items.forEach(x => { const on = x === it && open; x.classList.toggle('is-open', on); x.querySelector('button').setAttribute('aria-expanded', on); });
+      clearTimeout(timer); timer = setTimeout(() => ScrollTrigger.refresh(), 700);
+    }));
   }
 
-  /* Method: a playhead runs the job like an edit timeline */
-  function method() {
-    const sec = document.querySelector('[data-method]'), head = sec.querySelector('.tl-playhead'), tc = sec.querySelector('[data-tc]');
-    const clips = [...sec.querySelectorAll('.clip')].map(el => ({ el, s: parseFloat(el.style.getPropertyValue('--s')), e: parseFloat(el.style.getPropertyValue('--e')) })).sort((a, b) => a.s - b.s);
-    const steps = [...sec.querySelectorAll('.step')], wave = sec.querySelector('.tl-wave');
-    let w = '';
-    for (let i = 0; i < 110; i++) w += `<i style="height:${Math.round(14 + Math.abs(Math.sin(i * .71) * Math.cos(i * .23) + Math.sin(i * 1.9) * .35) * 64)}%"></i>`;
-    wave.innerHTML = w;
-    const bars = [...wave.children], pad = v => String(v).padStart(2, '0');
-    const set = p => {
-      const pc = p * 100;
-      head.style.left = pc + '%';
-      clips.forEach((c, i) => {
-        c.el.classList.toggle('is-live', p > 0 && pc >= c.s && pc <= c.e);
-        c.el.classList.toggle('is-done', pc > c.e);
-        steps[i].classList.toggle('is-lit', p > 0 && pc >= c.s);
-      });
-      bars.forEach((b, i) => b.classList.toggle('is-done', i / bars.length < p));
-      const f = Math.round(p * 30 * 25);
-      tc.textContent = `00:00:${pad(Math.floor(f / 25))}:${pad(f % 25)}`;
+
+
+  /* Vertical reels: a cylinder of frames that drifts, spins on drag and speeds up with the scroll */
+  function reels() {
+    const sec = document.querySelector('[data-reels]'), stage = sec.querySelector('.cyl'), ring = sec.querySelector('.cyl-ring');
+    // Real reels from the previous site: Instagram posts open there, hosted cuts play in the lightbox
+    const data = [ { "t": "YSC Drive", "c": "Automotive", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781540915/yamuna_event_reel_final_logo_1_ebgn4h.jpg", "ig": "https://www.instagram.com/reel/DYw2zErSivv/", "v": "" }, { "t": "LaMostra 2025", "c": "Automotive", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781540865/Screenshot_2026-06-15_215710_ilw3us.png", "ig": "https://www.instagram.com/reel/DShsrxPFlUu/", "v": "" }, { "t": "Spark Coaching", "c": "Talking head", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541034/Screenshot_2026-06-15_220012_oinasl.png", "ig": "https://www.instagram.com/reel/DVGyksOjcIW/", "v": "" }, { "t": "YSC", "c": "Real estate", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541559/VID-20260615-WA0013_llerwn.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539988/YSC_yefj6s.mp4" }, { "t": "Scylla", "c": "Ambience", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541559/VID-20260615-WA0009_zt3deh.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539988/prop_nahamb.mp4" }, { "t": "Customer reviews", "c": "Talking head", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541562/VID-20260615-WA0010_gxxlc8.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539982/Lesparrow2_udqxdh.mp4" }, { "t": "Client Engagement", "c": "Talking head", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781541560/VID-20260615-WA0006_d9sbn8.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539984/le3_dbpbyk.mp4" }, { "t": "Property walkthrough", "c": "Real estate", "img": "https://res.cloudinary.com/drzbbbncs/image/upload/v1781544135/VID-20260615-WA0011_wg5foq.jpg", "ig": "", "v": "https://res.cloudinary.com/drzbbbncs/video/upload/v1781539984/Scylla_mfytys.mp4" } ];
+    const cdn = (u, t) => u.replace('/upload/', `/upload/${t}/`);
+    const N = data.length * 2, STEP = 360 / N, pad = v => String(v).padStart(2, '0');
+    let h = '';
+    for (let i = 0; i < N; i++) { const d = data[i % data.length];
+      const inner = `<img src="${cdn(d.img, 'f_auto,q_auto,c_fill,ar_9:16,w_540')}" alt="${d.t}, ${d.c} reel" loading="lazy" decoding="async" draggable="false"><span class="cyl-time label">${d.ig ? 'Instagram' : 'Play'}</span><span class="cyl-meta label"><span>${d.t}</span><span>${d.c}</span></span>`;
+      h += d.ig ? `<a class="cyl-card" href="${d.ig}" target="_blank" rel="noopener" draggable="false" data-focus="view on instagram">${inner}</a>`
+                : `<a class="cyl-card" href="${cdn(d.v, 'f_auto,q_auto')}" data-video data-poster="${cdn(d.img, 'f_auto,q_auto,w_720')}" draggable="false" data-focus="play reel">${inner}</a>`; }
+    ring.innerHTML = h;
+    const cards = [...ring.children];
+    let r = 0, rot = 0, boost = 0, live = false, down = false, lastX = 0, lastT = 0, moved = 0;
+    const size = () => {
+      // Centre frame is sized from the screen; the camera sits back so the curve stays shallow
+      const hc = Math.min(innerHeight * .4, innerWidth * .6 * 16 / 9), w = hc * 9 / 16 * 1.7;
+      r = (w / 2) / Math.tan(Math.PI / N) + w * .16;
+      stage.style.setProperty('--w', w + 'px'); stage.style.perspective = r + 'px';
+      cards.forEach((c, i) => { c.style.transform = `rotateY(${i * STEP}deg) translateZ(${-r}px)`; });
+      draw();
     };
-    if (reduce.matches) { set(1); return; }
-    set(0);
-    const st = { p: 0 };
-    gsap.to(st, { p: 1, ease: 'none', onUpdate: () => set(st.p), scrollTrigger: { trigger: sec.querySelector('.tl'), start: 'top 82%', end: 'bottom 38%', scrub: .5 } });
+    const draw = () => {
+      gsap.set(ring, { z: r * .3, rotationY: rot });
+      cards.forEach((c, i) => {
+        let a = (i * STEP + rot) % 360; if (a > 180) a -= 360; if (a < -180) a += 360;
+        const on = Math.abs(a) < 84;
+        c.style.visibility = on ? 'visible' : 'hidden';
+        if (on) c.style.opacity = 1 - Math.pow(Math.abs(a) / 84, 2) * .65;
+      });
+    };
+    size(); window.addEventListener('resize', size);
+    ScrollTrigger.create({ trigger: sec, start: 'top bottom', end: 'bottom top', onToggle: self => { live = self.isActive; },
+      onUpdate: self => { if (!reduce.matches && !down) boost = gsap.utils.clamp(-70, 70, self.getVelocity() / 45); } });
+    gsap.ticker.add((t, dt) => {
+      if (!live || down) return;
+      const s = dt / 1000, base = reduce.matches ? 0 : 3.5;
+      if (!base && Math.abs(boost) < .05) return;
+      rot += (base + boost) * s; boost *= Math.pow(.04, s);
+      draw();
+    });
+    stage.addEventListener('pointerdown', e => { down = true; moved = 0; lastX = e.clientX; lastT = performance.now(); boost = 0; });
+    window.addEventListener('pointermove', e => {
+      if (!down) return;
+      const now = performance.now(), d = -(e.clientX - lastX) * (90 / r);
+      moved += Math.abs(e.clientX - lastX);
+      rot += d; boost = gsap.utils.clamp(-240, 240, d / Math.max(1, now - lastT) * 1000);
+      lastX = e.clientX; lastT = now; draw();
+    });
+    const up = () => { down = false; };
+    window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+    cards.forEach(c => c.addEventListener('click', e => {
+      if (moved > 8) { e.preventDefault(); return; }
+      if (!c.hasAttribute('data-video')) return;
+      e.preventDefault();
+      openBox(e, { video: c.getAttribute('href'), poster: c.dataset.poster, alt: c.querySelector('img').alt, from: c });
+    }));
   }
 
   /* Contact: chips write the brief, the brief becomes the message */
@@ -1558,7 +1298,7 @@ html.wh-is-still .wh-exec .wh-line { visibility: visible; }
   }
 
   function init() {
-    wallHero(); dial(); reelGate(); marquee(); halves(); sheet(); method(); brief(); lightbox(); footer(); themes();
+    wallHero(); dial(); marquee(); halves(); services(); reels(); brief(); lightbox(); footer(); themes();
     focusCursor(); drawLines(); menu();
     if (reduce.matches) gsap.set('[data-scroll-reveal]', { visibility: 'visible' }); else scrollReveals();
     weightHover();
