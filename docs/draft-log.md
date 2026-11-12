@@ -25,6 +25,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 17 | `prototypes/17-split-hero` | The split as the hero, drawn on one canvas and run by scroll: the full frame closes into a circle while a still gives way to a real reel, arcs draw round it, then the halves part and let the page in | Pick one |
 | 18 | `prototypes/18-wall-hero` | The wall as the home page hero, one three.js ring: the camera starts at its centre with the work all round, then scroll cranes it up over the wall and back until the whole ring sits below, near side dark and far side lit, while the second line of the signature sets itself | Pick one |
 | 19 | `prototypes/19-reel-gate` | Draft 14's gate as the home page reels section: the eight real reels pulled through one gate by scroll, a lamp that dims as the shutter closes, a spool drawn as two halves that feeds paper out on top and takes up orange below, an index to jump to any reel, and the reel playing muted once a frame has rested | Small pieces |
+| 20 | `prototypes/20-combination-index` | Draft 16's drum as a combination, CSS 3D, no WebGL: a kind wheel and a project wheel on one window, seen from the gap so they lean apart, turning against each other. Scroll turns the project wheel and the kind wheel follows a beat behind only when the kind changes; tapping the kind wheel jumps to the next kind | Inner pages |
 
 ## How a draft is put together
 
@@ -74,7 +75,6 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - Swap Draft 14's stand in curl for the real t pattern once the source SVG arrives.
 - Draft 15's layers with a real reel as the deepest layer instead of a still, playing muted.
 - Draft 16 with reels playing muted inside the frame once a face has rested for a second, instead of the still thumbnail.
-- A second drum on Draft 16 that turns the other way for the kind of work, so two wheels set the index like a combination.
 - A cropped mark turning in 3D was left out on purpose: the guidelines say never rotate the logo. If depth on the mark is wanted, move the light round a still mark instead.
 - Draft 17 with the real showreel cut in the circle once it exists, and chapter marks on the timecode so the hold lands on a named shot.
 - Draft 17's canvas split as the page transition: the leaving page closes into a circle, the next page arrives through the parted halves.
@@ -82,3 +82,5 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - Draft 18's crane in reverse as the last section of the home page: the camera drops back into the ring before the contact block.
 - Draft 19's gate with a sound option: a soft projector clatter on each pull, off by default, like the shutter sound in Draft 09.
 - Draft 19 joined to Draft 18: the gate as the reels section straight after the wall hero, so the home page runs ring, gate, contact.
+- Draft 20 with a soft detent click as each wheel lands, off by default, using the shutter sound switch from Draft 09.
+- Draft 20's two wheels as the home page hero line: your vision on the left wheel, our execution on the right, set like a combination as the page loads.
