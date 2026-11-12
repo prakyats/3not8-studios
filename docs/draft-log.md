@@ -27,6 +27,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 19 | `prototypes/19-reel-gate` | Draft 14's gate as the home page reels section: the eight real reels pulled through one gate by scroll, a lamp that dims as the shutter closes, a spool drawn as two halves that feeds paper out on top and takes up orange below, an index to jump to any reel, and the reel playing muted once a frame has rested | Small pieces |
 | 20 | `prototypes/20-combination-index` | Draft 16's drum as a combination, CSS 3D, no WebGL: a kind wheel and a project wheel on one window, seen from the gap so they lean apart, turning against each other. Scroll turns the project wheel and the kind wheel follows a beat behind only when the kind changes; tapping the kind wheel jumps to the next kind | Inner pages |
 | 21 | `prototypes/21-final-candidate` | Home page, final candidate. Joins Draft 18's ring hero, Draft 10's stacking service cards and Draft 03's client band, lens dial, split, reel cylinder and brief builder on one page. The owner picked this mix | Full home pages |
+| 22 | `prototypes/22-combination-hero` | Draft 20's two wheels as the home page hero, CSS 3D, no WebGL: your vision on the left wheel, our execution on the right, spun home against each other as the page loads and landing on a detent. Scroll carries each line away from the gap, vision up, execution down, while the slit between them opens through bright light into the YSC reel playing muted, bitten by one Forest half circle. Dial ticks on the slot edges slide with each wheel | Pick one |
 
 ## How a draft is put together
 
@@ -84,4 +85,5 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - Draft 19's gate with a sound option: a soft projector clatter on each pull, off by default, like the shutter sound in Draft 09.
 - Draft 19 joined to Draft 18: the gate as the reels section straight after the wall hero, so the home page runs ring, gate, contact.
 - Draft 20 with a soft detent click as each wheel lands, off by default, using the shutter sound switch from Draft 09.
-- Draft 20's two wheels as the home page hero line: your vision on the left wheel, our execution on the right, set like a combination as the page loads.
+- Draft 22 joined to Draft 21: the two wheels as the first beat of the home page, opening into the ring of work instead of a single reel.
+- Draft 22 with the frame opening on the real showreel cut once it exists, and the wheel words chosen per page (your brief, our crew on the services page).
