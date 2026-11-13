@@ -30,6 +30,7 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 22 | `prototypes/22-combination-hero` | Draft 20's two wheels as the home page hero, CSS 3D, no WebGL: your vision on the left wheel, our execution on the right, spun home against each other as the page loads and landing on a detent. Scroll carries each line away from the gap, vision up, execution down, while the slit between them opens through bright light into the YSC reel playing muted, bitten by one Forest half circle. Dial ticks on the slot edges slide with each wheel | Pick one |
 | 23 | `prototypes/23-wall-filters` | Draft 13's wall with a chip for each kind of work: reels, road, table, crew. A chip turns the nearest frame of that kind round to face you, a band of gold light sweeps outward over the lit frames, and the rest sink back on the ring and drain into Forest shadow. Scroll and drag still turn the wall and it settles on a lit frame when they rest; arrow keys step between lit frames. The still fallback swaps its row to the chosen kind | Inner pages |
 | 24 | `prototypes/24-studio-film` | A full home page built from what makes a quiet premium studio site feel expensive, redone in our brand: the signature racks focus from one line to the other, a real reel follows you round the page in a corner, the story closes from a still into a reel with subtitles, service cards on a track straighten as they reach the middle, full screen work where each photograph arrives in two halves, a carousel round the real customer review reel, and a closing line whose words start scattered and come into focus. The scroll is heavier (Lenis lerp 0.072) and one spring follows scroll speed, so cards sway and work titles skew, then settle | Full home pages |
+| 25 | `prototypes/25-glass` | Glass over light, on Draft 24's glide. A fixed field of soft brand colour (Night, Forest, Ember, Gold, Sand, Linen) shifts mix per section and drifts with the scroll. The mark is glass: the real logo underneath like orange acrylic, a frosted pane cut to its shape, a lit top edge and a shadow that moves away from the pointer; it never turns. Big words are glass through which the field shows, shifted like a lens, with one light that follows the pointer. Cards, mounts and the nav are frosted glass; tiles lean towards the pointer. A Glass on and off switch shows the same page in the plain brand. This breaks written brand rules (no effects or shadows on the logo, no recolour, no gradient as a logo fill, no other gradients), so it needs the brand owner's call before it goes further | Full home pages |
 
 ## How a draft is put together
 
@@ -66,6 +67,8 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 - The draft tab shows the right number and name.
 
 ## Ideas not built yet
+
+- If the team picks Draft 25: a real glass mark exported from the logo SVG (edge and depth baked in) so it is sharper than the masked PNG, and a brand book note that allows the glass treatment on screen only.
 
 - Draft 24's scroll weight and speed spring on the other home pages, so the team can compare the same layout with and without it.
 - Draft 24's floating reel as a site wide piece: it keeps playing across page changes, like a picture in picture.
