@@ -26,7 +26,7 @@
     ['22', '22-combination-hero', 'The hero line on two wheels', 'Hero'],
     ['23', '23-wall-filters', 'The wall with filters', 'Inner page'],
     ['24', '24-studio-film', 'Home page, focus pull and glide', 'Full page'],
-    ['25', '25-glass', 'Glass over light', 'Full page']
+    ['25', '25-glass', 'Dark glass and light', 'Full page']
   ];
   const m = location.pathname.match(/prototypes\/(\d\d)-/);
   const cur = DRAFTS.find(d => m && d[0] === m[1]);
