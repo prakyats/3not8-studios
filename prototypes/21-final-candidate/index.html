@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="glass-on">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -473,91 +473,100 @@ html.wh-is-still .wh-exec .wh-line { visibility: visible; }
 /* Dark glass and light, from Draft 25. A near black field with one warm light behind the whole page,
    and every surface on top is dark tinted glass: light blur, a hairline edge, a lit top lip and stacked soft shadows.
    The logo stays the plain brand file. Orange shines by glowing a little */
-html:root, html[data-theme="night"], html[data-theme="paper"] { --page: #030b09; --ink: var(--paper); }
-:root {
+html.glass-on:root, html.glass-on[data-theme="night"], html.glass-on[data-theme="paper"] { --page: #030b09; --ink: var(--paper); }
+html.glass-on {
   --c1: rgba(22,44,41,.9); --c2: rgba(198,77,1,.34); --c3: rgba(249,192,82,.16); --c4: rgba(22,44,41,.7); --ray: .9;
   --x1: 18%; --y1: 20%; --x2: 80%; --y2: 12%; --x3: 70%; --y3: 30%; --x4: 20%; --y4: 90%; --dx: 0%; --dy: 0%;
   --edge: rgba(255,255,255,.08); --lip: rgba(255,255,255,.16);
   --lift: 0 1px 1px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.17), 0 4px 4px rgba(0,0,0,.14), 0 8px 8px rgba(0,0,0,.12), 0 16px 16px rgba(0,0,0,.1), 0 32px 48px rgba(0,0,0,.28);
   --glass: radial-gradient(90% 60% at 50% 0%, rgba(249,192,82,.07), transparent 70%), linear-gradient(137deg, rgba(14,30,27,.62), rgba(4,12,10,.82));
 }
-.aura { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: #030b09; }
-.aura-blobs { position: absolute; inset: 0; background:
+html.glass-on .aura { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: #030b09; }
+html.glass-on .aura-blobs { position: absolute; inset: 0; background:
   radial-gradient(44vmax 40vmax at calc(var(--x1) + var(--dx)) calc(var(--y1) + var(--dy)), var(--c1), transparent 70%),
   radial-gradient(40vmax 34vmax at calc(var(--x2) - var(--dx)) calc(var(--y2) - var(--dy)), var(--c2), transparent 70%),
   radial-gradient(30vmax 28vmax at calc(var(--x3) + var(--dy)) calc(var(--y3) - var(--dx)), var(--c3), transparent 70%),
   radial-gradient(50vmax 46vmax at calc(var(--x4) - var(--dy)) calc(var(--y4) + var(--dx)), var(--c4), transparent 70%); }
-.aura-rays { position: absolute; inset: -30% -20%; transform-origin: 82% 6%; mix-blend-mode: screen; opacity: var(--ray);
+html.glass-on .aura-rays { position: absolute; inset: -30% -20%; transform-origin: 82% 6%; mix-blend-mode: screen; opacity: var(--ray);
   -webkit-mask-image: radial-gradient(ellipse 60% 80% at 80% 12%, #000 0%, rgba(0,0,0,.45) 40%, transparent 72%);
           mask-image: radial-gradient(ellipse 60% 80% at 80% 12%, #000 0%, rgba(0,0,0,.45) 40%, transparent 72%); }
-.aura-rays i { position: absolute; inset: 0; }
-.aura-rays i:nth-child(1) { filter: blur(12px); background: repeating-linear-gradient(114deg, transparent 0 4%, rgba(249,192,82,.30) 5% 6.2%, transparent 7.5% 13%, rgba(198,77,1,.30) 14% 17%, transparent 18.5% 24%); }
-.aura-rays i:nth-child(2) { filter: blur(24px); background: repeating-linear-gradient(107deg, transparent 0 7%, rgba(198,77,1,.28) 8.5% 11%, transparent 13% 21%, rgba(249,192,82,.14) 22% 23.5%, transparent 25% 30%); }
-.aura::after { content: ""; position: absolute; inset: 0; background: radial-gradient(130vmax 100vmax at 50% 40%, transparent 35%, rgba(2,8,6,.75) 100%); }
-body { background: #030b09; }
-.wh, .footer { background: transparent; }
+html.glass-on .aura-rays i { position: absolute; inset: 0; }
+html.glass-on .aura-rays i:nth-child(1) { filter: blur(12px); background: repeating-linear-gradient(114deg, transparent 0 4%, rgba(249,192,82,.30) 5% 6.2%, transparent 7.5% 13%, rgba(198,77,1,.30) 14% 17%, transparent 18.5% 24%); }
+html.glass-on .aura-rays i:nth-child(2) { filter: blur(24px); background: repeating-linear-gradient(107deg, transparent 0 7%, rgba(198,77,1,.28) 8.5% 11%, transparent 13% 21%, rgba(249,192,82,.14) 22% 23.5%, transparent 25% 30%); }
+html.glass-on .aura::after { content: ""; position: absolute; inset: 0; background: radial-gradient(130vmax 100vmax at 50% 40%, transparent 35%, rgba(2,8,6,.75) 100%); }
+html.glass-on body { background: #030b09; }
+html.glass-on .wh, html.glass-on .footer { background: transparent; }
 
 /* One glass recipe for every surface */
-.pill, .glass, .proof-marquee, .dial-copy, .split-copy, .sv-in, .brief-opts, .chip, .btn-copy, .wh-now-card {
+html.glass-on .pill, html.glass-on .glass, html.glass-on .proof-marquee, html.glass-on .dial-copy, html.glass-on .split-copy, html.glass-on .sv-in, html.glass-on .brief-opts, html.glass-on .chip, html.glass-on .btn-copy, html.glass-on .wh-now-card {
   background: var(--glass); -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3);
   box-shadow: inset 0 1px 0 var(--lip), inset 0 0 0 1px var(--edge), var(--lift); }
-.pill { color: var(--paper); }
-html[data-theme="paper"] .pill { box-shadow: inset 0 1px 0 var(--lip), inset 0 0 0 1px var(--edge), var(--lift); }
+html.glass-on .pill { color: var(--paper); }
+html.glass-on[data-theme="paper"] .pill { box-shadow: inset 0 1px 0 var(--lip), inset 0 0 0 1px var(--edge), var(--lift); }
 /* A glint that crosses each surface once as it arrives, and a soft light under the pointer */
-.glint { position: relative; isolation: isolate; }
-.glint::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 3;
+html.glass-on .glint { position: relative; isolation: isolate; }
+html.glass-on .glint::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 3;
   background: linear-gradient(105deg, transparent 38%, rgba(255,255,255,.09) 47%, rgba(255,255,255,.02) 52%, transparent 60%) no-repeat;
   background-size: 250% 100%; background-position: var(--glint, 160%) 0; }
-.glint::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 3; opacity: var(--lit, 0); transition: opacity .6s var(--ease);
+html.glass-on .glint::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 3; opacity: var(--lit, 0); transition: opacity .6s var(--ease);
   background: radial-gradient(22rem 22rem at var(--px, 50%) var(--py, 0%), rgba(255,255,255,.07), transparent 70%); }
 
 /* Type: a soft lift under big lines, and orange that glows a little */
-.h-section, .h-big, .h-line, .wh-line, .dial-stage h3, .split-statement, .brief-line, .sv-copy h2, .footer-line { text-shadow: 0 1px 0 rgba(255,255,255,.06), 0 1.2rem 2.4rem rgba(0,0,0,.55); }
-.accent, .slot, .split-statement b, .split-tag-b, .footer-line b, .wh-exec .wh-line { text-shadow: 0 0 2.2rem rgba(245,115,29,.2), 0 1.2rem 2.4rem rgba(0,0,0,.5); }
+html.glass-on .h-section, html.glass-on .h-big, html.glass-on .h-line, html.glass-on .wh-line, html.glass-on .dial-stage h3, html.glass-on .split-statement, html.glass-on .brief-line, html.glass-on .sv-copy h2, html.glass-on .footer-line { text-shadow: 0 1px 0 rgba(255,255,255,.06), 0 1.2rem 2.4rem rgba(0,0,0,.55); }
+html.glass-on .accent, html.glass-on .slot, html.glass-on .split-statement b, html.glass-on .split-tag-b, html.glass-on .footer-line b, html.glass-on .wh-exec .wh-line { text-shadow: 0 0 2.2rem rgba(245,115,29,.2), 0 1.2rem 2.4rem rgba(0,0,0,.5); }
 
 /* The one orange button, lit from above and glowing slightly */
-.btn-corner { border-radius: .4rem; box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -.25rem .6rem rgba(120,40,0,.35), 0 0 0 1px rgba(198,77,1,.6), 0 .6rem 2.2rem rgba(245,115,29,.32), var(--lift); }
+html.glass-on .btn-corner { border-radius: .4rem; box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -.25rem .6rem rgba(120,40,0,.35), 0 0 0 1px rgba(198,77,1,.6), 0 .6rem 2.2rem rgba(245,115,29,.32), var(--lift); }
 
 /* 2. Client band on a glass strip */
-.proof { padding-inline: 1.5rem; }
-.proof-marquee { border: 0; border-radius: 1.25rem; padding: 1.8rem 0; }
+html.glass-on .proof { padding-inline: 1.5rem; }
+html.glass-on .proof-marquee { border: 0; border-radius: 1.25rem; padding: 1.8rem 0; }
 
 /* 4. Dial: the copy on a glass slab, the photograph in a glass mount */
-.dial-copy { padding: 2.6rem 2.8rem; border-radius: 1.4rem; }
-.dial-photo { box-shadow: 0 0 0 .7rem rgba(14,30,27,.55), 0 0 0 calc(.7rem + 1px) var(--edge), var(--lift); }
+html.glass-on .dial-copy { padding: 2.6rem 2.8rem; border-radius: 1.4rem; }
+html.glass-on .dial-photo { box-shadow: 0 0 0 .7rem rgba(14,30,27,.55), 0 0 0 calc(.7rem + 1px) var(--edge), var(--lift); }
 
 /* 5. Split: the copy on a glass slab under the two halves */
-.split-copy { padding: 2.6rem 3rem; border-radius: 1.4rem; }
-.split-half { box-shadow: var(--lift); }
+html.glass-on .split-copy { padding: 2.6rem 3rem; border-radius: 1.4rem; }
+html.glass-on .split-half { box-shadow: var(--lift); }
 
 /* 6. Services: the stacking cards become stacked panes of glass, each lit a little differently */
-.sv-in { border-radius: 1.4rem; color: var(--paper); }
-.sv-forest .sv-in, .sv-paper .sv-in, .sv-sand .sv-in { color: var(--paper); }
-.sv-paper .sv-in { background: radial-gradient(90% 70% at 30% 0%, rgba(249,192,82,.12), transparent 70%), linear-gradient(137deg, rgba(20,34,30,.7), rgba(6,14,12,.85)); }
-.sv-sand .sv-in { background: radial-gradient(90% 70% at 30% 0%, rgba(210,189,161,.12), transparent 70%), linear-gradient(137deg, rgba(18,32,28,.7), rgba(6,14,12,.85)); }
-.sv-card figure { margin: .8rem; border-radius: 1rem; overflow: hidden; box-shadow: inset 0 0 0 1px var(--edge); }
-.sv-copy li { border-color: rgba(248,242,235,.22); }
-.sv-copy .label-ember { color: var(--orange); }
+html.glass-on .sv-in { border-radius: 1.4rem; color: var(--paper); }
+html.glass-on .sv-forest .sv-in, html.glass-on .sv-paper .sv-in, html.glass-on .sv-sand .sv-in { color: var(--paper); }
+html.glass-on .sv-paper .sv-in { background: radial-gradient(90% 70% at 30% 0%, rgba(249,192,82,.12), transparent 70%), linear-gradient(137deg, rgba(20,34,30,.7), rgba(6,14,12,.85)); }
+html.glass-on .sv-sand .sv-in { background: radial-gradient(90% 70% at 30% 0%, rgba(210,189,161,.12), transparent 70%), linear-gradient(137deg, rgba(18,32,28,.7), rgba(6,14,12,.85)); }
+html.glass-on .sv-card figure { margin: .8rem; border-radius: 1rem; overflow: hidden; box-shadow: inset 0 0 0 1px var(--edge); }
+html.glass-on .sv-copy li { border-color: rgba(248,242,235,.22); }
+html.glass-on .sv-copy .label-ember { color: var(--orange); }
 
 /* 7. Reels: each card is a glass mount */
-.cyl-card { border-radius: .9rem; box-shadow: inset 0 1px 0 var(--lip), 0 0 0 1px var(--edge), var(--lift); }
+html.glass-on .cyl-card { border-radius: .9rem; box-shadow: inset 0 1px 0 var(--lip), 0 0 0 1px var(--edge), var(--lift); }
 
 /* 8. Brief: the options on a glass panel, the chips as small panes */
-.brief-opts { padding: 2.6rem; border-radius: 1.4rem; }
-.chip { border: 0; }
-.chip:hover { box-shadow: inset 0 1px 0 var(--lip), inset 0 0 0 1px rgba(245,115,29,.55), var(--lift); }
-.chip[aria-pressed="true"] { background: var(--paper); color: var(--forest); box-shadow: inset 0 1px 0 #fff, 0 0 1.4rem rgba(248,242,235,.18), var(--lift); }
-.btn-copy { border: 0; border-radius: .4rem; }
+html.glass-on .brief-opts { padding: 2.6rem; border-radius: 1.4rem; }
+html.glass-on .chip { border: 0; }
+html.glass-on .chip:hover { box-shadow: inset 0 1px 0 var(--lip), inset 0 0 0 1px rgba(245,115,29,.55), var(--lift); }
+html.glass-on .chip[aria-pressed="true"] { background: var(--paper); color: var(--forest); box-shadow: inset 0 1px 0 #fff, 0 0 1.4rem rgba(248,242,235,.18), var(--lift); }
+html.glass-on .btn-copy { border: 0; border-radius: .4rem; }
 
 @media (max-width: 991px) {
-  .proof { padding-inline: 1rem; }
-  .dial-copy, .split-copy, .brief-opts { padding: 1.8rem 1.6rem; }
+  html.glass-on .proof { padding-inline: 1rem; }
+  html.glass-on .dial-copy, html.glass-on .split-copy, html.glass-on .brief-opts { padding: 1.8rem 1.6rem; }
 }
 @media (max-width: 600px) {
-  .dial-copy, .split-copy, .brief-opts { padding: 1.4rem 1.2rem; border-radius: 1.1rem; }
-  .sv-card figure { margin: .6rem; }
+  html.glass-on .dial-copy, html.glass-on .split-copy, html.glass-on .brief-opts { padding: 1.4rem 1.2rem; border-radius: 1.1rem; }
+  html.glass-on .sv-card figure { margin: .6rem; }
 }
-@media (prefers-reduced-motion: reduce) { .glint::before { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html.glass-on .glint::before { transition: none; } }
+
+/* Glass switch, to compare with the flat page */
+.gswitch { position: fixed; z-index: 70; right: 1.5rem; bottom: 1.5rem; display: flex; padding: .3rem; gap: .2rem; height: auto; }
+.gswitch button { height: 2.4rem; padding: 0 1.1rem; border-radius: 10rem; letter-spacing: .14em; transition: background-color .4s var(--ease), color .4s var(--ease); }
+.gswitch button[aria-pressed="true"] { background: var(--forest); color: var(--paper); }
+html.glass-on .gswitch button { color: var(--paper); }
+html.glass-on .gswitch button[aria-pressed="true"] { background: var(--paper); color: var(--forest); }
+@media (max-width: 991px) { .gswitch { right: auto; left: 50%; translate: -50% 0; bottom: 1rem; } }
+@media (max-width: 600px) { .gswitch button { height: 2.1rem; padding: 0 .8rem; font-size: .62rem; } }
 </style>
 </head>
 <body>
@@ -771,6 +780,11 @@ html[data-theme="paper"] .pill { box-shadow: inset 0 1px 0 var(--lip), inset 0 0
     </div>
   </section>
 </main>
+
+<div class="gswitch pill label" role="group" aria-label="Compare the glass with the flat page">
+  <button type="button" aria-pressed="true" data-glass="on">Glass on</button>
+  <button type="button" aria-pressed="false" data-glass="off">Glass off</button>
+</div>
 
 <div class="lightbox" role="dialog" aria-label="Photograph" aria-hidden="true">
   <button class="lightbox-close label">Close</button>
@@ -1422,8 +1436,16 @@ html[data-theme="paper"] .pill { box-shadow: inset 0 1px 0 var(--lip), inset 0 0
     gsap.ticker.add((time, delta) => { t += delta / 1000; dx(Math.sin(t * .17) * 6); dy(Math.cos(t * .13) * 5); });
   }
 
+  /* Glass switch: on by default, remembered across the glass drafts */
+  function glassSwitch() {
+    const btns = [...document.querySelectorAll('[data-glass]')];
+    const set = on => { html.classList.toggle('glass-on', on); btns.forEach(b => b.setAttribute('aria-pressed', String((b.dataset.glass === 'on') === on))); try { localStorage.setItem('3not8-glass', on ? 'on' : 'off'); } catch (e) {} ScrollTrigger.refresh(); };
+    btns.forEach(b => b.addEventListener('click', () => set(b.dataset.glass === 'on')));
+    try { if (localStorage.getItem('3not8-glass') === 'off') set(false); } catch (e) {}
+  }
+
   function init() {
-    darkGlass(); wallHero(); dial(); marquee(); halves(); services(); reels(); brief(); lightbox(); footer(); themes();
+    darkGlass(); glassSwitch(); wallHero(); dial(); marquee(); halves(); services(); reels(); brief(); lightbox(); footer(); themes();
     focusCursor(); drawLines(); menu();
     if (reduce.matches) gsap.set('[data-scroll-reveal]', { visibility: 'visible' }); else scrollReveals();
     weightHover();

@@ -30,9 +30,14 @@ li a { display: grid; grid-template-columns: 4rem 1fr auto; align-items: baselin
 .go { color: rgba(248,242,235,.6); }
 li a:hover .name, li a:focus-visible .name { font-weight: 900; }
 li a:hover .go, li a:focus-visible .go { color: var(--orange); }
+.glass-group { padding: 1.6rem clamp(1rem, 2.4vw, 2rem) .4rem; margin-inline: calc(clamp(1rem, 2.4vw, 2rem) * -1); border-radius: 1.4rem;
+  background: radial-gradient(90% 70% at 85% 0%, rgba(245,115,29,.14), transparent 70%), linear-gradient(137deg, rgba(5,21,17,.55), rgba(3,11,9,.85));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.16), inset 0 0 0 1px rgba(255,255,255,.08), 0 1.5rem 3rem rgba(0,0,0,.35); }
+.glass-tag { font-style: normal; display: inline-block; margin-right: .9rem; padding: .35em .75em; border-radius: 10rem; color: var(--paper);
+  background: rgba(248,242,235,.08); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 0 0 1px rgba(255,255,255,.12); }
 :focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
 footer { color: rgba(248,242,235,.5); }
-@media (max-width: 600px) { li a { grid-template-columns: 2.5rem 1fr; } .go { display: none; } h2 { flex-direction: column; gap: .4rem; } }
+@media (max-width: 600px) { .glass-tag { display: none; } .glass-group { margin-inline: 0; } li a { grid-template-columns: 2.5rem 1fr; } .go { display: none; } h2 { flex-direction: column; gap: .4rem; } }
 @media (prefers-reduced-motion: reduce) { .name { transition: none; } }
 </style>
 </head>
@@ -43,15 +48,21 @@ footer { color: rgba(248,242,235,.5); }
 <main>
   <p class="label" style="color: var(--orange)">Website drafts</p>
   <h1>pick a draft, <b>tell us what works.</b></h1>
-  <p class="how">The drafts are sorted into four groups below. Every draft has a tab on its left edge with its number and name, so you always know which one you are looking at. Tap the tab to jump to another draft.</p>
+  <p class="how">The drafts are sorted into five groups below. The first group, Dark glass, holds the drafts with the glass effect; open one and use the switch at the bottom right to turn the glass on and off. Every draft has a tab on its left edge with its number and name, so you always know which one you are looking at. Tap the tab to jump to another draft.</p>
 </main>
+
+<section class="glass-group">
+  <h2 class="label">Dark glass <span>Drafts with the glass effect. Each has a Glass on and off switch at the bottom right</span></h2>
+  <ul>
+    <li><a href="prototypes/21-final-candidate/"><span class="num label">21</span><span class="name">home page, final candidate<small>The strongest pieces on one page: the ring of work as the hero, lens dial, the split, stacking service cards, the reel cylinder and the brief builder, in dark glass and light. Switch the glass off to see the flat version.</small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
+    <li><a href="prototypes/25-glass/"><span class="num label">25</span><span class="name">dark glass and light<small>A darker page with one warm light in it. Every card, panel and photo mount is dark glass with a lit edge and soft stacked shadows, so layers sit on layers. The logo stays the plain brand file. A switch at the bottom shows the same page flat.</small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
+  </ul>
+</section>
 
 <section>
   <h2 class="label">Full home pages <span>Compare them</span></h2>
   <ul>
-    <li><a href="prototypes/25-glass/"><span class="num label">25</span><span class="name">dark glass and light<small>A darker page with one warm light in it. Every card, panel and photo mount is dark glass with a lit edge and soft stacked shadows, so layers sit on layers. The logo stays the plain brand file. A switch at the bottom shows the same page flat.</small></span><span class="go label">Open</span></a></li>
     <li><a href="prototypes/24-studio-film/"><span class="num label">24</span><span class="name">home page, focus pull and glide<small>A quieter, heavier home page. The signature pulls focus, a reel follows you down the page, the story closes into a reel with subtitles, tilted service cards, full screen work, client words and a closing line that comes into focus. The scroll glides and settles.</small></span><span class="go label">Open</span></a></li>
-    <li><a href="prototypes/21-final-candidate/"><span class="num label">21</span><span class="name">home page, final candidate<small>The strongest pieces on one page: the ring of work as the hero, lens dial, the split, stacking service cards, the reel cylinder and the brief builder, now in Draft 25's dark glass and light.</small></span><span class="go label">Open</span></a></li>
     <li><a href="prototypes/03-sections/"><span class="num label">03</span><span class="name">home page, version two<small>Real photos and reels, lens dial, call sheet, gallery, reel cylinder, timeline and brief builder.</small></span><span class="go label">Open</span></a></li>
     <li><a href="prototypes/02-home/"><span class="num label">02</span><span class="name">home page, version one<small>Hero, showreel, 3D work stack, services panels, reels strip, process and contact.</small></span><span class="go label">Open</span></a></li>
   </ul>

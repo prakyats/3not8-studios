@@ -775,9 +775,9 @@ html.no-glass .aura { background: var(--forest); } html.no-glass .aura > *, html
   /* The switch: glass on, or the same page in the plain brand */
   function glassSwitch() {
     const btns = [...document.querySelectorAll('[data-glass]')];
-    const set = on => { html.classList.toggle('no-glass', !on); btns.forEach(b => b.setAttribute('aria-pressed', String((b.dataset.glass === 'on') === on))); try { localStorage.setItem('d25-glass', on ? 'on' : 'off'); } catch (e) {} };
+    const set = on => { html.classList.toggle('no-glass', !on); btns.forEach(b => b.setAttribute('aria-pressed', String((b.dataset.glass === 'on') === on))); try { localStorage.setItem('3not8-glass', on ? 'on' : 'off'); } catch (e) {} };
     btns.forEach(b => b.addEventListener('click', () => set(b.dataset.glass === 'on')));
-    try { if (localStorage.getItem('d25-glass') === 'off') set(false); } catch (e) {}
+    try { if (localStorage.getItem('3not8-glass') === 'off') set(false); } catch (e) {}
   }
 
   /* Footer: local time and the wordmark rising into place */
