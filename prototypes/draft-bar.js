@@ -26,7 +26,13 @@
     ['22', '22-combination-hero', 'The hero line on two wheels', 'Hero'],
     ['23', '23-wall-filters', 'The wall with filters', 'Inner page'],
     ['24', '24-studio-film', 'Home page, focus pull and glide', 'Full page'],
-    ['25', '25-glass', 'Dark glass and light', 'Glass · Full page']
+    ['25', '25-glass', 'Dark glass and light', 'Glass · Full page'],
+    ['26', '26-ascii-sweep', 'ASCII sweep services', 'Glass · References'],
+    ['27', '27-glass-halves', 'Glass halves hero', 'Glass · References'],
+    ['28', '28-particle-frame', 'Photograph in particles', 'Glass · References'],
+    ['29', '29-floating-reel', 'Floating reel hero', 'Glass · References'],
+    ['30', '30-work-atlas', 'Work atlas', 'Glass · References'],
+    ['31', '31-reference-home', 'Home page from the references', 'Glass · References']
   ];
   const m = location.pathname.match(/prototypes\/(\d\d)-/);
   const cur = DRAFTS.find(d => m && d[0] === m[1]);

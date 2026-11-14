@@ -31,6 +31,12 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 | 23 | `prototypes/23-wall-filters` | Draft 13's wall with a chip for each kind of work: reels, road, table, crew. A chip turns the nearest frame of that kind round to face you, a band of gold light sweeps outward over the lit frames, and the rest sink back on the ring and drain into Forest shadow. Scroll and drag still turn the wall and it settles on a lit frame when they rest; arrow keys step between lit frames. The still fallback swaps its row to the chosen kind | Inner pages |
 | 24 | `prototypes/24-studio-film` | A full home page built from what makes a quiet premium studio site feel expensive, redone in our brand: the signature racks focus from one line to the other, a real reel follows you round the page in a corner, the story closes from a still into a reel with subtitles, service cards on a track straighten as they reach the middle, full screen work where each photograph arrives in two halves, a carousel round the real customer review reel, and a closing line whose words start scattered and come into focus. The scroll is heavier (Lenis lerp 0.072) and one spring follows scroll speed, so cards sway and work titles skew, then settle | Full home pages |
 | 25 | `prototypes/25-glass` | Dark glass and light, on Draft 24's glide. Built from how Raycast and Linear do glass: a near black field with one warm light (Ember and Gold rays from the top right), and every surface on top is dark tinted glass with light blur, a hairline edge, a lit top lip and stacked soft shadows, so layers sit on layers. Orange shines by glowing slightly; type stays solid with a soft lift. Hero: three glass mounts stacked at three depths that separate with the pointer and the scroll. The logo stays the plain brand file: a first pass made the mark itself glass and 3D, and it was rejected as off brand and cheap. A switch shows the same page flat. The light sheens and tinted panels are still gradients the brand book does not allow, so the brand owner needs to sign off | Dark glass |
+| 26 | `prototypes/26-ascii-sweep` | Three ways to work with us on one sheet. A band of glowing characters sweeps across and rewrites it, growing on every line of text it crosses. From Canvas UI · ASCII Sweep | From your references |
+| 27 | `prototypes/27-glass-halves` | Two halves of a disc in real refracting glass over our photographs. Drag to turn them, scroll to part them and change the picture behind. From Canvas UI · Glass Object | From your references |
+| 28 | `prototypes/28-particle-frame` | A photograph rebuilt from twenty thousand particles. Scroll gathers it out of dust, the cursor scatters and swirls it, and it springs back. From Canvas UI · Particle Object | From your references |
+| 29 | `prototypes/29-floating-reel` | A real reel floats between the two lines of the signature, behind one and in front of the other, with glass callouts on leader lines. From Motionsites · Orbit Flora and Nature Ritual | From your references |
+| 30 | `prototypes/30-work-atlas` | Every photograph and reel as an atlas: a rail of kinds, a strip of pieces, one in the spotlight and a glass panel of facts. From Motionsites · Abyss Atlas | From your references |
+| 31 | `prototypes/31-reference-home` | The whole site: a ribbon of light, a headline with media in it, footage run by scroll, a paragraph that fills as you read, case cards, client band, service accordion. From Motionsites · Glassmorphism Agency Hero and Scroll Landing Page, WIRO | From your references |
 
 ## How a draft is put together
 
@@ -48,6 +54,9 @@ Working notes for whoever builds the next draft. Read this, [website-brief.md](w
 3. The table above.
 
 ## Glass drafts
+
+- Drafts 26 to 31 share `prototypes/glass-kit.css` and `prototypes/glass-kit.js` instead of carrying the glass inside the page. The kit adds the field, the light, the glints and the switch, and reads the same `3not8-glass` setting. Mark any surface with class `g` to make it glass; without the kit's `glass-on` class it falls back to a flat Forest card.
+- Drafts 27, 28 and 31 load three.js 0.170.0 through an import map, one WebGL effect each, with a still or no effect as the fallback.
 
 - Drafts 21 and 25 use the dark glass effect. They sit in their own Dark glass group on the index, carry a Glass tag, and show Glass in the draft tab list.
 - Each has a Glass on and off switch at the bottom right. The choice is stored in `localStorage` under `3not8-glass`, so it carries between the two.

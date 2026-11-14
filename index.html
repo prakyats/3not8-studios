@@ -33,6 +33,8 @@ li a:hover .go, li a:focus-visible .go { color: var(--orange); }
 .glass-group { padding: 1.6rem clamp(1rem, 2.4vw, 2rem) .4rem; margin-inline: calc(clamp(1rem, 2.4vw, 2rem) * -1); border-radius: 1.4rem;
   background: radial-gradient(90% 70% at 85% 0%, rgba(245,115,29,.14), transparent 70%), linear-gradient(137deg, rgba(5,21,17,.55), rgba(3,11,9,.85));
   box-shadow: inset 0 1px 0 rgba(255,255,255,.16), inset 0 0 0 1px rgba(255,255,255,.08), 0 1.5rem 3rem rgba(0,0,0,.35); }
+.refs-group { margin-top: .5rem; }
+.ref-from { display: block; margin-top: .5rem; font-style: normal; color: rgba(245,115,29,.85); font-weight: 700; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; }
 .glass-tag { font-style: normal; display: inline-block; margin-right: .9rem; padding: .35em .75em; border-radius: 10rem; color: var(--paper);
   background: rgba(248,242,235,.08); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 0 0 1px rgba(255,255,255,.12); }
 :focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
@@ -48,7 +50,7 @@ footer { color: rgba(248,242,235,.5); }
 <main>
   <p class="label" style="color: var(--orange)">Website drafts</p>
   <h1>pick a draft, <b>tell us what works.</b></h1>
-  <p class="how">The drafts are sorted into five groups below. The first group, Dark glass, holds the drafts with the glass effect; open one and use the switch at the bottom right to turn the glass on and off. Every draft has a tab on its left edge with its number and name, so you always know which one you are looking at. Tap the tab to jump to another draft.</p>
+  <p class="how">The drafts are sorted into six groups below. The first two groups hold the drafts with the glass effect: Dark glass, and From your references, built from the components you picked; open one and use the switch at the bottom right to turn the glass on and off. Every draft has a tab on its left edge with its number and name, so you always know which one you are looking at. Tap the tab to jump to another draft.</p>
 </main>
 
 <section class="glass-group">
@@ -56,6 +58,18 @@ footer { color: rgba(248,242,235,.5); }
   <ul>
     <li><a href="prototypes/21-final-candidate/"><span class="num label">21</span><span class="name">home page, final candidate<small>The strongest pieces on one page: the ring of work as the hero, lens dial, the split, stacking service cards, the reel cylinder and the brief builder, in dark glass and light. Switch the glass off to see the flat version.</small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
     <li><a href="prototypes/25-glass/"><span class="num label">25</span><span class="name">dark glass and light<small>A darker page with one warm light in it. Every card, panel and photo mount is dark glass with a lit edge and soft stacked shadows, so layers sit on layers. The logo stays the plain brand file. A switch at the bottom shows the same page flat.</small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
+  </ul>
+</section>
+
+<section class="glass-group refs-group">
+  <h2 class="label">From your references <span>Built from the Canvas UI, Motionsites and WIRO pieces you picked. Each has a Glass on and off switch at the bottom</span></h2>
+  <ul>
+    <li><a href="prototypes/26-ascii-sweep/"><span class="num label">26</span><span class="name">services, swept in light<small>Three ways to work with us on one sheet. A band of glowing characters sweeps across and rewrites it, growing on every line of text it crosses. <em class="ref-from">From Canvas UI · ASCII Sweep</em></small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
+    <li><a href="prototypes/27-glass-halves/"><span class="num label">27</span><span class="name">two halves of glass<small>Two halves of a disc in real refracting glass over our photographs. Drag to turn them, scroll to part them and change the picture behind. <em class="ref-from">From Canvas UI · Glass Object</em></small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
+    <li><a href="prototypes/28-particle-frame/"><span class="num label">28</span><span class="name">a frame made of particles<small>A photograph rebuilt from twenty thousand particles. Scroll gathers it out of dust, the cursor scatters and swirls it, and it springs back. <em class="ref-from">From Canvas UI · Particle Object</em></small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
+    <li><a href="prototypes/29-floating-reel/"><span class="num label">29</span><span class="name">the floating reel<small>A real reel floats between the two lines of the signature, behind one and in front of the other, with glass callouts on leader lines. <em class="ref-from">From Motionsites · Orbit Flora and Nature Ritual</em></small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
+    <li><a href="prototypes/30-work-atlas/"><span class="num label">30</span><span class="name">the work atlas<small>Every photograph and reel as an atlas: a rail of kinds, a strip of pieces, one in the spotlight and a glass panel of facts. <em class="ref-from">From Motionsites · Abyss Atlas</em></small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
+    <li><a href="prototypes/31-reference-home/"><span class="num label">31</span><span class="name">home page from the references<small>The whole site: a ribbon of light, a headline with media in it, footage run by scroll, a paragraph that fills as you read, case cards, client band, service accordion. <em class="ref-from">From Motionsites · Glassmorphism Agency Hero and Scroll Landing Page, WIRO</em></small></span><span class="go label"><i class="glass-tag">Glass</i>Open</span></a></li>
   </ul>
 </section>
 
